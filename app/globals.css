@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-container px-6;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-body font-semibold text-sm px-[18px] py-[10px] rounded-full transition-all duration-200;
+  }
+  .btn-primary {
+    @apply bg-primary text-white shadow-button hover:bg-primary-dark hover:-translate-y-px;
+  }
+  .btn-ghost {
+    @apply bg-surface text-ink-2 border border-line hover:border-[#c9d2e6] hover:-translate-y-px;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold tracking-[.14em] uppercase text-primary;
+  }
+  .media-shot {
+    @apply w-full rounded-[14px] border border-line object-cover bg-[#e9edf6];
+    box-shadow: 0 30px 60px -24px rgba(16, 22, 41, 0.4);
+  }
+}
+
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #2563eb;
+  border-radius: 2px;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+.reveal.d4 { transition-delay: 0.32s; }
+
+/* Carousel slide-in */
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Marquee loop (left -> right) */
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.animate-marquee-right {
+  animation: marqueeRight 22s linear infinite;
+}
+
+/* Process step icon glow pulse */
+@keyframes iconGlowPulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.12); }
+}
+.icon-glow-pulse {
+  animation: iconGlowPulse 2.8s ease-in-out infinite;
+}
+
+/* Integration hub — animated beams */
+@keyframes beamFlow {
+  from { stroke-dashoffset: 110; }
+  to { stroke-dashoffset: 0; }
+}
+.beam {
+  animation: beamFlow 2.4s linear infinite;
+}
+@keyframes hubGlow {
+  0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.14); }
+}
+.hub-glow {
+  animation: hubGlow 3s ease-in-out infinite;
+}
+@keyframes hubPulse {
+  0%, 100% { box-shadow: 0 0 28px rgba(37, 99, 235, 0.55); }
+  50% { box-shadow: 0 0 46px rgba(37, 99, 235, 0.9); }
+}
+.hub-core {
+  animation: hubPulse 3s ease-in-out infinite;
+}
+
+/* Platform hexagon orbit */
+@keyframes hexPulse {
+  0%, 100% {
+    opacity: 0.12;
+    filter: drop-shadow(0 0 0 rgba(37, 99, 235, 0));
+  }
+  35% {
+    opacity: 1;
+    filter: drop-shadow(0 0 7px rgba(37, 99, 235, 0.85));
+  }
+}
+.hexring {
+  animation: hexPulse 2.4s ease-in-out infinite;
+}
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.orbit {
+  animation: orbitSpin 46s linear infinite;
+}
+.orbit-rev {
+  animation: orbitSpin 46s linear infinite reverse;
+}
+@keyframes hexCoreGlow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.18);
+  }
+}
+.hex-core-glow {
+  animation: hexCoreGlow 2.6s ease-in-out infinite;
+}

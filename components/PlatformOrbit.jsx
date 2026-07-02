@@ -88,14 +88,11 @@ export default function PlatformOrbit() {
         ))}
       </div>
 
-      {/* center hexagon logo */}
+      {/* center node — brand logo */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-        <div className="hex-core-glow absolute left-1/2 top-1/2 w-32 h-32 rounded-full bg-primary/50 blur-2xl pointer-events-none" />
-        <div
-          className="relative grid place-items-center w-[104px] h-[104px] bg-gradient-to-br from-[#2563eb] to-[#4f46e5] shadow-[0_0_40px_rgba(37,99,235,.6)]"
-          style={{ clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)" }}
-        >
-          <span className="font-heading font-extrabold text-white text-2xl tracking-tight">5N</span>
+        <div className="hex-core-glow absolute left-1/2 top-1/2 w-32 h-32 rounded-full bg-primary/40 blur-2xl pointer-events-none" />
+        <div className="relative grid place-items-center w-[112px] h-[112px] rounded-[26px] bg-white border border-line shadow-[0_12px_30px_-8px_rgba(37,99,235,.45)]">
+          <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="w-[72%] h-auto" />
         </div>
       </div>
     </div>

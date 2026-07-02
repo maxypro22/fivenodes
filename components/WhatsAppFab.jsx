@@ -5,7 +5,7 @@ export default function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed right-5 bottom-5 md:right-6 md:bottom-6 z-[120] grid place-items-center w-14 h-14 rounded-full bg-gradient-to-br from-wa-1 to-wa-2 text-white shadow-[0_12px_30px_-8px_rgba(18,140,62,.6)] transition-transform duration-200 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
+      className="fixed right-5 bottom-6 md:right-7 md:bottom-7 z-[120] grid place-items-center w-14 h-14 rounded-full bg-gradient-to-br from-wa-1 to-wa-2 text-white shadow-[0_14px_34px_-8px_rgba(18,140,62,.65)] transition-transform duration-200 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
     >
       <span className="absolute inset-0 rounded-full bg-wa-1/40 animate-ping [animation-duration:2.5s]" />
       <svg viewBox="0 0 24 24" fill="currentColor" className="relative w-7 h-7">

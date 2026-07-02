@@ -246,34 +246,52 @@ export const WHY = [
 // ==========================================================
 // BASHA AI — /basha
 // ==========================================================
-export const BASHA_CAPABILITIES = [
-  {
-    t: "Conversation Monitoring",
-    d: "Watches every conversation across WhatsApp, Instagram, voice, and chat — in Arabic and English.",
-  },
-  {
-    t: "Sentiment Analysis",
-    d: "Catches frustration early by detecting angry customers and at-risk deals before they escalate.",
-  },
-  {
-    t: "Performance Metrics",
-    d: "Tracks response times, resolution rates, and quality and tone scores across your team.",
-  },
-  {
-    t: "Voice Briefing",
-    d: "Call Basha or read the morning summary for a spoken answer, not a dashboard.",
-  },
-  {
-    t: "Smart Alerts",
-    d: "Pings you when it matters — real-time notifications for the urgent issues that need you.",
-  },
+export const BASHA_AWAY = [
+  { t: "While you sleep", d: "The 2 a.m. complaint, the after-midnight enquiry: seen, scored, and waiting in your morning brief." },
+  { t: "While you're in meetings", d: "A customer goes cold while your team is heads-down. Basha notices and pings you before it's lost." },
+  { t: "While you're away", d: "On the road or on holiday, your oversight travels with you. Nothing slips because you stepped out." },
+  { t: "After hours & weekends", d: "Business doesn't stop on Fridays. Basha keeps watching when the office lights are off." },
 ];
 
-export const BASHA_FEATURES = [
-  ["Always", "Watching — never stops oversight"],
+export const BASHA_CAPABILITIES = [
+  { t: "Watches every conversation", d: "Monitors WhatsApp, Instagram, voice, and chat in Arabic and English." },
+  { t: "Catches frustration early", d: "Sentiment analysis identifies at-risk customers and escalations." },
+  { t: "Times your team", d: "Measures response times, resolution rates, quality and tone scores." },
+  { t: "Briefs you out loud", d: "Provides voice or written summaries of performance trends." },
+  { t: "Pings you when it matters", d: "Real-time alerts for VIP issues and churn signals." },
+  { t: "Never forgets a customer", d: "Maintains interaction history and surfaces at-risk relationships." },
+];
+
+export const BASHA_DIALOGUE = [
+  { q: "Basha, how did the team do today?", a: "Solid day. 38 conversations, average reply under 4 minutes, no complaints left open." },
+  { q: "Anyone I should worry about?", a: "Yes. Mr. Ahmed went quiet after asking about price. I'd reach out before tomorrow." },
+];
+
+export const BASHA_STEPS = [
+  { n: "01", t: "Connect your channels", d: "Integrate WhatsApp, Instagram, voice, and chat in read-only mode." },
+  { n: "02", t: "Basha watches 24/7", d: "Analyzes conversations for quality, tone, and risk signals continuously." },
+  { n: "03", t: "Call it for the brief", d: "Phone Basha anytime for an executive-level summary." },
+];
+
+export const BASHA_IS = [
+  "Your eyes on every conversation",
+  "A voice you can call any time",
+  "An assistant that never clocks out",
+  "An early warning before customers leave",
+];
+
+export const BASHA_ISNT = [
+  "Not a chatbot that replies to customers",
+  "Not another dashboard to go check",
+  "Not a black box; every answer is explained",
+  "Not one more thing to manage",
+];
+
+export const BASHA_STATS = [
+  ["24/7", "Always watching"],
   ["100%", "Conversations read"],
   ["AR/EN", "Fully bilingual"],
-  ["24/7", "Executive assistant model"],
+  ["1 call", "To your full brief"],
 ];
 
 // ==========================================================

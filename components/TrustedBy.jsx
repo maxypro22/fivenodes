@@ -43,18 +43,21 @@ export default function TrustedBy() {
           <h3 className="font-heading font-bold text-[clamp(20px,2.6vw,30px)] tracking-[-.01em] text-ink mt-3">
             AI integrations we ship with
           </h3>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {TECH_LOGOS.map((t) => (
-              <div key={t.name} className="group relative">
-                {/* Tooltip */}
-                <div className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 z-10 opacity-0 translate-y-1.5 scale-90 transition-all duration-300 ease-smooth group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
-                  <div className="relative bg-ink text-white text-[13px] font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap shadow-soft">
-                    {t.name}
-                    <span className="absolute left-1/2 -translate-x-1/2 top-full -mt-1 w-2 h-2 bg-ink rotate-45" />
-                  </div>
-                </div>
-                {/* Tile */}
-                <div className="w-[74px] h-[74px] rounded-2xl bg-white border border-line shadow-card grid place-items-center p-4 grayscale opacity-70 transition-all duration-300 ease-smooth group-hover:grayscale-0 group-hover:opacity-100 group-hover:-translate-y-1.5 group-hover:scale-105 group-hover:shadow-soft group-hover:border-primary/40 group-hover:ring-4 group-hover:ring-primary/10">
+          {/* looping integration marquee (laptop + phone) */}
+          <div
+            className="mt-12 overflow-hidden relative pb-2"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            }}
+          >
+            <div className="flex w-max animate-marquee-left">
+              {[...TECH_LOGOS, ...TECH_LOGOS].map((t, i) => (
+                <div
+                  key={i}
+                  title={t.name}
+                  className="mr-4 shrink-0 w-[88px] h-[88px] rounded-2xl bg-white border border-line-soft shadow-card grid place-items-center p-4"
+                >
                   {t.svg ? (
                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9 text-ink" aria-label={`${t.name} logo`}>
                       <path d={t.svg} />
@@ -68,8 +71,8 @@ export default function TrustedBy() {
                     />
                   )}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

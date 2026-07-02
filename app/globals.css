@@ -82,6 +82,13 @@ html.lenis body {
 .animate-marquee-right {
   animation: marqueeRight 22s linear infinite;
 }
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee-left {
+  animation: marqueeLeft 30s linear infinite;
+}
 
 /* Process step icon glow pulse */
 @keyframes iconGlowPulse {

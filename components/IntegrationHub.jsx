@@ -88,12 +88,10 @@ export default function IntegrationHub() {
         </div>
       ))}
 
-      {/* center node */}
+      {/* center node — brand logo */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-        <div className="hub-core w-[84px] h-[84px] rounded-[24px] rotate-45 grid place-items-center bg-gradient-to-br from-[#2563eb] to-[#4f46e5] border border-white/40">
-          <span className="-rotate-45 text-white font-heading font-extrabold text-lg tracking-tight">
-            5N
-          </span>
+        <div className="hub-core relative w-[108px] h-[108px] rounded-[26px] grid place-items-center bg-white border border-white/70 shadow-[0_12px_30px_-8px_rgba(37,99,235,.45)]">
+          <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="w-[72%] h-auto" />
         </div>
       </div>
     </div>

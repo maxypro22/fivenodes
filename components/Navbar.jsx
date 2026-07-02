@@ -79,32 +79,35 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile menu */}
-      <div
-        className={`fixed inset-0 bg-white z-[200] transition-transform duration-300 flex flex-col pt-20 px-[30px] pb-[30px] gap-[6px] ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <button
-          onClick={() => setOpen(false)}
-          aria-label="Close menu"
-          className="absolute top-[22px] right-[26px] text-3xl leading-none text-ink"
+      {/* Mobile menu — wrapped in a viewport-sized clip layer so the off-screen
+          drawer never causes horizontal overflow */}
+      <div className="fixed inset-0 z-[200] overflow-hidden pointer-events-none">
+        <div
+          className={`absolute inset-0 bg-white flex flex-col pt-20 px-[30px] pb-[30px] gap-[6px] transition-transform duration-300 ${
+            open ? "translate-x-0 pointer-events-auto" : "translate-x-full"
+          }`}
         >
-          &times;
-        </button>
-        {LINKS.map(([l, h]) => (
-          <Link
-            key={l}
-            href={h}
+          <button
             onClick={() => setOpen(false)}
-            className="py-[14px] text-lg font-semibold border-b border-line-soft"
+            aria-label="Close menu"
+            className="absolute top-[22px] right-[26px] text-3xl leading-none text-ink"
           >
-            {l}
+            &times;
+          </button>
+          {LINKS.map(([l, h]) => (
+            <Link
+              key={l}
+              href={h}
+              onClick={() => setOpen(false)}
+              className="py-[14px] text-lg font-semibold border-b border-line-soft"
+            >
+              {l}
+            </Link>
+          ))}
+          <Link href="/book-demo" onClick={() => setOpen(false)} className="btn btn-primary mt-5">
+            Book Demo
           </Link>
-        ))}
-        <Link href="/book-demo" onClick={() => setOpen(false)} className="btn btn-primary mt-5">
-          Book Demo
-        </Link>
+        </div>
       </div>
     </>
   );

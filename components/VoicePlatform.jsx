@@ -17,7 +17,7 @@ export default function VoicePlatform() {
         <div className="reveal d2 mt-14 relative rounded-[40px] md:rounded-[64px] overflow-hidden bg-[#080b16] border border-white/[.06] shadow-[0_50px_100px_-40px_rgba(8,11,22,.8)]">
           <LazyVideo
             className="w-full h-full object-cover aspect-[1140/360] block"
-            src="/voice-wave.mp4"
+            src="/voice-wave-2.mp4"
           />
           {/* subtle edge fade so the pixels blend into the rounded panel */}
           <div className="pointer-events-none absolute inset-0 rounded-[40px] md:rounded-[64px] shadow-[inset_0_0_60px_20px_rgba(8,11,22,.75)]" />

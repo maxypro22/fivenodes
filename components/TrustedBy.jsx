@@ -52,7 +52,7 @@ export default function TrustedBy() {
             }}
           >
             <div className="flex w-max animate-marquee-left">
-              {[...TECH_LOGOS, ...TECH_LOGOS].map((t, i) => (
+              {[...TECH_LOGOS, ...TECH_LOGOS, ...TECH_LOGOS, ...TECH_LOGOS].map((t, i) => (
                 <div
                   key={i}
                   title={t.name}

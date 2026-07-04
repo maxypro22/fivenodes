@@ -247,19 +247,25 @@ export const WHY = [
 // BASHA AI — /basha
 // ==========================================================
 export const BASHA_AWAY = [
-  { t: "While you sleep", d: "The 2 a.m. complaint, the after-midnight enquiry: seen, scored, and waiting in your morning brief." },
-  { t: "While you're in meetings", d: "A customer goes cold while your team is heads-down. Basha notices and pings you before it's lost." },
-  { t: "While you're away", d: "On the road or on holiday, your oversight travels with you. Nothing slips because you stepped out." },
-  { t: "After hours & weekends", d: "Business doesn't stop on Fridays. Basha keeps watching when the office lights are off." },
+  { e: "🌙", t: "While you sleep", d: "The 2 a.m. complaint, the after-midnight enquiry: seen, scored, and waiting in your morning brief." },
+  { e: "📅", t: "While you're in meetings", d: "A customer goes cold while your team is heads-down. Basha notices and pings you before it's lost." },
+  { e: "✈️", t: "While you're away", d: "On the road or on holiday, your oversight travels with you. Nothing slips because you stepped out." },
+  { e: "🌆", t: "After hours & weekends", d: "Business doesn't stop on Fridays. Basha keeps watching when the office lights are off." },
 ];
 
 export const BASHA_CAPABILITIES = [
-  { t: "Watches every conversation", d: "Monitors WhatsApp, Instagram, voice, and chat in Arabic and English." },
-  { t: "Catches frustration early", d: "Sentiment analysis identifies at-risk customers and escalations." },
-  { t: "Times your team", d: "Measures response times, resolution rates, quality and tone scores." },
-  { t: "Briefs you out loud", d: "Provides voice or written summaries of performance trends." },
-  { t: "Pings you when it matters", d: "Real-time alerts for VIP issues and churn signals." },
-  { t: "Never forgets a customer", d: "Maintains interaction history and surfaces at-risk relationships." },
+  { t: "Watches every conversation", d: "Across WhatsApp, Instagram, voice, and chat, Basha reads every message your team sends and receives, in Arabic and English." },
+  { t: "Catches frustration early", d: "Sentiment and tone analysis spot the angry customer, the second complaint, the deal about to walk, before it becomes a problem." },
+  { t: "Times your team", d: "Response times, resolution rates, quality and tone scores. Basha measures how your team actually performs, conversation by conversation." },
+  { t: "Briefs you out loud", d: "Call Basha or read the morning summary: what happened, what's trending, strengths and weak spots. The brief a great manager would give you." },
+  { t: "Pings you when it matters", d: "Real-time alerts for the unanswered VIP, the escalation, the churn signal. Basha interrupts you only when it counts." },
+  { t: "Never forgets a customer", d: "Every interaction remembered, every profile kept current, every at-risk relationship surfaced, so no one falls through the cracks." },
+];
+
+export const BASHA_CALL_POINTS = [
+  "Ask anything: today's numbers, a specific customer, the team's weak spot.",
+  "Get a spoken answer, not a dashboard to dig through.",
+  "Available 24/7, in Arabic and English.",
 ];
 
 export const BASHA_DIALOGUE = [
@@ -268,9 +274,9 @@ export const BASHA_DIALOGUE = [
 ];
 
 export const BASHA_STEPS = [
-  { n: "01", t: "Connect your channels", d: "Integrate WhatsApp, Instagram, voice, and chat in read-only mode." },
-  { n: "02", t: "Basha watches 24/7", d: "Analyzes conversations for quality, tone, and risk signals continuously." },
-  { n: "03", t: "Call it for the brief", d: "Phone Basha anytime for an executive-level summary." },
+  { n: "01", t: "Connect your channels", d: "Plug Basha into WhatsApp, Instagram, voice, and chat. Read-only. It watches; it never replies for you." },
+  { n: "02", t: "Basha watches 24/7", d: "Every conversation is read, scored for quality and tone, and checked for risk, around the clock, in both languages." },
+  { n: "03", t: "Call it for the brief", d: "Pick up the phone whenever you want the picture. Basha answers like an executive assistant who has read everything." },
 ];
 
 export const BASHA_IS = [

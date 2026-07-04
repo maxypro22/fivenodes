@@ -97,35 +97,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Infrastructure */}
-      <section className="py-16 bg-surface border-y border-line-soft">
-        <div className="wrap grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-14 items-center">
-          <div>
-            <span className="eyebrow reveal">Infrastructure</span>
-            <h2 className="reveal d1 font-heading font-extrabold text-[clamp(26px,3.4vw,38px)] tracking-[-.02em] mt-3 text-ink">
-              Production-grade infrastructure.
-            </h2>
-            <p className="reveal d2 text-muted text-base leading-[1.7] mt-4 max-w-[480px]">
-              Every Five Nodes deployment runs on the same production stack we use ourselves —
-              official WhatsApp Business APIs, Twilio voice, vector-enabled databases, and in-region
-              cloud hosting for businesses in Qatar.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-[14px]">
-            {["WhatsApp Business API", "Twilio Voice", "Vector Databases", "In-Region Hosting", "VAPI + ElevenLabs", "Custom Integrations"].map(
-              (t, i) => (
-                <div
-                  key={t}
-                  className={`reveal d${(i % 4) + 1} bg-bg border border-line rounded-[14px] p-5 font-heading font-bold text-[15px] text-ink-2`}
-                >
-                  {t}
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* Process */}
       <section className="py-20">
         <div className="wrap">

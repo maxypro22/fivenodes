@@ -56,7 +56,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-[13px] font-semibold text-ink-2 mb-1.5">Phone</label>
-          <input type="tel" placeholder="+974 ..." className={field} />
+          <input type="tel" placeholder="+974 XXXX XXXX" className={field} />
         </div>
         <div>
           <label className="block text-[13px] font-semibold text-ink-2 mb-1.5">Service</label>
@@ -75,12 +75,12 @@ export default function ContactForm() {
         <textarea
           required
           rows={5}
-          placeholder="Tell us about your operations and what you'd like to automate..."
+          placeholder="Tell us about your project and goals..."
           className={`${field} resize-none`}
         />
       </div>
       <button type="submit" className="btn btn-primary py-[13px] mt-1">
-        Send us a message
+        Send Message
       </button>
     </form>
   );

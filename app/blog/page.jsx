@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import SmartImg from "@/components/SmartImg";
 import { BLOG_POSTS } from "@/components/blogData";
 
 export const metadata = {
@@ -24,8 +25,13 @@ export default function BlogPage() {
               href={`/blog/${p.slug}`}
               className={`reveal d${(i % 3) + 1} group bg-white border border-line rounded-[20px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-hover hover:border-primary flex flex-col`}
             >
-              <div className="h-40 bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] grid place-items-center overflow-hidden">
-                <span className="font-heading font-extrabold text-primary/40 text-3xl">5N</span>
+              <div className="h-44 bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] overflow-hidden">
+                <SmartImg
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  alt={p.title}
+                  src={p.image}
+                  fallback={`https://picsum.photos/seed/fn-blog-${i}/600/340`}
+                />
               </div>
               <div className="p-6 flex flex-col flex-1">
                 <div className="text-[12px] text-muted-2">{p.date}</div>

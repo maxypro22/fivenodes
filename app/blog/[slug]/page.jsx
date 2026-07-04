@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CTASection from "@/components/CTASection";
+import SmartImg from "@/components/SmartImg";
 import { BLOG_POSTS } from "@/components/blogData";
 
 export function generateStaticParams() {
@@ -40,8 +41,13 @@ export default function BlogPost({ params }) {
             {post.title}
           </h1>
 
-          <div className="reveal d2 h-56 md:h-72 rounded-[20px] bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] grid place-items-center mt-8">
-            <span className="font-heading font-extrabold text-primary/40 text-5xl">5N</span>
+          <div className="reveal d2 h-56 md:h-80 rounded-[20px] bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] overflow-hidden mt-8">
+            <SmartImg
+              className="w-full h-full object-cover"
+              alt={post.title}
+              src={post.image}
+              fallback={`https://picsum.photos/seed/fn-blog-${idx}/1200/600`}
+            />
           </div>
 
           <div className="reveal d2 mt-8 flex flex-col gap-5">

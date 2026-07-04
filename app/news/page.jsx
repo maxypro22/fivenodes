@@ -1,4 +1,5 @@
 import PageHeader from "@/components/PageHeader";
+import SmartImg from "@/components/SmartImg";
 import { NEWS_ITEMS } from "@/components/newsData";
 
 export const metadata = {
@@ -28,11 +29,26 @@ export default function NewsPage() {
 
       <section className="pb-24">
         <div className="wrap grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
-          {NEWS_ITEMS.map(([title, source, date, excerpt], i) => (
+          {NEWS_ITEMS.map(([title, source, date, excerpt, image], i) => (
             <div
               key={i}
-              className={`reveal d${(i % 3) + 1} group bg-white border border-line rounded-[18px] p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary flex flex-col`}
+              className={`reveal d${(i % 3) + 1} group bg-white border border-line rounded-[18px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary flex flex-col`}
             >
+              {/* thumbnail */}
+              <div className="relative h-44 bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] overflow-hidden grid place-items-center">
+                {image ? (
+                  <SmartImg
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    alt={title}
+                    src={image}
+                    fallback={`https://picsum.photos/seed/fn-news-${i}/600/340`}
+                  />
+                ) : (
+                  <span className="font-heading font-extrabold text-primary/40 text-3xl">5N</span>
+                )}
+              </div>
+
+              <div className="p-6 flex flex-col flex-1">
               <div className="flex items-center justify-between gap-3">
                 <span
                   className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${
@@ -56,6 +72,7 @@ export default function NewsPage() {
                   <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
+              </div>
             </div>
           ))}
         </div>

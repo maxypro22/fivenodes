@@ -47,9 +47,25 @@ export default function NewsPage() {
                 {title}
               </h3>
               <p className="text-[13px] text-muted leading-[1.6] mt-2 flex-1">{excerpt}</p>
+              <a
+                href="#"
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all"
+              >
+                Read full article
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
             </div>
           ))}
         </div>
+
+        <p className="wrap text-[13px] text-muted-2 leading-[1.7] mt-14 text-center max-w-[860px]">
+          Disclaimer: The news articles listed on this page are sourced from third-party
+          publications and do not represent the views or opinions of Five Nodes for Artificial
+          Intelligence. All content belongs to the respective publishers and is linked to its
+          original source.
+        </p>
       </section>
     </main>
   );

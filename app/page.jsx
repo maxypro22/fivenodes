@@ -4,6 +4,7 @@ import Solutions from "@/components/Solutions";
 import Platform from "@/components/Platform";
 import Features from "@/components/Features";
 import Process from "@/components/Process";
+import Integrations from "@/components/Integrations";
 import HomeFaq from "@/components/HomeFaq";
 import HomeLegal from "@/components/HomeLegal";
 import CTASection from "@/components/CTASection";
@@ -19,6 +20,7 @@ export default function Home() {
       <Platform />
       <Features />
       <Process />
+      <Integrations />
       <HomeFaq />
       <HomeLegal />
       <CTASection

@@ -28,10 +28,14 @@ export default function BlogPage() {
                 <span className="font-heading font-extrabold text-primary/40 text-3xl">5N</span>
               </div>
               <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-2 text-[11px] uppercase tracking-[.08em] text-muted-2">
-                  <span className="text-primary font-bold">AI automation Qatar</span>
-                  <span>·</span>
-                  <span>{p.date}</span>
+                <div className="text-[12px] text-muted-2">{p.date}</div>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  <span className="text-[10px] font-bold uppercase tracking-[.06em] text-primary bg-primary-soft rounded-full px-2 py-0.5">
+                    AI company in Qatar
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-[.06em] text-primary bg-primary-soft rounded-full px-2 py-0.5">
+                    AI automation Qatar
+                  </span>
                 </div>
                 <h3 className="font-heading font-bold text-[18px] text-ink mt-3 leading-snug group-hover:text-primary transition-colors">
                   {p.title}

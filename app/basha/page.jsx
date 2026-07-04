@@ -24,12 +24,14 @@ export default function BashaPage() {
   return (
     <main>
       {/* 1. Hero */}
-      <PageHeader eyebrow="Basha AI" title="Basha باشا">
-        The Intelligent Manager you can call. Basha watches your business while you're away — while
-        you sleep, while you're in meetings, while the office is closed.
+      <PageHeader eyebrow="Basha باشا" title="The Intelligent Manager you can call.">
+        Basha watches your business while you're away: while you sleep, while you're in meetings,
+        while the office is closed. It reads every conversation and measures your team. Then,
+        whenever you want the picture, you just call. Like an executive assistant who has read
+        everything and can brief you in seconds.
       </PageHeader>
       <div className="reveal d2 flex justify-center -mt-2 pb-4">
-        <Link href="/contact" className="btn btn-primary px-[22px] py-[13px]">
+        <Link href="/book-demo" className="btn btn-primary px-[22px] py-[13px]">
           Book a call
         </Link>
       </div>
@@ -193,7 +195,7 @@ export default function BashaPage() {
       <CTASection
         title="Put Basha to work"
         text="Give your business a manager you can call, any time. See Basha read your conversations, score your team, and brief you out loud like the best assistant you've ever hired. Book a 30-minute call. No pitch, just a live look."
-        primary={["Book a call", "/contact"]}
+        primary={["Book a call", "/book-demo"]}
         secondary={["Contact us", "/contact"]}
       />
     </main>

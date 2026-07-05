@@ -4,7 +4,7 @@ import { PROCESS } from "./data";
 const ACCENT = "#3857e9";
 
 const META = [
-  { sub: "Audit • Workflows • ROI", video: "/process-1.mp4" },
+  { sub: "Audit • Workflows • ROI", video: "/process-1-2.mp4" },
   { sub: "Configure • Train • Integrate", video: "/process-2.mp4" },
   { sub: "Deploy • Monitor • Optimize", video: "/process-3-3.mp4" },
 ];

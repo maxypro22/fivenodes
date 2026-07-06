@@ -9,11 +9,15 @@ import {
   WHY,
 } from "@/components/content";
 
-export const metadata = {
-  title: "About Five Nodes — The AI Company Engineering Bilingual AI Agents in Qatar",
+import { pageMeta } from "@/components/seo";
+
+export const metadata = pageMeta({
+  title: "AI Company in Qatar — About Five Nodes",
   description:
-    "Five Nodes is an AI company in Qatar engineering bilingual WhatsApp AI agents, voice AI receptionists, and AI automation. We design, build, and operate production AI systems.",
-};
+    "Five Nodes is an AI company in Qatar — engineering bilingual WhatsApp AI agents, voice AI receptionists, and AI automation for businesses in Qatar.",
+  path: "/about",
+  ogTitle: "About Five Nodes — AI Company in Qatar",
+});
 
 export default function AboutPage() {
   return (

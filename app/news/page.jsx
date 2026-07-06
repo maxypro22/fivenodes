@@ -2,11 +2,15 @@ import PageHeader from "@/components/PageHeader";
 import SmartImg from "@/components/SmartImg";
 import { NEWS_ITEMS } from "@/components/newsData";
 
-export const metadata = {
+import { pageMeta } from "@/components/seo";
+
+export const metadata = pageMeta({
   title: "Latest AI News — Qatar | Five Nodes",
   description:
-    "The latest AI developments, breakthroughs, and industry announcements — curated from top sources.",
-};
+    "Stay updated with the latest AI news, breakthroughs, and industry announcements. Curated by Five Nodes, your AI partner in Qatar.",
+  path: "/news",
+  ogTitle: "Latest AI News — Five Nodes Qatar",
+});
 
 const SOURCE_COLORS = {
   "MIT Tech Review": "bg-[#fde8e8] text-[#c0392b]",

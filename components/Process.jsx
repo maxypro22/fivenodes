@@ -20,7 +20,7 @@ export default function Process() {
         <div className="text-center max-w-[640px] mx-auto">
           <span className="eyebrow reveal inline-flex justify-center">How it works</span>
           <h2 className="reveal d1 font-heading font-extrabold text-[clamp(28px,3.6vw,42px)] tracking-[-.02em] text-ink mt-3">
-            From strategy to launch in three steps
+            Three Steps to Deploy an AI Agent in Qatar
           </h2>
           <p className="reveal d2 text-muted text-base mt-[14px] mx-auto">
             We map your workflows, build and integrate your AI agents, then launch with dedicated

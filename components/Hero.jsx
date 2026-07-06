@@ -1,6 +1,7 @@
 import Link from "next/link";
 import IntegrationHub from "./IntegrationHub";
 import CountUp from "./CountUp";
+import RotatingTagline from "./RotatingTagline";
 
 function Stat({ lbl, children }) {
   return (
@@ -40,6 +41,7 @@ export default function Hero() {
             <span className="text-primary">Voice Agents</span>{" "}
             <span className="text-[#9aa7c7]">for Businesses</span>
           </h1>
+          <RotatingTagline />
           <p className="reveal d1 font-heading font-semibold text-ink-2 text-[clamp(16px,1.7vw,21px)] leading-snug mb-[18px] max-w-[500px]">
             Bilingual AI agents that book, message and automate operations in Qatar.
           </p>

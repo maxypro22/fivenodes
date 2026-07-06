@@ -1,28 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import SubscribeForm from "./SubscribeForm";
-
-const SERVICES = [
-  ["AI Voice Solutions", "/services"],
-  ["AI Chat & Messaging", "/services"],
-  ["Omnichannel Monitoring", "/services"],
-  ["Smart Booking", "/services"],
-  ["Workflow Automation", "/services"],
-  ["Data & Intelligence", "/services"],
-  ["Basha AI", "/basha"],
-];
-
-const RESOURCES = [
-  ["News", "/news"],
-  ["Blog", "/blog"],
-  ["About Us", "/about"],
-  ["Book a Demo", "/book-demo"],
-  ["FAQ", "/faq"],
-  ["Contact", "/contact"],
-];
+import { getLocale, localizeHref, T } from "./i18n";
 
 const CONTACTS = [
-  ["+974 3001 0105", "Doha — Office"],
-  ["+974 4444 0085", "Doha — Support"],
+  ["+974 3001 0105", "office"],
+  ["+974 4444 0085", "support"],
 ];
 
 const SOCIALS = [
@@ -54,20 +39,25 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const locale = getLocale(pathname);
+  const f = T[locale].footer;
+  const loc = (href) => localizeHref(href, locale);
+  const cityLabel = { office: f.officeCity, support: f.supportCity };
+
   return (
     <footer className="bg-bg border-t border-line-soft pt-[70px] pb-[30px]">
       <div className="wrap">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1.7fr] gap-12">
           {/* Brand column — centered on mobile */}
           <div className="text-center lg:text-left">
-            <Link href="/" className="inline-flex items-center mb-[18px]" aria-label="Five Nodes home">
+            <Link href={loc("/")} className="inline-flex items-center mb-[18px]" aria-label="Five Nodes home">
               <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-11 w-auto" />
             </Link>
             <p className="text-muted text-sm max-w-[320px] mx-auto lg:mx-0 leading-[1.6]">
-              AI company in Qatar engineering bilingual voice &amp; WhatsApp agents and AI automation
-              that run your operations 24/7.
+              {f.brand}
             </p>
-            <div className="text-[13px] font-semibold text-ink-2 mt-5 mb-2">Stay Connected</div>
+            <div className="text-[13px] font-semibold text-ink-2 mt-5 mb-2">{f.stayConnected}</div>
             <div className="flex justify-center lg:justify-start">
               <SubscribeForm />
             </div>
@@ -75,27 +65,27 @@ export default function Footer() {
 
           {/* Link columns — 2 per row on mobile */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            <FooterCol title="Services" items={SERVICES} />
-            <FooterCol title="Resources" items={RESOURCES} />
+            <FooterCol title={f.services} items={f.servicesItems} loc={loc} />
+            <FooterCol title={f.resources} items={f.resourcesItems} loc={loc} />
 
             {/* Contact */}
             <div className="col-span-2 lg:col-span-1">
               <div className="text-xs tracking-[.12em] uppercase text-muted-2 font-bold mb-[18px]">
-                Contact
+                {f.contact}
               </div>
-            {CONTACTS.map(([ph, city]) => (
+            {CONTACTS.map(([ph, key]) => (
               <div key={ph} className="flex items-center justify-between gap-4 mb-3">
                 <span className="text-sm text-ink-2 font-medium">{ph}</span>
-                <span className="text-[10px] tracking-[.1em] uppercase text-muted-2">{city}</span>
+                <span className="text-[10px] tracking-[.1em] uppercase text-muted-2">{cityLabel[key]}</span>
               </div>
             ))}
             <a href="mailto:Info@fivenodes.ai" className="block text-sm text-ink-2 my-[14px] font-medium hover:text-primary">
               Info@fivenodes.ai
             </a>
             <div className="bg-white border border-line rounded-xl px-4 py-[14px] text-[13px] text-muted leading-[1.6]">
-              3rd Floor, Al Muftah Plaza,
+              {f.address[0]}
               <br />
-              Al Reem St, Doha, Qatar.
+              {f.address[1]}
             </div>
             <div className="flex gap-[10px] mt-[22px] justify-center lg:justify-start">
               {SOCIALS.map(({ name, url, d }) => (
@@ -120,12 +110,12 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-line-soft mt-10 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="text-[13px] text-muted-2">© 2026 Five Nodes. All rights reserved.</div>
+          <div className="text-[13px] text-muted-2">{f.rights}</div>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-[13px] text-muted hover:text-ink">Privacy Policy</Link>
-            <Link href="/terms" className="text-[13px] text-muted hover:text-ink">Terms of Service</Link>
-            <Link href="/faq" className="text-[13px] text-muted hover:text-ink">FAQ</Link>
-            <Link href="/contact" className="text-[13px] text-muted hover:text-ink">Contact</Link>
+            <Link href={loc("/privacy")} className="text-[13px] text-muted hover:text-ink">{f.privacy}</Link>
+            <Link href={loc("/terms")} className="text-[13px] text-muted hover:text-ink">{f.terms}</Link>
+            <Link href={loc("/faq")} className="text-[13px] text-muted hover:text-ink">{f.faq}</Link>
+            <Link href={loc("/contact")} className="text-[13px] text-muted hover:text-ink">{f.contactShort}</Link>
           </div>
         </div>
       </div>
@@ -133,7 +123,7 @@ export default function Footer() {
   );
 }
 
-function FooterCol({ title, items }) {
+function FooterCol({ title, items, loc }) {
   return (
     <div>
       <div className="text-xs tracking-[.12em] uppercase text-muted-2 font-bold mb-[18px]">
@@ -142,7 +132,7 @@ function FooterCol({ title, items }) {
       <ul className="flex flex-col gap-3">
         {items.map(([label, href]) => (
           <li key={label}>
-            <Link href={href} className="text-sm text-ink-2 hover:text-primary transition-colors">
+            <Link href={loc(href)} className="text-sm text-ink-2 hover:text-primary transition-colors">
               {label}
             </Link>
           </li>

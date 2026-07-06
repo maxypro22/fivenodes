@@ -1,52 +1,65 @@
 import PageHeader from "@/components/PageHeader";
 import CTASection from "@/components/CTASection";
-import FaqAccordion from "@/components/FaqAccordion";
-import { FAQ } from "@/components/content";
+import FaqExplorer from "@/components/FaqExplorer";
+import { FAQ, FAQ_KEY_FACTS } from "@/components/content";
 
-export const metadata = {
-  title: "FAQ — AI Voice Agents, WhatsApp Agents & Automation in Qatar | Five Nodes",
+import { pageMeta } from "@/components/seo";
+
+export const metadata = pageMeta({
+  title: "AI Solutions FAQ — Qatar | Five Nodes",
   description:
-    "Frequently asked questions about Five Nodes' AI voice agents, WhatsApp agents, custom CRMs and ERPs, fine-tuned models, and omni-channel monitoring for businesses in Qatar.",
+    "Answers to common questions about Five Nodes' AI voice agents, WhatsApp agents, custom CRMs, fine-tuning, and monitoring in Qatar.",
+  path: "/faq",
+  ogTitle: "AI Solutions FAQ — Five Nodes Qatar",
+});
+
+const FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.flatMap((group) =>
+    group.items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    }))
+  ),
 };
 
 export default function FaqPage() {
   return (
     <main>
-      <PageHeader eyebrow="FAQ" title="Frequently asked questions">
-        Everything about Five Nodes' AI voice agents, WhatsApp agents, custom CRMs and ERPs,
-        fine-tuned models, and omni-channel monitoring for businesses in Qatar.
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
+      />
+      <PageHeader eyebrow="FAQ" title="AI Solutions FAQ — Qatar">
+        Frequently asked questions about Five Nodes' AI voice agents, WhatsApp agents, custom CRMs
+        and ERPs, fine-tuned models, and omni-channel monitoring for businesses in Qatar.
       </PageHeader>
 
       {/* Key facts */}
-      <section className="pb-10">
-        <div className="wrap grid grid-cols-1 sm:grid-cols-3 gap-[14px]">
-          {[
-            ["Founded 2024", "in Qatar, headquartered in Qatar"],
-            ["2–6 weeks", "typical launch timeline"],
-            ["PDPPL compliant", "Qatar data-protection ready"],
-          ].map(([n, l], i) => (
-            <div key={n} className={`reveal d${i + 1} bg-white border border-line rounded-[16px] p-6 shadow-card`}>
-              <div className="font-heading font-extrabold text-lg text-ink">{n}</div>
-              <div className="text-[13px] text-muted mt-1">{l}</div>
-            </div>
-          ))}
+      <section className="pb-12">
+        <div className="wrap max-w-[860px] mx-auto">
+          <div className="reveal bg-white border border-line rounded-[16px] p-6 sm:p-8 shadow-card">
+            <div className="eyebrow mb-4">Key facts about Five Nodes</div>
+            <ul className="flex flex-col gap-2.5">
+              {FAQ_KEY_FACTS.map((fact, i) => (
+                <li key={i} className="flex gap-3 text-[15px] text-ink-2 leading-[1.6]">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0"
+                  />
+                  <span>{fact}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* FAQ sections */}
-      <section className="pb-10">
-        <div className="wrap max-w-[860px] mx-auto flex flex-col gap-10">
-          {FAQ.map((group, gi) => (
-            <div key={group.section}>
-              <h2 className={`reveal d${(gi % 3) + 1} font-heading font-bold text-xl text-ink mb-4`}>
-                {group.section}
-              </h2>
-              <div className="reveal d1">
-                <FaqAccordion items={group.items} />
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* FAQ sections with search + section nav */}
+      <section className="pb-14">
+        <FaqExplorer groups={FAQ} />
       </section>
 
       <CTASection

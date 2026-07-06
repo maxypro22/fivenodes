@@ -3,11 +3,15 @@ import PageHeader from "@/components/PageHeader";
 import CTASection from "@/components/CTASection";
 import { SERVICES, SERVICES_STATS, METHOD } from "@/components/content";
 
-export const metadata = {
-  title: "AI Services in Qatar — 8 Bilingual AI Systems | Five Nodes",
+import { pageMeta } from "@/components/seo";
+
+export const metadata = pageMeta({
+  title: "AI Services in Qatar — Voice, WhatsApp & Automation Agents | Five Nodes",
   description:
-    "Eight bilingual AI systems for businesses in Qatar — from AI voice agents and WhatsApp agents to smart booking and AI automation. Each solution is custom-built.",
-};
+    "AI services in Qatar — bilingual AI voice agents, WhatsApp AI agents, smart booking, AI automation, and AI analytics for businesses in Qatar.",
+  path: "/services",
+  ogTitle: "AI Services in Qatar — Five Nodes",
+});
 
 function Check() {
   return (
@@ -22,7 +26,7 @@ function Check() {
 export default function ServicesPage() {
   return (
     <main>
-      <PageHeader eyebrow="AI Services in Qatar" title="8 Bilingual AI Systems, Custom-Built">
+      <PageHeader eyebrow="AI Services in Qatar" title="8 Bilingual AI Systems">
         Five Nodes' AI services in Qatar — eight bilingual AI systems for businesses. From AI voice
         agents and WhatsApp AI agents to smart booking and AI automation, each solution is
         custom-built and embedded into your operations.
@@ -93,6 +97,23 @@ export default function ServicesPage() {
                 </Link>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Infrastructure */}
+      <section className="py-16 border-t border-line-soft">
+        <div className="wrap">
+          <div className="max-w-[720px]">
+            <span className="eyebrow reveal">Infrastructure</span>
+            <h2 className="reveal d1 font-heading font-extrabold text-[clamp(28px,3.6vw,42px)] tracking-[-.02em] text-ink mt-3">
+              Production-grade infrastructure.
+            </h2>
+            <p className="reveal d2 text-muted text-base mt-[14px] leading-[1.7]">
+              Every Five Nodes deployment runs on the same production stack we use ourselves —
+              official WhatsApp Business APIs, Twilio voice, vector-enabled databases, and in-region
+              cloud hosting for businesses in Qatar.
+            </p>
           </div>
         </div>
       </section>

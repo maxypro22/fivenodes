@@ -3,11 +3,15 @@ import PageHeader from "@/components/PageHeader";
 import SmartImg from "@/components/SmartImg";
 import { BLOG_POSTS } from "@/components/blogData";
 
-export const metadata = {
-  title: "AI Automation Blog — Qatar | Five Nodes",
+import { pageMeta } from "@/components/seo";
+
+export const metadata = pageMeta({
+  title: "AI Blog — Qatar AI Insights | Five Nodes",
   description:
-    "Insights on AI automation, voice agents, WhatsApp AI, and how businesses in Qatar are leveraging artificial intelligence.",
-};
+    "Expert insights on AI automation, voice agents, and WhatsApp AI from Five Nodes, AI specialists in Qatar.",
+  path: "/blog",
+  ogTitle: "AI Blog — Five Nodes Qatar",
+});
 
 export default function BlogPage() {
   return (

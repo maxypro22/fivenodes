@@ -3,21 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const LINKS = [
-  ["Home", "/"],
-  ["Services", "/services"],
-  ["Basha AI", "/basha"],
-  ["News", "/news"],
-  ["Blog", "/blog"],
-  ["About Us", "/about"],
-  ["Contact", "/contact"],
-];
+import { getLocale, localizeHref, switchLocalePath, T } from "./i18n";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const locale = getLocale(pathname);
+  const t = T[locale];
+  const LINKS = t.nav;
+  const homePath = locale === "ar" ? "/ar" : "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -25,8 +20,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isActive = (href) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href) => {
+    const target = localizeHref(href, locale);
+    return href === "/" ? pathname === homePath : pathname.startsWith(target);
+  };
 
   return (
     <>
@@ -38,7 +35,7 @@ export default function Navbar() {
         }`}
       >
         <div className="wrap flex items-center h-[60px] gap-[30px]">
-          <Link href="/" className="flex items-center" aria-label="Five Nodes home">
+          <Link href={homePath} className="flex items-center" aria-label="Five Nodes home">
             <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-9 w-auto" />
           </Link>
 
@@ -46,7 +43,7 @@ export default function Navbar() {
             {LINKS.map(([l, h]) => (
               <Link
                 key={l}
-                href={h}
+                href={localizeHref(h, locale)}
                 className={`text-sm font-medium transition-colors ${
                   isActive(h) ? "text-primary" : "text-ink-2 hover:text-primary"
                 }`}
@@ -57,18 +54,22 @@ export default function Navbar() {
           </nav>
 
           <div className="ml-auto flex items-center gap-4">
-            <span className="hidden md:flex text-[13px] font-semibold items-center gap-[6px] text-ink-2">
-              🌐 العربية
-            </span>
-            <Link href="/contact" className="hidden md:inline text-[13px] font-medium text-muted hover:text-ink">
-              Agent Demo
+            <Link
+              href={switchLocalePath(pathname)}
+              className="hidden md:flex text-[13px] font-semibold items-center gap-[6px] text-ink-2 hover:text-primary"
+              aria-label="Switch language"
+            >
+              🌐 {t.langSwitch}
             </Link>
-            <Link href="/book-demo" className="btn btn-primary">
-              Book Demo
+            <Link href={localizeHref("/contact", locale)} className="hidden md:inline text-[13px] font-medium text-muted hover:text-ink">
+              {t.agentDemo}
+            </Link>
+            <Link href={localizeHref("/book-demo", locale)} className="btn btn-primary">
+              {t.bookDemo}
             </Link>
             <button
               onClick={() => setOpen(true)}
-              aria-label="Menu"
+              aria-label={t.menu}
               className="flex md:hidden flex-col gap-[5px] w-[26px]"
             >
               <span className="h-0.5 bg-ink rounded" />
@@ -97,15 +98,22 @@ export default function Navbar() {
           {LINKS.map(([l, h]) => (
             <Link
               key={l}
-              href={h}
+              href={localizeHref(h, locale)}
               onClick={() => setOpen(false)}
               className="py-[14px] text-lg font-semibold border-b border-line-soft"
             >
               {l}
             </Link>
           ))}
-          <Link href="/book-demo" onClick={() => setOpen(false)} className="btn btn-primary mt-5">
-            Book Demo
+          <Link
+            href={switchLocalePath(pathname)}
+            onClick={() => setOpen(false)}
+            className="py-[14px] text-lg font-semibold border-b border-line-soft"
+          >
+            🌐 {t.langSwitch}
+          </Link>
+          <Link href={localizeHref("/book-demo", locale)} onClick={() => setOpen(false)} className="btn btn-primary mt-5">
+            {t.bookDemo}
           </Link>
         </div>
       </div>

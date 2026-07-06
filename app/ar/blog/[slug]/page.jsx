@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import CTASection from "@/components/CTASection";
 import SmartImg from "@/components/SmartImg";
 import { BLOG_POSTS } from "@/components/blogData";
-import { getBlogContent } from "@/components/blogContent";
+import { getArBlog } from "@/components/arBlogContent";
+import { pageMeta } from "@/components/seo";
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
@@ -11,33 +12,19 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }) {
   const post = BLOG_POSTS.find((p) => p.slug === params.slug);
-  if (!post) return { title: "Article — Five Nodes" };
-  const content = getBlogContent(post.slug);
-  const title = content?.seoTitle || `${post.title} | Five Nodes`;
-  const description = content?.metaDescription || post.excerpt;
-  const url = `https://fivenodes.ai/blog/${post.slug}`;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `/blog/${post.slug}`,
-      languages: {
-        en: url,
-        ar: `https://fivenodes.ai/ar/blog/${post.slug}`,
-        "x-default": url,
-      },
-    },
-    openGraph: {
-      title,
-      description,
-      url,
-      siteName: "Five Nodes",
-      type: "article",
-    },
-  };
+  if (!post) return { title: "مقال — فايف نودز" };
+  const ar = getArBlog(post.slug) || {};
+  return pageMeta({
+    title: ar.seoTitle || `${ar.title || post.title} | فايف نودز`,
+    description: ar.metaDescription || ar.excerpt || post.excerpt,
+    path: `/blog/${post.slug}`,
+    ogTitle: ar.seoTitle || ar.title || post.title,
+    ogType: "article",
+    locale: "ar",
+  });
 }
 
-// Render the mirrored article body: paragraphs, subheadings, and grouped lists.
+// Render the mirrored Arabic article body: paragraphs, subheadings, grouped lists.
 function ArticleBody({ blocks }) {
   const out = [];
   let list = null;
@@ -45,7 +32,7 @@ function ArticleBody({ blocks }) {
   const flushList = (key) => {
     if (list) {
       out.push(
-        <ul key={`ul-${key}`} className="list-disc pl-6 flex flex-col gap-2 text-[16px] text-muted leading-[1.8]">
+        <ul key={`ul-${key}`} className="list-disc pr-6 flex flex-col gap-2 text-[16px] text-muted leading-[1.8]">
           {list}
         </ul>
       );
@@ -78,24 +65,25 @@ function ArticleBody({ blocks }) {
   return <div className="flex flex-col gap-5">{out}</div>;
 }
 
-export default function BlogPost({ params }) {
+export default function ArBlogPost({ params }) {
   const post = BLOG_POSTS.find((p) => p.slug === params.slug);
   if (!post) notFound();
 
   const idx = BLOG_POSTS.findIndex((p) => p.slug === post.slug);
-  const content = getBlogContent(post.slug);
-  const body = content?.body || [];
-  const faq = content?.faq || [];
-  const url = `https://fivenodes.ai/blog/${post.slug}`;
+  const ar = getArBlog(post.slug) || {};
+  const title = ar.title || post.title;
+  const body = ar.body || [];
+  const faq = ar.faq || [];
+  const url = `https://fivenodes.ai/ar/blog/${post.slug}`;
 
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    headline: post.title,
-    description: content?.metaDescription || post.excerpt,
+    headline: title,
+    description: ar.metaDescription || ar.excerpt || post.excerpt,
     image: post.image,
-    datePublished: post.date,
-    inLanguage: "en",
+    datePublished: ar.date || post.date,
+    inLanguage: "ar",
     author: { "@type": "Organization", name: "Five Nodes" },
     publisher: { "@id": "https://fivenodes.ai/#organization" },
     mainEntityOfPage: url,
@@ -115,7 +103,7 @@ export default function BlogPost({ params }) {
       : null;
 
   return (
-    <main>
+    <main dir="rtl">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -128,26 +116,26 @@ export default function BlogPost({ params }) {
       )}
       <article className="pt-16 pb-10">
         <div className="wrap max-w-[760px] mx-auto">
-          <Link href="/blog" className="reveal inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-primary">
-            <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
+          <Link href="/ar/blog" className="reveal inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-primary">
+            <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 rotate-180">
               <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Back to blog
+            العودة إلى المدونة
           </Link>
 
           <div className="reveal d1 flex items-center gap-2 text-[12px] uppercase tracking-[.08em] text-muted-2 mt-6">
-            <span className="text-primary font-bold">AI automation Qatar</span>
+            <span className="text-primary font-bold">أتمتة الذكاء الاصطناعي قطر</span>
             <span>·</span>
-            <span>{post.date}</span>
+            <span>{ar.date || post.date}</span>
           </div>
           <h1 className="reveal d1 font-heading font-extrabold text-[clamp(28px,4vw,44px)] tracking-[-.02em] leading-[1.1] text-ink mt-4">
-            {post.title}
+            {title}
           </h1>
 
           <div className="reveal d2 h-56 md:h-80 rounded-[20px] bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] overflow-hidden mt-8">
             <SmartImg
               className="w-full h-full object-cover"
-              alt={post.title}
+              alt={title}
               src={post.image}
               fallback={`https://picsum.photos/seed/fn-blog-${idx}/1200/600`}
             />
@@ -157,14 +145,14 @@ export default function BlogPost({ params }) {
             {body.length > 0 ? (
               <ArticleBody blocks={body} />
             ) : (
-              <p className="text-[18px] text-ink-2 leading-[1.75] font-medium">{post.excerpt}</p>
+              <p className="text-[18px] text-ink-2 leading-[1.75] font-medium">{ar.excerpt || post.excerpt}</p>
             )}
           </div>
 
           {faq.length > 0 && (
             <div className="reveal mt-14 pt-8 border-t border-line-soft">
               <h2 className="font-heading font-extrabold text-[24px] tracking-[-.02em] text-ink">
-                Frequently Asked Questions
+                الأسئلة الشائعة
               </h2>
               <div className="mt-6 flex flex-col gap-6">
                 {faq.map((f, i) => (
@@ -180,10 +168,10 @@ export default function BlogPost({ params }) {
       </article>
 
       <CTASection
-        title="Bring AI into your operations"
-        text="Every engagement starts with a free discovery call. We'll show you exactly where AI can save time and capture revenue for your business in Qatar."
-        primary={["Book a Discovery Call", "/contact"]}
-        secondary={["Explore Services", "/services"]}
+        title="أدخِل الذكاء الاصطناعي إلى عملياتك"
+        text="تبدأ كل شراكة بمكالمة استكشافية مجانية. سنوضّح لك بالضبط أين يمكن للذكاء الاصطناعي أن يوفّر الوقت ويحقّق الإيرادات لأعمالك في قطر."
+        primary={["احجز مكالمة استكشافية", "/ar/contact"]}
+        secondary={["استعرض خدماتنا", "/ar/services"]}
       />
     </main>
   );

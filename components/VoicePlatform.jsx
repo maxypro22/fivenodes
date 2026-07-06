@@ -5,8 +5,8 @@ export default function VoicePlatform() {
     <section className="py-20 md:py-28">
       <div className="wrap text-center">
         <h2 className="reveal font-serif text-ink font-normal text-[clamp(38px,6vw,76px)] leading-[1.05] tracking-[-.01em]">
-          Bilingual AI agents
-          <br className="hidden sm:block" /> that book &amp; message
+          Automate
+          <br className="hidden sm:block" /> Operations
         </h2>
         <p className="reveal d1 text-muted text-base md:text-lg mt-5 max-w-[600px] mx-auto leading-[1.6]">
           Natural, human-like voice agents in Arabic &amp; English — every call answered, every lead

@@ -33,9 +33,12 @@ export default function NewsPage() {
 
       <section className="pb-24">
         <div className="wrap grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
-          {NEWS_ITEMS.map(([title, source, date, excerpt, image], i) => (
-            <div
+          {NEWS_ITEMS.map(([title, source, date, excerpt, image, url], i) => (
+            <a
               key={i}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`reveal d${(i % 3) + 1} group bg-white border border-line rounded-[18px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary flex flex-col`}
             >
               {/* thumbnail */}
@@ -67,17 +70,14 @@ export default function NewsPage() {
                 {title}
               </h3>
               <p className="text-[13px] text-muted leading-[1.6] mt-2 flex-1">{excerpt}</p>
-              <a
-                href="#"
-                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all"
-              >
+              <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">
                 Read full article
                 <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4">
                   <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
+              </span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

@@ -1,19 +1,24 @@
 import { CLIENTS } from "./data";
 
-export default function TrustedBy() {
+export default function TrustedBy({
+  eyebrow = "Trusted By",
+  title = "Our Partners — AI Clients in Qatar",
+}) {
   return (
     <section className="pt-14 pb-20">
       <div className="wrap">
         <div className="text-center max-w-[680px] mx-auto mb-10">
-          <span className="eyebrow reveal inline-flex justify-center">Trusted By</span>
+          <span className="eyebrow reveal inline-flex justify-center">{eyebrow}</span>
           <h2 className="reveal d1 font-heading font-extrabold text-[clamp(26px,3.4vw,40px)] tracking-[-.02em] text-ink mt-3">
-            Our Partners — AI Clients in Qatar
+            {title}
           </h2>
         </div>
 
-        {/* looping client marquee (laptop + phone) with edge fade */}
+        {/* looping client marquee (laptop + phone) with edge fade — dir=ltr so it
+            scrolls correctly even inside an RTL (Arabic) page */}
         <div
-          className="reveal overflow-hidden relative pb-2"
+          dir="ltr"
+          className="overflow-hidden relative pb-2"
           style={{
             maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
             WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",

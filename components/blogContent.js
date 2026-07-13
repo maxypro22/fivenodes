@@ -4,12 +4,14 @@ import { PART as PART1 } from "./blog-content/part1";
 import { PART as PART2 } from "./blog-content/part2";
 import { PART as PART3 } from "./blog-content/part3";
 import { PART as PART4 } from "./blog-content/part4";
+import { PART as PART5 } from "./blog-content/part5";
 
 export const BLOG_CONTENT = {
   ...PART1,
   ...PART2,
   ...PART3,
   ...PART4,
+  ...PART5,
 };
 
 export function getBlogContent(slug) {

@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ShieldCheck, FileText, Lock, Scale } from "lucide-react";
+import FeaturesDeck from "./FeaturesDeck";
 
 const POINTS = [
   {
@@ -38,7 +41,8 @@ export default function HomeLegal() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[22px] mt-12 max-w-[860px] mx-auto">
+        {/* Desktop grid */}
+        <div className="hidden md:grid md:grid-cols-2 gap-[22px] mt-12 max-w-[860px] mx-auto">
           {POINTS.map((p, i) => (
             <div
               key={p.t}
@@ -53,6 +57,11 @@ export default function HomeLegal() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile — same layered rotating deck as the Features section */}
+        <div className="md:hidden mt-10 max-w-[420px] mx-auto">
+          <FeaturesDeck items={POINTS} />
         </div>
 
         <div className="reveal text-center mt-10">

@@ -1,14 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SOLUTIONS } from "./data";
 import SolutionCard from "./SolutionCard";
 
-export default function SolutionsCards() {
+const AUTOPLAY = 3500; // ms per card
+
+export default function SolutionsCards({ items = SOLUTIONS }) {
   const [index, setIndex] = useState(0);
-  const n = SOLUTIONS.length;
-  const prev = () => setIndex((i) => (i - 1 + n) % n);
-  const next = () => setIndex((i) => (i + 1) % n);
+  const n = items.length;
+  const timer = useRef(null);
+
+  const startTimer = () => {
+    clearInterval(timer.current);
+    timer.current = setInterval(() => setIndex((i) => (i + 1) % n), AUTOPLAY);
+  };
+
+  useEffect(() => {
+    startTimer();
+    return () => clearInterval(timer.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const prev = () => {
+    setIndex((i) => (i - 1 + n) % n);
+    startTimer();
+  };
+  const next = () => {
+    setIndex((i) => (i + 1) % n);
+    startTimer();
+  };
 
   const Arrow = ({ dir, onClick }) => (
     <button
@@ -31,9 +52,9 @@ export default function SolutionsCards() {
   return (
     <>
       {/* Desktop grid */}
-      <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-[26px] mt-12">
-        {SOLUTIONS.map((m, i) => (
-          <div key={m.t} className={`reveal d${(i % 3) + 1}`}>
+      <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-[26px] mt-12">
+        {items.map((m, i) => (
+          <div key={m.t} className={`reveal d${(i % 3) + 1} h-full`}>
             <SolutionCard m={m} index={i} />
           </div>
         ))}
@@ -42,16 +63,19 @@ export default function SolutionsCards() {
       {/* Mobile carousel — one card + arrows */}
       <div className="md:hidden mt-12">
         <div key={index} className="[animation:fadeSlide_.4s_ease]">
-          <SolutionCard m={SOLUTIONS[index]} index={index} />
+          <SolutionCard m={items[index]} index={index} />
         </div>
 
         <div className="flex items-center justify-center gap-5 mt-8">
           <Arrow dir="left" onClick={prev} />
           <div className="flex items-center gap-1.5">
-            {SOLUTIONS.map((_, i) => (
+            {items.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setIndex(i)}
+                onClick={() => {
+                  setIndex(i);
+                  startTimer();
+                }}
                 aria-label={`Go to card ${i + 1}`}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   i === index ? "w-6 bg-primary" : "w-2 bg-line"

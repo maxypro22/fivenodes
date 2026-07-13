@@ -34,26 +34,32 @@ export default function Navbar() {
             : "bg-[rgba(246,247,251,.82)] border-transparent"
         }`}
       >
-        <div className="wrap flex items-center h-[60px] gap-[30px]">
+        <div dir="ltr" className="wrap flex items-center h-[60px] gap-[30px]">
           <Link href={homePath} className="flex items-center" aria-label="Five Nodes home">
             <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-9 w-auto" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 ml-2">
-            {LINKS.map(([l, h]) => (
-              <Link
-                key={l}
-                href={localizeHref(h, locale)}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(h) ? "text-primary" : "text-ink-2 hover:text-primary"
-                }`}
-              >
-                {l}
-              </Link>
-            ))}
+            {LINKS.map(([l, h]) => {
+              const external = h.startsWith("http");
+              return (
+                <Link
+                  key={l}
+                  href={external ? h : localizeHref(h, locale)}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive(h) ? "text-primary" : "text-ink-2 hover:text-primary"
+                  }`}
+                >
+                  {l}
+                </Link>
+              );
+            })}
           </nav>
 
-          <div className="ml-auto flex items-center gap-4">
+          <div className="ml-auto flex items-center gap-3 md:gap-4">
+            {/* Language — full text on desktop */}
             <Link
               href={switchLocalePath(pathname)}
               className="hidden md:flex text-[13px] font-semibold items-center gap-[6px] text-ink-2 hover:text-primary"
@@ -61,11 +67,19 @@ export default function Navbar() {
             >
               🌐 {t.langSwitch}
             </Link>
-            <Link href={localizeHref("/contact", locale)} className="hidden md:inline text-[13px] font-medium text-muted hover:text-ink">
-              {t.agentDemo}
-            </Link>
-            <Link href={localizeHref("/book-demo", locale)} className="btn btn-primary">
-              {t.bookDemo}
+            {/* Book a call — desktop only */}
+            <span className="hidden md:inline-flex">
+              <Link href={localizeHref("/book-demo", locale)} className="btn btn-primary">
+                {t.bookDemo}
+              </Link>
+            </span>
+            {/* Language — icon on mobile (right side) */}
+            <Link
+              href={switchLocalePath(pathname)}
+              aria-label="Switch language"
+              className="flex md:hidden w-9 h-9 items-center justify-center rounded-full text-lg text-ink-2 hover:text-primary"
+            >
+              🌐
             </Link>
             <button
               onClick={() => setOpen(true)}
@@ -80,41 +94,63 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile menu — wrapped in a viewport-sized clip layer so the off-screen
-          drawer never causes horizontal overflow */}
+      {/* Mobile menu — full-screen modern drawer */}
       <div className="fixed inset-0 z-[200] overflow-hidden pointer-events-none">
         <div
-          className={`absolute inset-0 bg-white flex flex-col pt-20 px-[30px] pb-[30px] gap-[6px] transition-transform duration-300 ${
+          className={`absolute inset-0 bg-white flex flex-col transition-transform duration-300 ${
             open ? "translate-x-0 pointer-events-auto" : "translate-x-full"
           }`}
         >
-          <button
-            onClick={() => setOpen(false)}
-            aria-label="Close menu"
-            className="absolute top-[22px] right-[26px] text-3xl leading-none text-ink"
-          >
-            &times;
-          </button>
-          {LINKS.map(([l, h]) => (
-            <Link
-              key={l}
-              href={localizeHref(h, locale)}
+          {/* top bar: logo left, close right */}
+          <div dir="ltr" className="flex items-center justify-between h-[60px] px-[22px] border-b border-line-soft">
+            <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-8 w-auto" />
+            <button
               onClick={() => setOpen(false)}
-              className="py-[14px] text-lg font-semibold border-b border-line-soft"
+              aria-label="Close menu"
+              className="w-10 h-10 grid place-items-center text-3xl leading-none text-ink"
             >
-              {l}
+              &times;
+            </button>
+          </div>
+
+          {/* centered links */}
+          <nav className="flex-1 flex flex-col items-center justify-center gap-7 px-6">
+            {LINKS.map(([l, h]) => {
+              const external = h.startsWith("http");
+              return (
+                <Link
+                  key={l}
+                  href={external ? h : localizeHref(h, locale)}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  onClick={() => setOpen(false)}
+                  className={`text-xl font-semibold tracking-wide transition-colors ${
+                    isActive(h) ? "text-primary" : "text-ink hover:text-primary"
+                  }`}
+                >
+                  {l}
+                </Link>
+              );
+            })}
+            <Link
+              href={switchLocalePath(pathname)}
+              onClick={() => setOpen(false)}
+              className="text-base font-semibold text-ink-2 hover:text-primary"
+            >
+              🌐 {t.langSwitch}
             </Link>
-          ))}
-          <Link
-            href={switchLocalePath(pathname)}
-            onClick={() => setOpen(false)}
-            className="py-[14px] text-lg font-semibold border-b border-line-soft"
-          >
-            🌐 {t.langSwitch}
-          </Link>
-          <Link href={localizeHref("/book-demo", locale)} onClick={() => setOpen(false)} className="btn btn-primary mt-5">
-            {t.bookDemo}
-          </Link>
+          </nav>
+
+          {/* bottom CTA — full-width pill */}
+          <div className="p-6">
+            <Link
+              href={localizeHref("/book-demo", locale)}
+              onClick={() => setOpen(false)}
+              className="flex w-full items-center justify-center rounded-full bg-ink text-white font-semibold py-[15px] text-[15px] shadow-[0_14px_30px_-12px_rgba(15,22,41,.6)] transition-transform active:scale-[.99]"
+            >
+              {t.bookDemo}
+            </Link>
+          </div>
         </div>
       </div>
     </>

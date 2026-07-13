@@ -9,8 +9,9 @@ export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return { title: "Article — Five Nodes" };
   const content = getBlogContent(post.slug);
   const title = content?.seoTitle || `${post.title} | Five Nodes`;
@@ -78,8 +79,9 @@ function ArticleBody({ blocks }) {
   return <div className="flex flex-col gap-5">{out}</div>;
 }
 
-export default function BlogPost({ params }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export default async function BlogPost({ params }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
   const idx = BLOG_POSTS.findIndex((p) => p.slug === post.slug);

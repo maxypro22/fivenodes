@@ -3,6 +3,22 @@ const IMG = "https://ailjnbveztlfijsouqxk.supabase.co/storage/v1/object/public/b
 
 export const BLOG_POSTS = [
   {
+    slug: "claude-science-is-anthropics-newest-flagship-product",
+    title: "Claude Science: Anthropic's Game-Changer in Scientific Research",
+    date: "July 9, 2026",
+    image: IMG + "bbadf54a-aa2f-46f6-b444-0c0f43509862.png",
+    excerpt:
+      "Claude Science by Anthropic is transforming scientific research with AI. Five Nodes, an AI company in Qatar, sees similar potential in AI automation Qatar for specialized fields.",
+  },
+  {
+    slug: "claude-helped-a-hacker-find-a-way-to-issue-tickets-to-almost-every-us-music-fest",
+    title: "Claude and the Hacker: AI in the Dark Side of Ticketing",
+    date: "July 9, 2026",
+    image: IMG + "3a4e8b68-d697-4d80-ac25-fffe069b4db2.png",
+    excerpt:
+      "AI can be a double-edged sword, as shown by a hacker using Claude to issue tickets to US music festivals. This underscores the need for responsible AI development and security, something Five Nodes, an AI company in Qatar, prioritizes.",
+  },
+  {
     slug: "photoshop-and-premiere-now-have-ai-assistants",
     title: "AI Assistants in Photoshop and Premiere: A New Era for Creatives",
     date: "June 21, 2026",
@@ -145,21 +161,5 @@ export const BLOG_POSTS = [
     image: IMG + "76258894-e4e9-4344-8962-ecddc749194d.png",
     excerpt:
       "Anthropic's Claude Mythos Preview finds bugs faster than developers can patch them, signaling a new era in cybersecurity. Five Nodes, an AI company in Qatar, leverages similar AI solutions to enhance security for SMEs in the GCC.",
-  },
-  {
-    slug: "spotify-is-launching-ai-generated-remixes",
-    title: "Spotify's AI-Generated Remixes: A New Era in Music",
-    date: "May 23, 2026",
-    image: IMG + "0d58c581-beae-48a8-a6e3-14b93fcdf7a4.png",
-    excerpt:
-      "Spotify's AI-generated remixes are transforming the music industry. Five Nodes, an AI company in Qatar, explores the impact of AI automation in Qatar on creative processes and copyright challenges.",
-  },
-  {
-    slug: "even-if-you-hate-ai-you-will-use-google-ai-search",
-    title: "Even If You Hate AI, You Will Use Google AI Search",
-    date: "May 23, 2026",
-    image: IMG + "8b2a5ef9-d2a3-4908-bec2-af01d24dae1b.png",
-    excerpt:
-      "Google AI Search is shaping user interactions with AI-boosted personalization. Even if you dislike AI, its influence is hard to ignore, especially from AI companies in Qatar like Five Nodes.",
   },
 ];

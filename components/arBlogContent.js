@@ -4,12 +4,14 @@ import { PART as AR1 } from "./ar-blog-content/part1";
 import { PART as AR2 } from "./ar-blog-content/part2";
 import { PART as AR3 } from "./ar-blog-content/part3";
 import { PART as AR4 } from "./ar-blog-content/part4";
+import { PART as AR5 } from "./ar-blog-content/part5";
 
 export const AR_BLOG = {
   ...AR1,
   ...AR2,
   ...AR3,
   ...AR4,
+  ...AR5,
 };
 
 export function getArBlog(slug) {

@@ -106,7 +106,7 @@ const WEBSITE_JSONLD = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${inter.variable} ${instrument.variable}`}>
-      <body className="bg-bg text-ink font-body antialiased overflow-x-hidden">
+      <body className="bg-bg text-ink font-body antialiased overflow-x-clip">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}

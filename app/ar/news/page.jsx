@@ -15,6 +15,7 @@ export const metadata = pageMeta({
 
 // AR news curated on fivenodes.ai/ar/news — [title, source, date, excerpt, image]
 const NEWS_ITEMS = [
+  ["فصل الإشارة عن الضوضاء في تقييمات البرمجة", "OpenAI Blog", "٨ يوليو ٢٠٢٦", "تدرس OpenAI مشكلات الموثوقية في معيار SWE-Bench Pro للبرمجة المستخدم لتقييم نماذج الذكاء الاصطناعي، لفصل الإشارة المفيدة عن الضوضاء.", ""],
   ["يمكنك الآن تنبيه عن الذكاء الاصطناعي الذي يتصرف بشكل سيء", "Wired AI", "١ يوليو ٢٠٢٦", "يوفر موقع ويب جديد للمستخدمين إمكانية الإبلاغ عن روبوتات الدردشة الذكية التي قد تتصرف بشكل خطير أو غير أخلاقي.", "https://media.wired.com/photos/6a42d38427caad328b221827/master/pass/AI-Lab-Ring-Alarm-on-AI-Business.jpg"],
   ["أنتروبك تضيف تدبير أمان جديد لاستعادة ثقة إدارة ترامب", "Wired AI", "١ يوليو ٢٠٢٦", "تم رفع القيود عن نماذج الذكاء الاصطناعي Fable 5 وMythos 5 من قبل الحكومة، ولكن مع وجود شروط معينة.", "https://media.wired.com/photos/6a443961a0cfe1ef1ae6c3aa/master/pass/politics_anthropic_trump.jpg"],
   ["كلود ساعد هاكر في العثور على طريقة لإصدار تذاكر لكل مهرجان موسيقي أمريكي", "Wired AI", "١ يوليو ٢٠٢٦", "اكتشف باحث أنه باستخدام كلود أوبوس 4.7 من أنتروبك، يمكنه اختراق موقع Front Gate وإصدار أي تذكرة يختارها.", "https://media.wired.com/photos/6a43054548c440f683e2b417/master/pass/AI-Found-Way-to-Hack-Ticketing-System-Security.jpg"],
@@ -64,7 +65,60 @@ const NEWS_ITEMS = [
   ["أحدث نموذج ذكاء اصطناعي من علي بابا يعمل بشكل مستقل لمدة 35 ساعة لتحسين الشيفرة لرقاقة مخصصة", "The Decoder", "٢٣ مايو ٢٠٢٦", "أطلق فريق Qwen من علي بابا نموذج Qwen3.7-Max، وهو نموذج ذكاء اصطناعي قام بتحسين الشيفرة لرقاقته المخصصة بشكل مستقل لمدة 35 ساعة، مما يظهر قدراته مقارنة بالمنافسين.", "http://the-decoder.com/wp-content/uploads/2026/05/qwen-3-7-max-vln-agent.mp4"],
   ["أنتروبيك تحذر من أن نموذج Claude Mythos Preview يجد الأخطاء بسرعة أكبر من قدرة المطورين على تصحيحها", "The Decoder", "٢٣ مايو ٢٠٢٦", "حذر نموذج الذكاء الاصطناعي من أنتروبيك، Claude Mythos Preview، من أنه حدد أكثر من 10,000 ثغرة حرجة في البرمجيات، متفوقًا على قدرة المطورين على معالجتها.", ""],
   ["طفرة الذكاء الاصطناعي في الخليج تواجه مشكلة الكابلات البحرية", "Wired AI", "٢٢ مايو ٢٠٢٦", "تدفع طفرة الذكاء الاصطناعي في الخليج إلى إعادة تقييم بنية الإنترنت التحتية، خاصة فيما يتعلق بضعف الكابلات البحرية.", "https://media.wired.com/photos/6a0f1eac22b304758d42f327/master/pass/6a0ecc1805928bccd6b0e6c5_UnderwaterCables_Lead_autoxauto.0000001.jpg"],
-  ["هل يمكن لرئيس الشؤون العالمية في OpenAI إصلاح أزمة سمعة الذكاء الاصطناعي؟", "Wired AI", "٢٢ مايو ٢٠٢٦", "يعمل رئيس الشؤون العالمية في OpenAI على التخفيف من المخاوف بشأن تأثيرات الذكاء الاصطناعي على المجتمع، مع الدعوة إلى تشريعات داعمة لضمان نمو الشركة.", "https://media.wired.com/photos/6a0f679a40b54a02fd444453/master/pass/Model-Behavior-Can-OpenAI-Global-Affairs-Chief-Fix-AI-Reputation-Problem-Business.jpg"],
+];
+
+// Real destination URLs, in the same order as NEWS_ITEMS above.
+const NEWS_URLS = [
+  "https://openai.com/index/separating-signal-from-noise-coding-evaluations",
+  "https://www.wired.com/story/flare-website-ai-flaw-reporting-safety/",
+  "https://www.wired.com/story/anthropic-added-a-new-security-measure-to-get-back-into-the-trump-administrations-good-graces/",
+  "https://www.wired.com/story/claude-helped-a-hacker-find-a-way-to-issue-tickets-to-almost-every-us-music-festival/",
+  "https://www.technologyreview.com/2026/06/30/1139987/claude-science-is-anthropics-newest-flagship-product/",
+  "https://www.technologyreview.com/2026/06/24/1139202/the-emergence-of-the-web-data-infrastructure-layer-for-ai/",
+  "https://www.technologyreview.com/2026/06/23/1138837/asml-400-million-dollar-machine-powering-future-of-chipmaking/",
+  "https://www.technologyreview.com/2026/06/22/1139424/three-things-to-watch-amid-anthropics-latest-feud-with-the-government/",
+  "https://www.theverge.com/ai-artificial-intelligence/953183/the-atlantic-searchable-database-music-ai-training-data",
+  "https://www.theverge.com/ai-artificial-intelligence/952906/sam-altman-film-artificial-openai-amazon-mgm-dropped",
+  "https://www.theverge.com/ai-artificial-intelligence/952837/barret-zoph-openai-thinking-machines-lab",
+  "https://www.theverge.com/podcast/951542/anthropic-claude-fable-5-mythos-ban-pentagon-ai-regulation-trump",
+  "https://www.theverge.com/tech/952099/adobe-ai-assistants-photoshop-premiere-illustrator-beta-launch",
+  "https://www.theverge.com/tech/952104/adobe-firefly-ai-agent-elements-projects-update",
+  "https://www.theverge.com/ai-artificial-intelligence/952011/midjourney-medical-ai-ultrasound-scan",
+  "https://www.theverge.com/report/951481/snap-specs-wearables-smart-glasses-fashion",
+  "https://www.theverge.com/ai-artificial-intelligence/951653/pew-research-ai-chatbot-usage-advancing-too-quickly",
+  "https://www.theverge.com/tech/951147/google-home-speaker-gemini-launch-date-price-specs-features",
+  "https://www.theverge.com/ai-artificial-intelligence/951283/genesis-ai-humanoid-robot-eno",
+  "https://www.theverge.com/ai-artificial-intelligence/951099/meta-ai-mode-search-hands-on",
+  "https://www.theverge.com/tech/950826/apple-airpod-camera-ai-foldable-iphone-rumor",
+  "https://www.theverge.com/gadgets/950229/qualcomm-snapdragon-reality-elite-xr-smart-glasses-wearables",
+  "https://www.theverge.com/ai-artificial-intelligence/950571/spacex-is-officially-buying-cursor-for-60-billion",
+  "https://www.theverge.com/ai-artificial-intelligence/950412/anthropic-trump-adminstration-claude-mythos-fable-5-export-controls",
+  "https://www.theverge.com/tech/950264/meta-ai-mode-search-facebook",
+  "https://www.theverge.com/ai-artificial-intelligence/949986/anthropic-fable-mythos-shutdown-sovereign-ai",
+  "https://www.theverge.com/ai-artificial-intelligence/949601/amazon-anthropic-fablemythos-government-ban",
+  "https://www.theverge.com/ai-artificial-intelligence/949553/anthropic-fable-5-mythos-5-government-national-security",
+  "https://www.theverge.com/tech/949360/apple-ai-photo-edit-reframe-extend-clean-up-hands-on",
+  "https://www.theverge.com/podcast/949079/siri-ai-good-vergecast",
+  "https://www.theverge.com/ai-artificial-intelligence/948409/elon-musk-trillionaire-spacex-ipo",
+  "https://www.theverge.com/business/948996/spacex-ipo-elon-musk",
+  "https://www.theverge.com/ai-artificial-intelligence/949005/jeff-bezos-prometheus-artificial-general-engineer",
+  "https://techcrunch.com/2026/06/10/xai-fired-an-engineer-who-raised-alarms-about-grok-safety-new-lawsuit-claims/",
+  "https://techcrunch.com/2026/06/10/fresh-off-bond-sale-amazon-borrows-17-5-billion-from-banks-as-ai-spending-continues/",
+  "https://techcrunch.com/2026/06/10/ai-pilled-firms-spend-7500-per-employee-each-month-on-ai/",
+  "https://huggingface.co/blog/mishig/spaces-agents-md",
+  "https://openai.com/index/notion",
+  "https://www.technologyreview.com/2026/06/05/1138427/are-ai-chatbots-making-us-lose-control-of-our-brains/",
+  "https://www.technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos/",
+  "https://www.technologyreview.com/2026/06/01/1138133/china-world-first-brain-chip/",
+  "https://the-decoder.com/openai-gives-gpt-5-5-instant-a-readability-upgrade-while-phasing-out-two-older-models/",
+  "https://the-decoder.com/google-fixes-several-bugs-in-gemini-usage-limits-that-burned-through-quotas-too-fast/",
+  "https://the-decoder.com/one-company-reportedly-spent-500-million-on-claude-in-one-month-after-failing-to-cap-ai-usage/",
+  "https://the-decoder.com/openai-is-giving-away-its-life-sciences-ai-model-to-help-governments-prepare-for-the-next-pandemic/",
+  "https://arstechnica.com/security/2026/05/fed-up-with-vibe-coders-dev-sneaks-data-nuking-prompt-injection-into-their-code/",
+  "https://www.theverge.com/streaming/937915/youtube-ai-labels-shorts-automatic-identification-updates",
+  "https://the-decoder.com/alibabas-latest-ai-model-ran-autonomously-for-35-hours-to-optimize-code-for-its-own-custom-chip/",
+  "https://the-decoder.com/anthropic-warns-claude-mythos-preview-finds-bugs-faster-than-developers-can-patch-them/",
+  "https://www.wired.com/story/the-gulfs-ai-boom-has-an-undersea-cable-problem/",
 ];
 
 const SOURCE_COLORS = {
@@ -88,8 +142,11 @@ export default function NewsPageAr() {
       <section className="pb-24">
         <div className="wrap grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
           {NEWS_ITEMS.map(([title, source, date, excerpt, image], i) => (
-            <div
+            <a
               key={i}
+              href={NEWS_URLS[i]}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`reveal d${(i % 3) + 1} group bg-white border border-line rounded-[18px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary flex flex-col`}
             >
               {/* thumbnail */}
@@ -121,17 +178,14 @@ export default function NewsPageAr() {
                 {title}
               </h3>
               <p className="text-[13px] text-muted leading-[1.6] mt-2 flex-1">{excerpt}</p>
-              <a
-                href="#"
-                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all"
-              >
+              <span className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary mt-4 group-hover:gap-2.5 transition-all">
                 اقرأ المقال كاملاً
                 <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 rotate-180">
                   <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
+              </span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 

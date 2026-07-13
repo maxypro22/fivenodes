@@ -10,8 +10,9 @@ export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return { title: "مقال — فايف نودز" };
   const ar = getArBlog(post.slug) || {};
   return pageMeta({
@@ -65,8 +66,9 @@ function ArticleBody({ blocks }) {
   return <div className="flex flex-col gap-5">{out}</div>;
 }
 
-export default function ArBlogPost({ params }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export default async function ArBlogPost({ params }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
   const idx = BLOG_POSTS.findIndex((p) => p.slug === post.slug);

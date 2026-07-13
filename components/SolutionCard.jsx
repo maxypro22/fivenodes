@@ -7,7 +7,7 @@ export default function SolutionCard({ m, index }) {
   const toggle = () => setOpen((v) => !v);
 
   return (
-    <div className={`group relative ${open ? "z-30" : "z-0 hover:z-30"}`}>
+    <div className={`group relative h-full ${open ? "z-30" : "z-0 hover:z-30"}`}>
       {/* Top card — hover (desktop) or tap (phone) to reveal */}
       <div
         role="button"
@@ -20,14 +20,14 @@ export default function SolutionCard({ m, index }) {
             toggle();
           }
         }}
-        className={`relative z-10 cursor-pointer select-none bg-white border rounded-[24px] px-7 pt-8 pb-7 shadow-card text-center transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-hover hover:border-primary/70 ${
+        className={`relative z-10 flex h-full flex-col cursor-pointer select-none bg-white border rounded-[24px] px-7 pt-8 pb-7 shadow-card text-center transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-hover hover:border-primary/70 ${
           open ? "border-primary/70 -translate-y-1 shadow-hover" : "border-line"
         }`}
       >
         {/* glossy sheen */}
         <div className="pointer-events-none absolute inset-0 rounded-[24px] bg-gradient-to-b from-white/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <div className="relative">
+        <div className="relative flex flex-1 flex-col">
           <div
             className={`mx-auto w-14 h-14 rounded-[16px] font-heading font-extrabold text-lg grid place-items-center transition-all duration-300 ease-smooth group-hover:bg-gradient-to-br group-hover:from-[#2563eb] group-hover:to-[#4f46e5] group-hover:text-white group-hover:shadow-[0_12px_26px_-8px_rgba(37,99,235,.7)] group-hover:scale-105 ${
               open
@@ -41,7 +41,7 @@ export default function SolutionCard({ m, index }) {
           <p className="text-sm text-muted mt-2 leading-[1.55] max-w-[260px] mx-auto">{m.tag}</p>
 
           {/* chevron indicator */}
-          <div className="mt-6 flex justify-center">
+          <div className="mt-auto pt-6 flex justify-center">
             <span
               className={`w-11 h-11 rounded-full bg-white border-2 grid place-items-center shadow-[0_6px_16px_-8px_rgba(16,22,41,.4)] transition-all duration-300 group-hover:border-primary group-hover:text-primary group-hover:shadow-[0_10px_22px_-8px_rgba(37,99,235,.55)] ${
                 open ? "border-primary text-primary shadow-[0_10px_22px_-8px_rgba(37,99,235,.55)]" : "border-line text-ink-2"

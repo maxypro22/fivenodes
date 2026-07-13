@@ -115,6 +115,25 @@ export default function ServicesPage() {
               cloud hosting for businesses in Qatar.
             </p>
           </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-10">
+            {[
+              ["Voice", "VAPI"],
+              ["Voice", "ElevenLabs"],
+              ["AI", "OpenAI"],
+              ["Data", "Supabase"],
+              ["Messaging", "WhatsApp API"],
+              ["Frontend", "Next.js"],
+            ].map(([cat, name], i) => (
+              <div
+                key={name}
+                className={`reveal d${(i % 3) + 1} rounded-2xl border border-line bg-white p-5 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary/40`}
+              >
+                <div className="text-[11px] uppercase tracking-[.12em] text-muted-2">{cat}</div>
+                <div className="font-heading font-bold text-ink mt-1.5 text-[15px]">{name}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

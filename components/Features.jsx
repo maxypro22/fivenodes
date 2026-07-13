@@ -1,3 +1,5 @@
+"use client";
+
 import { FEATURES } from "./featuresData";
 import FeaturesDeck from "./FeaturesDeck";
 
@@ -37,7 +39,7 @@ export default function Features() {
 
         {/* Mobile stacked deck */}
         <div className="md:hidden mt-10">
-          <FeaturesDeck />
+          <FeaturesDeck items={FEATURES} />
         </div>
       </div>
     </section>

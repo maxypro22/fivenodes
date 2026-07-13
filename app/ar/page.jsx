@@ -6,11 +6,12 @@ import IntegrationHub from "@/components/IntegrationHub";
 import PlatformOrbit from "@/components/PlatformOrbit";
 import CountUp from "@/components/CountUp";
 import LazyVideo from "@/components/LazyVideo";
-import SmartImg from "@/components/SmartImg";
-import SolutionCard from "@/components/SolutionCard";
+import SolutionsCards from "@/components/SolutionsCards";
+import FeaturesDeck from "@/components/FeaturesDeck";
+import TrustedBy from "@/components/TrustedBy";
+import Integrations from "@/components/Integrations";
 import FaqAccordion from "@/components/FaqAccordion";
 import CTASection from "@/components/CTASection";
-import { CLIENTS, TECH_LOGOS } from "@/components/data";
 
 export const metadata = pageMeta({
   title: "شركة ذكاء اصطناعي في قطر — وكلاء صوت وواتساب وأتمتة | فايف نودز",
@@ -153,6 +154,10 @@ const LEGAL_POINTS = [
 
 const ACCENT = "#3857e9";
 
+// Pre-render icons so the arrays can cross into the client decks safely.
+const FEATURE_DECK = FEATURES.map((f) => ({ icon: <f.Icon size={22} strokeWidth={1.8} />, t: f.t, d: f.d }));
+const LEGAL_DECK = LEGAL_POINTS.map((p) => ({ icon: <p.Icon size={22} strokeWidth={1.8} />, t: p.t, d: p.d }));
+
 function Stat({ lbl, children }) {
   return (
     <div>
@@ -287,46 +292,12 @@ export default function HomeAr() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[26px] mt-12">
-            {SOLUTIONS.map((m, i) => (
-              <div key={m.t} className={`reveal d${(i % 3) + 1}`}>
-                <SolutionCard m={m} index={i} />
-              </div>
-            ))}
-          </div>
+          <SolutionsCards items={SOLUTIONS} />
         </div>
       </section>
 
       {/* ================= TRUSTED BY ================= */}
-      <section className="pt-14 pb-20">
-        <div className="wrap">
-          <div className="text-center max-w-[680px] mx-auto mb-10">
-            <span className="eyebrow reveal inline-flex justify-center">موثوق من قِبل</span>
-            <h2 className="reveal d1 font-heading font-extrabold text-[clamp(26px,3.4vw,40px)] tracking-[-.02em] text-ink mt-3">
-              شركاؤنا — عملاء الذكاء الاصطناعي في قطر
-            </h2>
-          </div>
-
-          <div
-            className="reveal overflow-hidden relative pb-2"
-            style={{
-              maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-              WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-            }}
-          >
-            <div className="flex w-max animate-marquee-left">
-              {[...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS].map((n, i) => (
-                <div
-                  key={i}
-                  className="mr-4 shrink-0 w-[150px] h-24 rounded-[14px] bg-white border border-line-soft shadow-card grid place-items-center p-[14px] font-heading font-extrabold text-[#334155] text-center text-xs tracking-[.02em]"
-                >
-                  {n}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <TrustedBy eyebrow="موثوق من قِبل" title="شركاؤنا — عملاء الذكاء الاصطناعي في قطر" />
 
       {/* ================= PLATFORM ================= */}
       <section className="py-24 bg-bg">
@@ -370,7 +341,7 @@ export default function HomeAr() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[22px] mt-14">
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-[22px] mt-14">
             {FEATURES.map((f, i) => (
               <div
                 key={f.t}
@@ -385,6 +356,11 @@ export default function HomeAr() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Mobile stacked deck */}
+          <div className="md:hidden mt-10">
+            <FeaturesDeck items={FEATURE_DECK} />
           </div>
         </div>
       </section>
@@ -432,45 +408,7 @@ export default function HomeAr() {
       </section>
 
       {/* ================= INTEGRATIONS ================= */}
-      <section className="py-20">
-        <div className="wrap text-center">
-          <span className="eyebrow reveal inline-flex justify-center">نتكامل مع</span>
-          <h2 className="reveal d1 font-heading font-bold text-[clamp(22px,2.8vw,34px)] tracking-[-.01em] text-ink mt-3">
-            تكاملات الذكاء الاصطناعي التي نبني عليها
-          </h2>
-
-          <div
-            className="reveal mt-12 overflow-hidden relative pb-2"
-            style={{
-              maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-              WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-            }}
-          >
-            <div className="flex w-max animate-marquee-left">
-              {[...TECH_LOGOS, ...TECH_LOGOS, ...TECH_LOGOS, ...TECH_LOGOS].map((t, i) => (
-                <div
-                  key={i}
-                  title={t.name}
-                  className="mr-4 shrink-0 w-[88px] h-[88px] rounded-2xl bg-white border border-line-soft shadow-card grid place-items-center p-4"
-                >
-                  {t.svg ? (
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-9 h-9 text-ink" aria-label={`${t.name} logo`}>
-                      <path d={t.svg} />
-                    </svg>
-                  ) : (
-                    <SmartImg
-                      className="w-9 h-9 object-contain"
-                      alt={`${t.name} logo`}
-                      src={`https://cdn.simpleicons.org/${t.slug}/${t.color}`}
-                      fallback={`https://cdn.simpleicons.org/${t.slug}`}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <Integrations eyebrow="نتكامل مع" title="تكاملات الذكاء الاصطناعي التي نبني عليها" />
 
       {/* ================= FAQ ================= */}
       <section className="py-24">
@@ -500,7 +438,7 @@ export default function HomeAr() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[22px] mt-12 max-w-[860px] mx-auto">
+          <div className="hidden md:grid md:grid-cols-2 gap-[22px] mt-12 max-w-[860px] mx-auto">
             {LEGAL_POINTS.map((p, i) => (
               <div
                 key={p.t}
@@ -515,6 +453,11 @@ export default function HomeAr() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Mobile stacked deck — same as Features */}
+          <div className="md:hidden mt-10 max-w-[420px] mx-auto">
+            <FeaturesDeck items={LEGAL_DECK} />
           </div>
 
           <div className="reveal text-center mt-10">

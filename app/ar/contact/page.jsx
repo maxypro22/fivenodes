@@ -61,7 +61,7 @@ export default function ContactPage() {
                 <Icon />
               </div>
               <div className="font-heading font-bold text-ink mt-4">{label}</div>
-              <div className="text-sm text-muted mt-1">{value}</div>
+              <div dir="ltr" className="text-sm text-muted mt-1">{value}</div>
             </a>
           ))}
         </div>
@@ -107,7 +107,10 @@ export default function ContactPage() {
                 {DIRECT.map(([label, value, href]) => (
                   <a key={label} href={href} className="flex items-center justify-between gap-4 group">
                     <span className="text-[11px] uppercase tracking-[.1em] text-muted-2">{label}</span>
-                    <span className="text-sm font-medium text-ink-2 group-hover:text-primary transition-colors">
+                    <span
+                      dir={/[؀-ۿ]/.test(value) ? undefined : "ltr"}
+                      className="text-sm font-medium text-ink-2 group-hover:text-primary transition-colors"
+                    >
                       {value}
                     </span>
                   </a>
@@ -139,11 +142,11 @@ export default function ContactPage() {
             </p>
             <div className="flex flex-col gap-2 mt-5 pt-5 border-t border-line-soft">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-ink-2 font-medium">+974 3001 0105</span>
+                <span dir="ltr" className="text-sm text-ink-2 font-medium">+974 3001 0105</span>
                 <span className="text-[11px] uppercase tracking-[.1em] text-muted-2">هاتف</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-ink-2 font-medium">+974 4444 0085</span>
+                <span dir="ltr" className="text-sm text-ink-2 font-medium">+974 4444 0085</span>
                 <span className="text-[11px] uppercase tracking-[.1em] text-muted-2">خط أرضي</span>
               </div>
             </div>

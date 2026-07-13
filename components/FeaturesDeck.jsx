@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FEATURES } from "./featuresData";
 
 const DURATION = 1800; // ms per card
 
-export default function FeaturesDeck() {
+export default function FeaturesDeck({ items }) {
   const [index, setIndex] = useState(0);
-  const n = FEATURES.length;
+  const n = items.length;
   const timer = useRef(null);
 
   const startTimer = () => {
@@ -18,6 +17,7 @@ export default function FeaturesDeck() {
   useEffect(() => {
     startTimer();
     return () => clearInterval(timer.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const goto = (i) => {
@@ -25,8 +25,10 @@ export default function FeaturesDeck() {
     startTimer();
   };
 
-  const f = FEATURES[index];
-  const Icon = f.Icon;
+  const f = items[index];
+  // Accept either an icon component (`Icon`) from client callers, or a
+  // pre-rendered icon node (`icon`) passed across the RSC boundary.
+  const iconNode = f.icon ?? (f.Icon ? <f.Icon size={22} strokeWidth={1.8} /> : null);
 
   return (
     <div className="pt-4">
@@ -39,7 +41,7 @@ export default function FeaturesDeck() {
         {/* front card */}
         <div key={index} className="relative z-10 bg-white border border-line rounded-[22px] p-7 shadow-soft [animation:fadeSlide_.4s_ease]">
           <div className="w-12 h-12 rounded-[14px] bg-primary-soft text-primary grid place-items-center">
-            <Icon size={22} strokeWidth={1.8} />
+            {iconNode}
           </div>
           <h3 className="font-heading font-bold text-[19px] text-ink mt-5">{f.t}</h3>
           <p className="text-sm text-muted mt-2 leading-[1.6]">{f.d}</p>
@@ -48,7 +50,7 @@ export default function FeaturesDeck() {
 
       {/* segmented control */}
       <div className="flex items-center justify-center flex-wrap gap-1.5 mt-7">
-        {FEATURES.map((_, i) => (
+        {items.map((_, i) => (
           <button
             key={i}
             onClick={() => goto(i)}

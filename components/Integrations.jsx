@@ -1,18 +1,23 @@
 import SmartImg from "./SmartImg";
 import { TECH_LOGOS } from "./data";
 
-export default function Integrations() {
+export default function Integrations({
+  eyebrow = "We integrate with",
+  title = "AI integrations we ship with",
+}) {
   return (
     <section className="py-20">
       <div className="wrap text-center">
-        <span className="eyebrow reveal inline-flex justify-center">We integrate with</span>
+        <span className="eyebrow reveal inline-flex justify-center">{eyebrow}</span>
         <h2 className="reveal d1 font-heading font-bold text-[clamp(22px,2.8vw,34px)] tracking-[-.01em] text-ink mt-3">
-          AI integrations we ship with
+          {title}
         </h2>
 
-        {/* looping integration marquee (laptop + phone) */}
+        {/* looping integration marquee (laptop + phone) — dir=ltr so it scrolls
+            correctly even inside an RTL (Arabic) page */}
         <div
-          className="reveal mt-12 overflow-hidden relative pb-2"
+          dir="ltr"
+          className="mt-12 overflow-hidden relative pb-2"
           style={{
             maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
             WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",

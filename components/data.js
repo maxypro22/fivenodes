@@ -9,43 +9,43 @@ export const SOLUTIONS = [
     t: "AI Chat & Messaging",
     tag: "Your AI team across every platform.",
     d: "WhatsApp, Instagram DM, Facebook Messenger, Telegram and website live chat — replies in seconds.",
-    f: ["WhatsApp & Telegram Agents", "Instagram DM & Messenger", "Website Live Chat", "Unified Multi-Platform Inbox"],
+    f: ["WhatsApp AI Agent", "Instagram DM Agent", "Facebook Messenger Agent", "Telegram Agent", "Website Live Chat"],
   },
   {
     t: "Omnichannel Monitoring",
     tag: "See everything. Miss nothing.",
     d: "Live platform monitoring with sentiment analysis and full response tracking across every channel.",
-    f: ["Cross-Platform Sentiment", "Response Time & SLA Tracking", "Team Performance Scoring", "Executive Dashboards"],
+    f: ["WhatsApp Monitoring", "Instagram Monitoring", "Facebook Monitoring", "Telegram Monitoring", "Sentiment Analysis", "Response Time Tracking", "Team Scoring"],
   },
   {
     t: "Smart Booking",
     tag: "From request to confirmation — zero humans.",
     d: "End-to-end booking with automatic staff assignment and real-time capacity management.",
-    f: ["End-to-End Booking Flows", "Staff Auto-Assignment", "Capacity Optimization", "Calendar Sync & Reminders"],
+    f: ["End-to-End Booking", "Staff Auto-Assignment", "Shift Optimization", "Capacity Management"],
   },
   {
     t: "Workflow Automation",
     tag: "Kill the busywork. Free your team.",
     d: "CRM automation, intelligent lead routing, and automated invoice follow-ups.",
-    f: ["CRM & Lead Routing", "Invoice & Follow-up Flows", "API Integrations & Sync", "Document Generation"],
+    f: ["CRM Automation", "Lead Routing", "Invoice Follow-ups", "Internal Task Automation"],
   },
   {
     t: "Data & Intelligence",
     tag: "Faster decisions. Real numbers. Real-time.",
     d: "Behavior analytics, conversation intelligence and demand forecasting at a glance.",
-    f: ["Behavior Analytics", "Conversation Intelligence", "Demand Forecasting", "AI Quality Scoring"],
+    f: ["Behavior Analytics", "Conversation Intelligence", "Demand Forecasting", "AI Quality Scoring", "Custom Dashboards"],
   },
   {
     t: "AI Customer Memory",
     tag: "Your system remembers every customer.",
     d: "A customer memory engine that auto-updates your CRM with every interaction.",
-    f: ["Customer Memory Engine", "Auto CRM Updates", "Full Interaction History", "Churn Detection & Alerts"],
+    f: ["Customer Memory Engine", "Auto CRM Updates", "Interaction History", "Churn Detection & Alerts"],
   },
   {
     t: "Smart Notifications",
     tag: "No customer forgotten. Ever.",
     d: "Automated appointment reminders and intelligent re-engagement campaigns.",
-    f: ["Pre-Appointment Reminders", "Post-Service Follow-ups", "Re-engagement Campaigns", "Automated Review Requests"],
+    f: ["Pre-appointment Reminders", "Post-service Follow-ups", "Re-engagement Campaigns", "Review Requests"],
   },
 ];
 
@@ -53,26 +53,18 @@ export const PROCESS = [
   {
     n: "STEP 01",
     t: "Discovery & Strategy",
-    d: "We understand your business workflows and map where AI delivers the highest impact and fastest ROI.",
+    d: "We start by understanding your business, workflows, and goals. Our team maps out exactly where AI can drive the biggest impact for you.",
   },
   {
     n: "STEP 02",
     t: "Custom Build & Integration",
-    d: "Our engineers configure and train your AI solutions, integrated seamlessly with your existing systems.",
+    d: "Our engineers build and configure your AI solution from the ground up, integrating it seamlessly with your existing systems, CRM, and processes.",
   },
   {
     n: "STEP 03",
     t: "Launch & Ongoing Support",
-    d: "Full deployment with a dedicated account manager, continuous tuning and 24/7 monitoring.",
+    d: "We handle the full deployment, monitor performance, and continuously optimize your AI. You get a dedicated account manager every step of the way.",
   },
-];
-
-export const PLATFORMS = [
-  "WhatsApp",
-  "Instagram DM",
-  "Facebook Messenger",
-  "Telegram",
-  "Website Live Chat",
 ];
 
 export const CLIENTS = [
@@ -85,17 +77,6 @@ export const CLIENTS = [
   "NexIT",
   "Power Vision",
   "Shop Five",
-];
-
-export const TECH = [
-  "Nvidia",
-  "OpenAI",
-  "Claude AI",
-  "Supabase",
-  "Turso",
-  "Vercel",
-  "GitHub",
-  "Clerk",
 ];
 
 // Original brand logos (Simple Icons CDN, brand colors) with Clearbit fallback

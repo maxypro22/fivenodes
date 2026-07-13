@@ -1,16 +1,3 @@
-// pointy-top hexagon vertex angles (deg)
-const ANGLES = [-90, -30, 30, 90, 150, 210];
-
-// build an SVG polygon points string for a hexagon of radius r around (200,200)
-function hexPoints(r) {
-  return ANGLES.map((a) => {
-    const rad = (a * Math.PI) / 180;
-    return `${(200 + r * Math.cos(rad)).toFixed(1)},${(200 + r * Math.sin(rad)).toFixed(1)}`;
-  }).join(" ");
-}
-
-const RINGS = [58, 98, 138, 176];
-
 // Inline brand logos (single-path SVGs, viewBox 0 0 24 24) — no external CDN.
 const ICONS = [
   {
@@ -39,59 +26,86 @@ const ICONS = [
   },
 ];
 
-// icon positions as % (radius 44% of container)
-const ICON_POS = ANGLES.map((a) => {
-  const rad = (a * Math.PI) / 180;
-  return { x: 50 + 44 * Math.cos(rad), y: 50 + 44 * Math.sin(rad) };
-});
+// Concentric orbits whose center sits on the RIGHT edge, so only the left
+// half of each ring is visible — the rings read as open semicircles arcing
+// outward. Each ring spins; its icons counter-rotate so they stay upright.
+// brand colors, index-matched to ICONS above
+const COLORS = ["#10A37F", "#D97757", "#24292F", "#76B900", "#3ECF8E", "#111111"];
+
+// `size` is the ring diameter in rem (12 + 8·(i+1), matching the source design).
+// `count` is how many badges ride the ring (cycling the ICONS palette) — more = tighter spacing.
+const ORBITS = [
+  { size: 20, duration: 18, reverse: false, count: 6, offset: 0 },
+  { size: 28, duration: 24, reverse: true, count: 8, offset: 2 },
+  { size: 36, duration: 30, reverse: false, count: 10, offset: 4 },
+];
 
 export default function PlatformOrbit() {
   return (
-    <div className="reveal d2 relative w-full max-w-[480px] mx-auto aspect-square">
-      {/* soft radial backdrop */}
-      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,.12),transparent_62%)] pointer-events-none" />
+    <div className="reveal d2 relative w-full max-w-[520px] mx-auto aspect-square overflow-hidden">
+      {/* soft radial backdrop anchored to the right (the orbit center) */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 w-[120%] aspect-square rounded-full bg-[radial-gradient(circle,rgba(37,99,235,.12),transparent_62%)] pointer-events-none" />
 
-      {/* hexagon rings with outward color pulse */}
-      <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full" fill="none">
-        {RINGS.map((r, i) => (
-          <g key={r}>
-            <polygon points={hexPoints(r)} stroke="rgba(15,23,42,.10)" strokeWidth="1" strokeLinejoin="round" />
-            <polygon
-              points={hexPoints(r)}
-              className="hexring"
-              stroke="#2563eb"
-              strokeWidth="2"
-              strokeLinejoin="round"
-              style={{ animationDelay: `${i * 0.38}s` }}
-            />
-          </g>
-        ))}
-      </svg>
+      {/* spinning dotted orbits, centered on the right edge */}
+      {ORBITS.map((orbit, orbitIdx) => {
+        const angleStep = (2 * Math.PI) / orbit.count;
+        // offset each ring so badges don't line up radially
+        const startAngle = Math.PI + orbitIdx * 0.4;
 
-      {/* orbiting icon badges */}
-      <div className="orbit absolute inset-0">
-        {ICONS.map((ic, idx) => (
+        return (
           <div
-            key={ic.name}
-            className="absolute"
-            style={{ left: `${ICON_POS[idx].x}%`, top: `${ICON_POS[idx].y}%`, transform: "translate(-50%,-50%)" }}
+            key={orbitIdx}
+            className="absolute left-full top-1/2"
+            style={{
+              width: `${orbit.size}rem`,
+              height: `${orbit.size}rem`,
+              transform: "translate(-50%,-50%)",
+            }}
           >
+            {/* inner div carries the rotation so it never fights the wrapper's translate */}
             <div
-              className="orbit-rev grid place-items-center w-[52px] h-[52px] md:w-[58px] md:h-[58px] rounded-full bg-[#171a24] border border-white/10 shadow-[0_10px_24px_-10px_rgba(8,11,22,.8)] transition-transform duration-300 hover:scale-110"
-              title={ic.name}
+              className="relative w-full h-full rounded-full border-2 border-dotted border-gray-300 dark:border-gray-600"
+              style={{
+                animation: `orbitSpin ${orbit.duration}s linear infinite${orbit.reverse ? " reverse" : ""}`,
+              }}
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-white/90" aria-label={ic.name}>
-                <path d={ic.d} />
-              </svg>
+              {Array.from({ length: orbit.count }).map((_, i) => {
+                const angle = startAngle + i * angleStep;
+                const x = 50 + 50 * Math.cos(angle);
+                const y = 50 + 50 * Math.sin(angle);
+                const idx = (orbit.offset + i) % ICONS.length;
+                const ic = ICONS[idx];
+
+                return (
+                  <div
+                    key={i}
+                    className="absolute"
+                    style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%,-50%)" }}
+                  >
+                    {/* counter-rotate to keep the badge upright */}
+                    <div
+                      className="grid place-items-center w-[44px] h-[44px] md:w-[50px] md:h-[50px] rounded-full bg-white border border-gray-200 dark:border-gray-700 shadow-[0_8px_20px_-8px_rgba(0,0,0,.35)] transition-transform duration-300 hover:scale-110"
+                      title={ic.name}
+                      style={{
+                        animation: `orbitSpin ${orbit.duration}s linear infinite${orbit.reverse ? "" : " reverse"}`,
+                      }}
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" style={{ color: COLORS[idx] }} aria-label={ic.name}>
+                        <path d={ic.d} />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
 
-      {/* center node — brand logo */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+      {/* center node — brand logo, sitting at the orbit center on the right edge */}
+      <div className="absolute left-full top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
         <div className="hex-core-glow absolute left-1/2 top-1/2 w-32 h-32 rounded-full bg-primary/40 blur-2xl pointer-events-none" />
-        <div className="relative grid place-items-center w-[112px] h-[112px] rounded-[26px] bg-white border border-line shadow-[0_12px_30px_-8px_rgba(37,99,235,.45)]">
+        <div className="relative grid place-items-center w-[128px] h-[128px] rounded-full bg-white border border-line shadow-[0_12px_30px_-8px_rgba(37,99,235,.45)]">
           <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="w-[72%] h-auto" />
         </div>
       </div>

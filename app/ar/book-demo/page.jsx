@@ -33,8 +33,8 @@ export default function BookDemoPage() {
             <div className="bg-white border border-line rounded-[20px] p-7 shadow-card">
               <h3 className="font-heading font-bold text-lg text-ink">هل تفضّل التحدث الآن؟</h3>
               <div className="flex flex-col gap-2 mt-3 text-sm">
-                <a href="tel:+97430010105" className="text-ink-2 hover:text-primary">+974 3001 0105</a>
-                <a href="tel:+97444440085" className="text-ink-2 hover:text-primary">+974 4444 0085</a>
+                <a href="tel:+97430010105" dir="ltr" className="text-ink-2 hover:text-primary">+974 3001 0105</a>
+                <a href="tel:+97444440085" dir="ltr" className="text-ink-2 hover:text-primary">+974 4444 0085</a>
                 <a href="mailto:Info@fivenodes.ai" className="text-ink-2 hover:text-primary">Info@fivenodes.ai</a>
               </div>
             </div>

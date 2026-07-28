@@ -23,10 +23,10 @@ export default function RotatingTagline() {
   }, []);
 
   return (
-    <div className="reveal d1 h-[30px] mb-[10px] overflow-hidden" aria-live="polite">
+    <div className="reveal d1 h-[24px] mb-2 overflow-hidden" aria-live="polite">
       <span
         key={i}
-        className="inline-block font-heading font-bold text-primary text-[clamp(15px,1.6vw,19px)] animate-[fadeSlide_.5s_ease]"
+        className="inline-block font-heading font-bold text-primary text-[clamp(12.5px,1.05vw,14px)] tracking-[.01em] animate-[fadeSlide_.5s_ease]"
       >
         {PHRASES[i]}
       </span>

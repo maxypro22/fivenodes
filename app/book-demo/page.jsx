@@ -29,7 +29,7 @@ export default function BookDemoPage() {
           </div>
 
           <div className="reveal d1 flex flex-col gap-8">
-            <div className="bg-white border border-line rounded-[20px] p-7 shadow-card">
+            <div className="bg-surface border border-line rounded-[20px] p-7 shadow-card">
               <h3 className="font-heading font-bold text-lg text-ink">Prefer to talk now?</h3>
               <div className="flex flex-col gap-2 mt-3 text-sm">
                 <a href="tel:+97430010105" className="text-ink-2 hover:text-primary">+974 3001 0105</a>
@@ -38,7 +38,7 @@ export default function BookDemoPage() {
               </div>
             </div>
 
-            <div className="bg-white border border-line rounded-[20px] p-7 shadow-card">
+            <div className="bg-surface border border-line rounded-[20px] p-7 shadow-card">
               <h3 className="font-heading font-bold text-lg text-ink">Stay in the loop</h3>
               <p className="text-sm text-muted mt-2 leading-[1.7]">
                 Join our newsletter for the latest updates on AI voice agents, WhatsApp automation,

@@ -1,6 +1,6 @@
 export default function PageHeader({ eyebrow, title, children }) {
   return (
-    <section className="relative overflow-hidden pt-16 pb-12 before:content-[''] before:absolute before:right-[10%] before:top-[-30%] before:w-[55%] before:h-[130%] before:bg-[radial-gradient(closest-side,rgba(96,165,250,.28),rgba(96,165,250,0)_70%)] before:blur-[10px] before:z-0 before:pointer-events-none">
+    <section className="relative overflow-hidden bg-surface pt-16 pb-12">
       <div className="wrap relative z-[1] text-center max-w-[780px] mx-auto">
         {eyebrow && (
           <span className="eyebrow reveal inline-flex justify-center">{eyebrow}</span>

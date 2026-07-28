@@ -14,7 +14,7 @@ export default function WhatsAppFab() {
       <Link
         href={localizeHref("/book-demo", locale)}
         aria-label="Book a demo"
-        className="group grid place-items-center w-14 h-14 rounded-full bg-primary text-white shadow-[0_14px_34px_-8px_rgba(37,99,235,.6)] transition-transform duration-200 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
+        className="group grid place-items-center w-14 h-14 rounded-full bg-primary text-on-primary shadow-[0_14px_34px_-8px_rgba(37,99,235,.6)] transition-transform duration-200 hover:scale-110 hover:-translate-y-0.5 active:scale-95"
       >
         <svg
           viewBox="0 0 24 24"

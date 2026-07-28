@@ -33,12 +33,12 @@ export default function LegalDeck({ sections }) {
       <div className="relative">
         {/* ghost layers behind */}
         <div className="absolute inset-0 z-0 rounded-[22px] bg-[#eef0f5] border border-line -translate-y-4 scale-[.94] origin-top" />
-        <div className="absolute inset-0 z-[1] rounded-[22px] bg-white border border-line -translate-y-2 scale-[.97] origin-top" />
+        <div className="absolute inset-0 z-[1] rounded-[22px] bg-surface border border-line -translate-y-2 scale-[.97] origin-top" />
 
         {/* front card */}
         <div
           key={index}
-          className="relative z-10 bg-white border border-line rounded-[22px] p-6 shadow-soft [animation:fadeSlide_.4s_ease]"
+          className="relative z-10 bg-surface border border-line rounded-[22px] p-6 shadow-soft [animation:fadeSlide_.4s_ease]"
         >
           <div className="flex items-center gap-3 mb-4">
             <span className="grid place-items-center min-w-9 h-9 px-2 rounded-[10px] bg-primary-soft text-primary font-heading font-extrabold text-sm">
@@ -55,7 +55,7 @@ export default function LegalDeck({ sections }) {
         <button
           onClick={() => goto(index - 1)}
           aria-label="Previous section"
-          className="w-11 h-11 shrink-0 rounded-full border-2 border-line bg-white grid place-items-center text-ink-2 shadow-[0_6px_16px_-8px_rgba(16,22,41,.35)] transition-all duration-300 hover:border-primary hover:text-primary active:scale-95"
+          className="w-11 h-11 shrink-0 rounded-full border-2 border-line bg-surface grid place-items-center text-ink-2 shadow-[0_6px_16px_-8px_rgba(16,22,41,.35)] transition-all duration-300 hover:border-primary hover:text-primary active:scale-95"
         >
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -78,7 +78,7 @@ export default function LegalDeck({ sections }) {
         <button
           onClick={() => goto(index + 1)}
           aria-label="Next section"
-          className="w-11 h-11 shrink-0 rounded-full border-2 border-line bg-white grid place-items-center text-ink-2 shadow-[0_6px_16px_-8px_rgba(16,22,41,.35)] transition-all duration-300 hover:border-primary hover:text-primary active:scale-95"
+          className="w-11 h-11 shrink-0 rounded-full border-2 border-line bg-surface grid place-items-center text-ink-2 shadow-[0_6px_16px_-8px_rgba(16,22,41,.35)] transition-all duration-300 hover:border-primary hover:text-primary active:scale-95"
         >
           <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
             <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />

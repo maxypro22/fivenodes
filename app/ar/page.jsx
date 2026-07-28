@@ -2,10 +2,12 @@ import Link from "next/link";
 import { Database, Clock, Mic, CalendarDays, ShieldCheck, Users, Zap, FileText, TrendingUp, Lock, Scale } from "lucide-react";
 
 import { pageMeta } from "@/components/seo";
-import IntegrationHub from "@/components/IntegrationHub";
 import PlatformOrbit from "@/components/PlatformOrbit";
 import CountUp from "@/components/CountUp";
 import LazyVideo from "@/components/LazyVideo";
+import WorkflowScan from "@/components/WorkflowScan";
+import DashboardIntegration from "@/components/DashboardIntegration";
+import DashboardMonitor from "@/components/DashboardMonitor";
 import SolutionsCards from "@/components/SolutionsCards";
 import FeaturesDeck from "@/components/FeaturesDeck";
 import TrustedBy from "@/components/TrustedBy";
@@ -83,24 +85,24 @@ const PROCESS = [
     n: "الخطوة 01",
     t: "الاكتشاف والاستراتيجية",
     sub: "تدقيق • سير العمل • العائد",
-    video: "/process-1-2.mp4",
     d: "نفهم سير عمل أعمالك ونرسم خارطة للمواضع التي يحقق فيها الذكاء الاصطناعي أكبر أثر وأسرع عائد.",
   },
   {
     n: "الخطوة 02",
     t: "البناء المخصص والتكامل",
     sub: "إعداد • تدريب • تكامل",
-    video: "/process-2.mp4",
     d: "يقوم مهندسونا بإعداد وتدريب حلول الذكاء الاصطناعي الخاصة بك ودمجها بسلاسة مع أنظمتك الحالية.",
   },
   {
     n: "الخطوة 03",
     t: "الإطلاق والدعم المستمر",
     sub: "نشر • مراقبة • تحسين",
-    video: "/process-3-3.mp4",
     d: "نشر كامل مع مدير حساب مخصص، وضبط مستمر ومراقبة على مدار الساعة.",
   },
 ];
+
+// كل خطوة تستخدم لوحة تفاعلية متحركة بدل الفيديو
+const PROCESS_CUSTOM = [WorkflowScan, DashboardIntegration, DashboardMonitor];
 
 const FAQ_ITEMS = [
   {
@@ -152,8 +154,6 @@ const LEGAL_POINTS = [
   },
 ];
 
-const ACCENT = "#3857e9";
-
 // Pre-render icons so the arrays can cross into the client decks safely.
 const FEATURE_DECK = FEATURES.map((f) => ({ icon: <f.Icon size={22} strokeWidth={1.8} />, t: f.t, d: f.d }));
 const LEGAL_DECK = LEGAL_POINTS.map((p) => ({ icon: <p.Icon size={22} strokeWidth={1.8} />, t: p.t, d: p.d }));
@@ -161,8 +161,8 @@ const LEGAL_DECK = LEGAL_POINTS.map((p) => ({ icon: <p.Icon size={22} strokeWidt
 function Stat({ lbl, children }) {
   return (
     <div>
-      <div className="font-heading font-extrabold text-[26px] text-ink">{children}</div>
-      <div className="text-xs text-muted-2 mt-0.5">{lbl}</div>
+      <div className="font-heading font-extrabold text-[clamp(22px,2.4vw,28px)] text-ink">{children}</div>
+      <div className="text-xs text-muted-2 mt-1">{lbl}</div>
     </div>
   );
 }
@@ -171,40 +171,25 @@ export default function HomeAr() {
   return (
     <main dir="rtl">
       {/* ================= HERO ================= */}
-      <section className="relative overflow-hidden py-16 pb-20">
-        <video
-          className="absolute inset-0 w-full h-full object-cover object-center z-0 pointer-events-none"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        >
-          <source src="/hero-bg.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-l from-bg via-bg/92 to-bg/45" />
-        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-t from-bg via-transparent to-bg/50" />
-        <div className="absolute left-[-10%] top-[-20%] w-[70%] h-[120%] z-0 pointer-events-none bg-[radial-gradient(closest-side,rgba(96,165,250,.28),rgba(96,165,250,0)_70%)] blur-[10px]" />
-
-        <div className="wrap relative z-[1] grid grid-cols-1 lg:grid-cols-[1.05fr_1.15fr] items-center gap-10">
+      <section className="relative overflow-hidden bg-surface pt-10 pb-8 md:pt-14 md:pb-10">
+          <div className="wrap grid grid-cols-1 lg:grid-cols-[1.02fr_1fr] items-center gap-12 lg:gap-14">
           <div>
-            <span className="eyebrow reveal">شركة ذكاء اصطناعي في قطر</span>
-            <h1 className="reveal d1 font-serif font-normal text-[clamp(38px,5vw,62px)] leading-[1.05] tracking-[-.01em] mt-5 mb-4">
+            <span className="eyebrow reveal text-[11px] tracking-[.16em]">شركة ذكاء اصطناعي في قطر</span>
+            <h1 className="reveal d1 font-heading font-extrabold text-[clamp(29px,3.5vw,44px)] leading-[1.25] tracking-[-.01em] mt-4 mb-3">
               <span className="text-ink">وكلاء واتساب وصوت</span>
               <br />
               <span className="text-primary">بالذكاء الاصطناعي</span>{" "}
               <span className="text-[#9aa7c7]">للشركات</span>
             </h1>
-            <div className="reveal d1 h-[30px] mb-[10px] overflow-hidden">
-              <span className="inline-block font-heading font-bold text-primary text-[clamp(15px,1.6vw,19px)]">
+            <div className="reveal d1 h-[26px] mb-2 overflow-hidden">
+              <span className="inline-block font-heading font-bold text-primary text-[clamp(12.5px,1.05vw,14px)]">
                 بيانات آمنة · متاح على مدار الساعة · أتمتة ذكية
               </span>
             </div>
-            <p className="reveal d1 font-heading font-semibold text-ink-2 text-[clamp(16px,1.7vw,21px)] leading-snug mb-[18px] max-w-[500px]">
+            <p className="reveal d1 font-heading font-semibold text-ink-2 text-[clamp(14px,1.15vw,16px)] leading-[1.6] mb-3 max-w-[460px]">
               وكلاء واتساب ذكية وأتمتة لتشغيل عمليات الشركات في قطر.
             </p>
-            <p className="reveal d2 text-base text-muted max-w-[490px] leading-[1.65]">
+            <p className="reveal d2 text-[13.5px] text-muted max-w-[450px] leading-[1.9]">
               فايف نودز شركة ذكاء اصطناعي في قطر. نبني وكلاء صوت بالذكاء الاصطناعي، وكلاء واتساب ذكية،
               وأتمتة ذكاء اصطناعي تعمل داخل عمليات الشركات في قطر بالعربية والإنجليزية على مدار الساعة.
             </p>
@@ -217,33 +202,83 @@ export default function HomeAr() {
               </Link>
             </div>
             <div className="reveal d3 flex items-center gap-[10px] text-[13px] text-muted">
-              <span className="bg-white border border-line rounded-full px-[10px] py-1 font-bold text-ink flex items-center gap-[6px]">
+              <span className="bg-surface border border-line rounded-full px-[10px] py-1 font-bold text-ink flex items-center gap-[6px]">
                 <span className="text-[#f5a623]">★</span> 4.8
               </span>
               <span>تقييم العملاء · أكثر من 10 آلاف مكالمة تمت معالجتها</span>
             </div>
-            <div className="reveal d4 flex gap-10 mt-[38px] flex-wrap">
-              <Stat lbl="كفاءة الحجز">
-                <CountUp value={93} suffix="%" />
-              </Stat>
-              <Stat lbl="وقت التشغيل">
-                <CountUp value={99.9} suffix="%" decimals={1} />
-              </Stat>
-              <Stat lbl="مكالمة تمت معالجتها">
-                <CountUp value={10} suffix="K+" />
-              </Stat>
-              <Stat lbl="تقييم العملاء">
-                <CountUp value={4.8} decimals={1} />
-              </Stat>
-            </div>
           </div>
 
-          <IntegrationHub />
+          {/* ---------- الفيديو ---------- */}
+          <div className="reveal d2 relative">
+            <div className="relative rounded-[26px] md:rounded-[34px] p-[1px] bg-gradient-to-bl from-white/90 via-white/30 to-primary/25 shadow-[0_40px_90px_-40px_rgba(16,22,41,.55)]">
+              <div className="relative rounded-[25px] md:rounded-[33px] overflow-hidden bg-[#0b1020] aspect-[16/13] sm:aspect-[16/11] lg:aspect-[5/4]">
+                <video
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-hidden="true"
+                >
+                  <source src="/hero-robot.mp4" type="video/mp4" />
+                </video>
+
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#070b16]/70 via-transparent to-[#070b16]/20" />
+                <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_60px_18px_rgba(7,11,22,.45)]" />
+                <div className="absolute inset-0 pointer-events-none rounded-[25px] md:rounded-[33px] ring-1 ring-inset ring-white/12" />
+
+                <div className="absolute right-4 top-4 md:right-5 md:top-5 flex items-center gap-2 rounded-full bg-white/12 backdrop-blur-md border border-white/20 px-3 py-1.5 text-[11px] md:text-xs font-semibold text-white">
+                  <span className="relative flex w-2 h-2">
+                    <span className="absolute inset-0 rounded-full bg-[#4ade80] animate-ping opacity-75" />
+                    <span className="relative w-2 h-2 rounded-full bg-[#4ade80]" />
+                  </span>
+                  وكلاء يعملون الآن · عربي وإنجليزي
+                </div>
+
+                <div className="absolute inset-x-4 bottom-4 md:inset-x-5 md:bottom-5 flex items-end justify-between gap-3">
+                  <p className="text-white font-heading font-semibold text-[13px] md:text-[15px] leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,.6)]">
+                    صوت · واتساب · أتمتة
+                    <span className="block text-white/70 font-body font-normal text-[11px] md:text-xs mt-0.5">
+                      تعمل داخل عملياتك الفعلية
+                    </span>
+                  </p>
+                  <span className="hidden sm:inline-flex shrink-0 rounded-full bg-white/12 backdrop-blur-md border border-white/20 px-3 py-1.5 text-[11px] font-semibold text-white">
+                    24/7
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ---------- التكاملات ---------- */}
+        <div className="reveal d3 wrap mt-10 md:mt-12">
+          <Integrations label="تكاملات الذكاء الاصطناعي التي نبني عليها" />
+        </div>
+
+        {/* ---------- شريط الأرقام ---------- */}
+        <div className="wrap mt-10 md:mt-12">
+          <div className="reveal d4 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 pt-8 border-t border-line">
+            <Stat lbl="كفاءة الحجز">
+              <CountUp value={93} suffix="%" />
+            </Stat>
+            <Stat lbl="وقت التشغيل">
+              <CountUp value={99.9} suffix="%" decimals={1} />
+            </Stat>
+            <Stat lbl="مكالمة تمت معالجتها">
+              <CountUp value={10} suffix="K+" />
+            </Stat>
+            <Stat lbl="تقييم العملاء">
+              <CountUp value={4.8} decimals={1} />
+            </Stat>
+          </div>
         </div>
       </section>
 
       {/* ================= VOICE PLATFORM ================= */}
-      <section className="py-20 md:py-28">
+      <section className="pt-10 pb-20 md:pt-14 md:pb-28">
         <div className="wrap text-center">
           <h2 className="reveal font-serif text-ink font-normal text-[clamp(38px,6vw,76px)] leading-[1.05] tracking-[-.01em]">
             أتمتة
@@ -347,7 +382,7 @@ export default function HomeAr() {
                 key={f.t}
                 className={`reveal d${(i % 3) + 1} group flex items-start gap-4 bg-bg border border-line rounded-[16px] p-6 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-soft hover:border-primary/40`}
               >
-                <div className="w-12 h-12 rounded-[12px] bg-white border border-line grid place-items-center text-ink-2 shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:shadow-[0_10px_20px_-8px_rgba(37,99,235,.6)]">
+                <div className="w-12 h-12 rounded-[12px] bg-surface border border-line grid place-items-center text-ink-2 shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary group-hover:shadow-[0_10px_20px_-8px_rgba(37,99,235,.6)]">
                   <f.Icon size={22} strokeWidth={1.8} />
                 </div>
                 <div>
@@ -366,11 +401,8 @@ export default function HomeAr() {
       </section>
 
       {/* ================= PROCESS ================= */}
-      <section className="relative overflow-hidden py-24 bg-bg border-y border-line-soft">
-        <div className="pointer-events-none absolute -top-24 left-1/4 w-80 h-80 rounded-full bg-[#3857e9]/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-28 right-1/4 w-96 h-96 rounded-full bg-[#3857e9]/[.07] blur-3xl" />
-
-        <div className="wrap relative">
+      <section className="py-24 bg-surface">
+        <div className="wrap">
           <div className="text-center max-w-[640px] mx-auto">
             <span className="eyebrow reveal inline-flex justify-center">كيف نعمل</span>
             <h2 className="reveal d1 font-heading font-extrabold text-[clamp(28px,3.6vw,42px)] tracking-[-.02em] text-ink mt-3">
@@ -381,34 +413,25 @@ export default function HomeAr() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[22px] mt-12">
-            {PROCESS.map((s, i) => (
-              <div
-                key={s.n}
-                className={`reveal d${i + 1} group relative overflow-hidden rounded-[22px] border border-black/[.06] bg-white/70 backdrop-blur-xl shadow-[0_24px_55px_-26px_rgba(16,22,41,.3)] transition-all duration-300 ease-smooth hover:-translate-y-1.5 hover:border-[#3857e9]/30 hover:shadow-[0_30px_60px_-24px_rgba(56,87,233,.28)]`}
-              >
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <LazyVideo src={s.video} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white/95 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 h-[3px]" style={{ background: ACCENT, boxShadow: `0 0 12px ${ACCENT}` }} />
-                </div>
+          {/* تنسيق مسطح بثلاثة أعمدة: العنوان والنص أعلى اللوحة، خطوط رفيعة
+              تفصل الأعمدة، بلا إطار بطاقة — كل خطوة بلوحة تفاعلية متحركة */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-line">
+            {PROCESS.map((s, i) => {
+              const Custom = PROCESS_CUSTOM[i];
+              return (
+                <div key={s.n} className={`reveal d${i + 1} group py-10 md:py-0 md:px-9 first:md:pr-0 last:md:pl-0`}>
+                  <h3 className="font-heading font-bold text-[19px] text-ink tracking-[-.01em]">{s.t}</h3>
+                  <p className="text-[14px] text-muted mt-2 leading-[1.6] max-w-[280px]">{s.d}</p>
 
-                <div className="relative p-7">
-                  <div className="text-[11px] font-bold tracking-[.16em] mb-2" style={{ color: ACCENT }}>
-                    {s.n}
+                  <div className="mt-4 rounded-2xl overflow-hidden aspect-[16/12]">
+                    <Custom locale="ar" />
                   </div>
-                  <h4 className="font-heading font-bold text-[17px] tracking-[.04em] text-ink">{s.t}</h4>
-                  <p className="text-[13px] text-muted-2 mt-1.5">{s.sub}</p>
-                  <p className="text-sm text-muted mt-3 leading-[1.6]">{s.d}</p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
-
-      {/* ================= INTEGRATIONS ================= */}
-      <Integrations eyebrow="نتكامل مع" title="تكاملات الذكاء الاصطناعي التي نبني عليها" />
 
       {/* ================= FAQ ================= */}
       <section className="py-24">
@@ -444,7 +467,7 @@ export default function HomeAr() {
                 key={p.t}
                 className={`reveal d${(i % 2) + 1} group flex items-start gap-4 bg-bg border border-line rounded-[18px] p-6 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-soft hover:border-primary/40`}
               >
-                <div className="w-12 h-12 rounded-[12px] bg-white border border-line grid place-items-center text-primary shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary">
+                <div className="w-12 h-12 rounded-[12px] bg-surface border border-line grid place-items-center text-primary shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary">
                   <p.Icon size={22} strokeWidth={1.8} />
                 </div>
                 <div>

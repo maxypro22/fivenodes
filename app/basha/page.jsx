@@ -27,7 +27,7 @@ export default function BashaPage() {
   return (
     <main>
       {/* 1. Hero */}
-      <section className="relative overflow-hidden pt-16 pb-14 before:content-[''] before:absolute before:right-[10%] before:top-[-30%] before:w-[55%] before:h-[130%] before:bg-[radial-gradient(closest-side,rgba(96,165,250,.28),rgba(96,165,250,0)_70%)] before:blur-[10px] before:z-0 before:pointer-events-none">
+      <section className="relative overflow-hidden bg-surface pt-16 pb-14">
         <div className="wrap relative z-[1] text-center max-w-[820px] mx-auto">
           <span className="eyebrow reveal inline-flex justify-center">Always watching · never sleeps</span>
           <div className="reveal d1 font-heading font-extrabold text-[clamp(30px,4.6vw,52px)] tracking-[-.02em] mt-4">
@@ -92,7 +92,7 @@ export default function BashaPage() {
             {BASHA_CAPABILITIES.map((c, i) => (
               <div
                 key={c.t}
-                className={`reveal d${(i % 3) + 1} bg-white border border-line rounded-[20px] p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary`}
+                className={`reveal d${(i % 3) + 1} bg-surface border border-line rounded-[20px] p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary`}
               >
                 <div className="w-11 h-11 rounded-xl bg-primary-soft text-badge font-heading font-extrabold grid place-items-center">
                   {String(i + 1).padStart(2, "0")}
@@ -143,10 +143,10 @@ export default function BashaPage() {
             <div className="flex flex-col gap-4 mt-4">
               {BASHA_DIALOGUE.map((d, i) => (
                 <div key={i} className="flex flex-col gap-2">
-                  <div className="self-end max-w-[80%] bg-primary text-white rounded-2xl rounded-br-sm px-4 py-2.5 text-sm">
+                  <div className="self-end max-w-[80%] bg-primary text-on-primary rounded-2xl rounded-br-sm px-4 py-2.5 text-sm">
                     {d.q}
                   </div>
-                  <div className="self-start max-w-[85%] bg-white border border-line rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm text-ink-2">
+                  <div className="self-start max-w-[85%] bg-surface border border-line rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm text-ink-2">
                     {d.a}
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function BashaPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[22px] mt-12">
             {BASHA_STEPS.map((s) => (
-              <div key={s.n} className="reveal d1 bg-white border border-line rounded-[20px] p-7 shadow-card">
+              <div key={s.n} className="reveal d1 bg-surface border border-line rounded-[20px] p-7 shadow-card">
                 <div className="w-11 h-11 rounded-xl bg-primary-soft text-badge font-heading font-extrabold grid place-items-center">
                   {s.n}
                 </div>
@@ -222,7 +222,7 @@ export default function BashaPage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-[14px] mt-10 max-w-[760px] mx-auto">
             {BASHA_STATS.map(([n, l], i) => (
-              <div key={l} className={`reveal d${(i % 4) + 1} bg-white border border-line rounded-[16px] p-5 text-center shadow-card`}>
+              <div key={l} className={`reveal d${(i % 4) + 1} bg-surface border border-line rounded-[16px] p-5 text-center shadow-card`}>
                 <div className="font-heading font-extrabold text-[22px] text-primary">{n}</div>
                 <div className="text-[11px] text-muted mt-1 leading-tight">{l}</div>
               </div>

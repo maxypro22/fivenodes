@@ -175,7 +175,7 @@ export default function ServicesPageAr() {
           {SERVICES_STATS.map(([n, l], i) => (
             <div
               key={l}
-              className={`reveal d${(i % 4) + 1} bg-white border border-line rounded-[16px] p-6 text-center shadow-card`}
+              className={`reveal d${(i % 4) + 1} bg-surface border border-line rounded-[16px] p-6 text-center shadow-card`}
             >
               <div className="font-heading font-extrabold text-[28px] text-ink">{n}</div>
               <div className="text-xs text-muted mt-1">{l}</div>
@@ -202,10 +202,10 @@ export default function ServicesPageAr() {
             {SERVICES.map((s, i) => (
               <div
                 key={s.code}
-                className={`reveal d${(i % 2) + 1} group relative bg-white border border-line rounded-[20px] p-8 shadow-card transition-all duration-300 ease-smooth hover:border-primary hover:shadow-hover hover:-translate-y-1`}
+                className={`reveal d${(i % 2) + 1} group relative bg-surface border border-line rounded-[20px] p-8 shadow-card transition-all duration-300 ease-smooth hover:border-primary hover:shadow-hover hover:-translate-y-1`}
               >
                 <div className="flex items-center gap-3">
-                  <span className="w-11 h-11 rounded-xl bg-primary-soft text-badge font-heading font-extrabold text-[15px] grid place-items-center transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+                  <span className="w-11 h-11 rounded-xl bg-primary-soft text-badge font-heading font-extrabold text-[15px] grid place-items-center transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary">
                     {s.code}
                   </span>
                   <span className="text-[13px] font-bold uppercase tracking-[.1em] text-muted-2">
@@ -262,7 +262,7 @@ export default function ServicesPageAr() {
             ].map(([cat, name], i) => (
               <div
                 key={name}
-                className={`reveal d${(i % 3) + 1} rounded-2xl border border-line bg-white p-5 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary/40`}
+                className={`reveal d${(i % 3) + 1} rounded-2xl border border-line bg-surface p-5 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary/40`}
               >
                 <div className="text-[11px] text-muted-2">{cat}</div>
                 <div dir="ltr" className="font-heading font-bold text-ink mt-1.5 text-[15px]">{name}</div>
@@ -288,7 +288,7 @@ export default function ServicesPageAr() {
             {METHOD.map((m, i) => (
               <div
                 key={m.n}
-                className={`reveal d${(i % 4) + 1} p-7 border border-line rounded-[20px] bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft`}
+                className={`reveal d${(i % 4) + 1} p-7 border border-line rounded-[20px] bg-surface shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft`}
               >
                 <div className="font-heading font-extrabold text-2xl text-primary/30">{m.n}</div>
                 <h4 className="font-heading font-bold text-lg mt-2 text-ink">{m.t}</h4>

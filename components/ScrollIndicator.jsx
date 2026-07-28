@@ -77,7 +77,7 @@ export default function ScrollIndicator() {
       {/* white pointer thumb */}
       <span
         onPointerDown={onThumbDown}
-        className={`absolute left-1/2 w-[14px] h-[38px] rounded-full bg-white border shadow-[0_4px_14px_rgba(16,22,41,.28)] cursor-grab active:cursor-grabbing will-change-transform ${
+        className={`absolute left-1/2 w-[14px] h-[38px] rounded-full bg-surface border shadow-[0_4px_14px_rgba(16,22,41,.28)] cursor-grab active:cursor-grabbing will-change-transform ${
           dragging
             ? "border-primary/60 shadow-[0_6px_20px_rgba(37,99,235,.4)]"
             : "border-line"

@@ -1,11 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CountUp({ value, prefix = "", suffix = "", decimals = 0, duration = 1500 }) {
   const [display, setDisplay] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef(null);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setStarted(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
     let raf;
     const start = performance.now();
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
@@ -18,10 +37,10 @@ export default function CountUp({ value, prefix = "", suffix = "", decimals = 0,
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [value, duration]);
+  }, [started, value, duration]);
 
   return (
-    <span>
+    <span ref={ref}>
       {prefix}
       {display.toFixed(decimals)}
       {suffix}

@@ -43,9 +43,6 @@ const ORBITS = [
 export default function PlatformOrbit() {
   return (
     <div className="reveal d2 relative w-full max-w-[520px] mx-auto aspect-square overflow-hidden">
-      {/* soft radial backdrop anchored to the right (the orbit center) */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 w-[120%] aspect-square rounded-full bg-[radial-gradient(circle,rgba(37,99,235,.12),transparent_62%)] pointer-events-none" />
-
       {/* spinning dotted orbits, centered on the right edge */}
       {ORBITS.map((orbit, orbitIdx) => {
         const angleStep = (2 * Math.PI) / orbit.count;

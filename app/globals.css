@@ -2,6 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+  --bg: 246 247 251;
+  --surface: 255 255 255;
+  --ink: 15 22 41;
+  --ink-2: 28 36 52;
+  --muted: 100 116 139;
+  --muted-2: 138 148 166;
+  --line: 230 232 240;
+  --line-soft: 238 240 246;
+  --primary: 37 99 235;
+  --primary-dark: 29 78 216;
+  --primary-soft: 233 237 253;
+  --badge: 61 90 254;
+}
+
+html.dark {
+  color-scheme: dark;
+  --bg: 7 6 10;
+  --surface: 19 17 27;
+  --ink: 255 255 255;
+  --ink-2: 244 242 250;
+  --muted: 173 168 189;
+  --muted-2: 134 128 152;
+  --line: 44 40 54;
+  --line-soft: 30 27 37;
+  --primary: 189 167 254;
+  --primary-dark: 167 139 250;
+  --primary-soft: 32 27 46;
+  --badge: 189 167 254;
+}
+
+html,
+body {
+  background-color: rgb(var(--bg));
+}
+body {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background: rgb(var(--primary) / 0.35);
+}
+
+/* dark-mode scrollbar — subtle, matches the lavender accent on hover */
+html.dark ::-webkit-scrollbar { width: 12px; height: 12px; }
+html.dark ::-webkit-scrollbar-track { background: rgb(var(--bg)); }
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgb(var(--line));
+  border-radius: 999px;
+  border: 3px solid rgb(var(--bg));
+}
+html.dark ::-webkit-scrollbar-thumb:hover { background: rgb(var(--primary) / 0.5); }
+
+/* Text sitting on a bg-primary/badge fill — primary is a dark blue in light
+   mode (wants white text) but flips to a light lavender in dark mode (wants
+   near-black text). Pair the two so contrast holds in both themes. */
+:root { --on-primary: 255 255 255; }
+html.dark { --on-primary: 22 18 30; }
+.text-on-primary { color: rgb(var(--on-primary)); }
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -31,13 +92,14 @@ html.lenis body {
     @apply mx-auto w-full max-w-container px-6;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 font-body font-semibold text-sm px-[18px] py-[10px] rounded-full transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 font-body font-semibold text-sm px-[18px] py-[10px] rounded-xl transition-all duration-200;
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
   }
   .btn-primary {
-    @apply bg-primary text-white shadow-button hover:bg-primary-dark hover:-translate-y-px;
+    @apply bg-primary text-on-primary shadow-button hover:bg-primary-dark hover:-translate-y-px;
   }
   .btn-ghost {
-    @apply bg-surface text-ink-2 border border-line hover:border-[#c9d2e6] hover:-translate-y-px;
+    @apply bg-surface text-ink-2 border border-line hover:border-primary/40 hover:-translate-y-px;
   }
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-bold tracking-[.14em] uppercase text-primary;
@@ -125,6 +187,16 @@ html.lenis body {
 }
 .hub-core {
   animation: hubPulse 3s ease-in-out infinite;
+}
+
+/* Dashboard & Integration mockup — bars breathing at staggered offsets */
+@keyframes barPulse {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(.5); }
+}
+.bar-pulse {
+  transform-origin: bottom;
+  animation: barPulse 2.6s ease-in-out infinite;
 }
 
 /* Platform hexagon orbit */

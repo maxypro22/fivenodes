@@ -32,7 +32,7 @@ export default function AboutPage() {
       <section className="pb-8">
         <div className="wrap grid grid-cols-3 gap-[14px] max-w-[560px] mx-auto">
           {ABOUT_FACTS.map(([n, l], i) => (
-            <div key={l} className={`reveal d${i + 1} bg-white border border-line rounded-[16px] p-5 text-center shadow-card`}>
+            <div key={l} className={`reveal d${i + 1} bg-surface border border-line rounded-[16px] p-5 text-center shadow-card`}>
               <div className="font-heading font-extrabold text-xl text-ink">{n}</div>
               <div className="text-xs text-muted mt-1">{l}</div>
             </div>
@@ -85,7 +85,7 @@ export default function AboutPage() {
             {ENGINEERING_MODEL.map((m, i) => (
               <div
                 key={m.n}
-                className={`reveal d${(i % 3) + 1} bg-white border border-line rounded-[20px] p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary`}
+                className={`reveal d${(i % 3) + 1} bg-surface border border-line rounded-[20px] p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary`}
               >
                 <div className="w-11 h-11 rounded-xl bg-primary-soft text-badge font-heading font-extrabold grid place-items-center">
                   {m.n}
@@ -131,7 +131,7 @@ export default function AboutPage() {
             {WHY.map((w, i) => (
               <div
                 key={w.n}
-                className={`reveal d${(i % 3) + 1} bg-white border border-line rounded-[20px] p-7 shadow-card`}
+                className={`reveal d${(i % 3) + 1} bg-surface border border-line rounded-[20px] p-7 shadow-card`}
               >
                 <div className="font-heading font-extrabold text-2xl text-primary/30">{w.n}</div>
                 <h4 className="font-heading font-bold text-[17px] mt-2 text-ink leading-snug">{w.t}</h4>

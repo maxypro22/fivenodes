@@ -20,7 +20,7 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div className="bg-white border border-line rounded-[20px] p-8 shadow-card text-center">
+      <div className="bg-surface border border-line rounded-[20px] p-8 shadow-card text-center">
         <div className="w-14 h-14 rounded-full bg-primary-soft text-primary grid place-items-center mx-auto">
           <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7">
             <path d="M4 12l5 5L20 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -33,7 +33,7 @@ export default function ContactForm() {
   }
 
   const field =
-    "w-full border border-line rounded-lg px-[14px] py-[11px] text-sm bg-white focus:outline-none focus:border-primary transition-colors";
+    "w-full border border-line rounded-lg px-[14px] py-[11px] text-sm bg-surface focus:outline-none focus:border-primary transition-colors";
 
   return (
     <form
@@ -41,7 +41,7 @@ export default function ContactForm() {
         e.preventDefault();
         setSent(true);
       }}
-      className="bg-white border border-line rounded-[20px] p-7 shadow-card flex flex-col gap-4"
+      className="bg-surface border border-line rounded-[20px] p-7 shadow-card flex flex-col gap-4"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>

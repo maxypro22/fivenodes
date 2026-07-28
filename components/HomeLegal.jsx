@@ -48,7 +48,7 @@ export default function HomeLegal() {
               key={p.t}
               className={`reveal d${(i % 2) + 1} group flex items-start gap-4 bg-bg border border-line rounded-[18px] p-6 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-soft hover:border-primary/40`}
             >
-              <div className="w-12 h-12 rounded-[12px] bg-white border border-line grid place-items-center text-primary shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary">
+              <div className="w-12 h-12 rounded-[12px] bg-surface border border-line grid place-items-center text-primary shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary">
                 <p.Icon size={22} strokeWidth={1.8} />
               </div>
               <div>

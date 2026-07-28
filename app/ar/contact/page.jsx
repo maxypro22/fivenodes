@@ -55,9 +55,9 @@ export default function ContactPage() {
             <a
               key={label}
               href={href}
-              className={`reveal d${i + 1} group bg-white border border-line rounded-[18px] p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary`}
+              className={`reveal d${i + 1} group bg-surface border border-line rounded-[18px] p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary`}
             >
-              <div className="w-12 h-12 rounded-[14px] bg-primary-soft text-primary grid place-items-center mx-auto transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+              <div className="w-12 h-12 rounded-[14px] bg-primary-soft text-primary grid place-items-center mx-auto transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary">
                 <Icon />
               </div>
               <div className="font-heading font-bold text-ink mt-4">{label}</div>
@@ -82,7 +82,7 @@ export default function ContactPage() {
 
           <div className="flex flex-col gap-5">
             {/* Quick Response */}
-            <div className="reveal bg-white border border-line rounded-[20px] p-7 shadow-card">
+            <div className="reveal bg-surface border border-line rounded-[20px] p-7 shadow-card">
               <div className="flex items-center gap-2 text-primary font-semibold text-sm">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 سرعة الاستجابة
@@ -101,7 +101,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Directly */}
-            <div className="reveal d1 bg-white border border-line rounded-[20px] p-7 shadow-card">
+            <div className="reveal d1 bg-surface border border-line rounded-[20px] p-7 shadow-card">
               <h3 className="font-heading font-bold text-lg text-ink">تواصل مباشر</h3>
               <div className="flex flex-col gap-3 mt-4">
                 {DIRECT.map(([label, value, href]) => (

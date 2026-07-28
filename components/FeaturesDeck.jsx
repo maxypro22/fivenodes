@@ -36,10 +36,10 @@ export default function FeaturesDeck({ items }) {
       <div className="relative">
         {/* ghost layers behind */}
         <div className="absolute inset-0 z-0 rounded-[22px] bg-[#eef0f5] border border-line -translate-y-4 scale-[.90] origin-top" />
-        <div className="absolute inset-0 z-[1] rounded-[22px] bg-white border border-line -translate-y-2 scale-[.95] origin-top" />
+        <div className="absolute inset-0 z-[1] rounded-[22px] bg-surface border border-line -translate-y-2 scale-[.95] origin-top" />
 
         {/* front card */}
-        <div key={index} className="relative z-10 bg-white border border-line rounded-[22px] p-7 shadow-soft [animation:fadeSlide_.4s_ease]">
+        <div key={index} className="relative z-10 bg-surface border border-line rounded-[22px] p-7 shadow-soft [animation:fadeSlide_.4s_ease]">
           <div className="w-12 h-12 rounded-[14px] bg-primary-soft text-primary grid place-items-center">
             {iconNode}
           </div>

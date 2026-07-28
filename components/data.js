@@ -53,7 +53,7 @@ export const PROCESS = [
   {
     n: "STEP 01",
     t: "Discovery & Strategy",
-    d: "We start by understanding your business, workflows, and goals. Our team maps out exactly where AI can drive the biggest impact for you.",
+    d: "We audit your workflows and map exactly where AI drives the biggest impact for your business.",
   },
   {
     n: "STEP 02",

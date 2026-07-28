@@ -12,7 +12,7 @@ export default function FaqAccordion({ items }) {
         return (
           <div
             key={i}
-            className="bg-white border border-line rounded-[16px] overflow-hidden transition-colors hover:border-primary/40"
+            className="bg-surface border border-line rounded-[16px] overflow-hidden transition-colors hover:border-primary/40"
           >
             <button
               onClick={() => setOpen(isOpen ? null : i)}

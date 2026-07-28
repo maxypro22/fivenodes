@@ -3,7 +3,6 @@ import "./globals.css";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CookieBar from "@/components/CookieBar";
 import WhatsAppFab from "@/components/WhatsAppFab";
 import ScrollReveal from "@/components/ScrollReveal";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -93,6 +92,18 @@ const ORG_JSONLD = {
   },
 };
 
+// Runs synchronously before first paint so the page never flashes the wrong
+// theme: honors a saved preference, otherwise falls back to system setting.
+const THEME_INIT = `
+(function () {
+  try {
+    var stored = localStorage.getItem("theme");
+    var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (dark) document.documentElement.classList.add("dark");
+  } catch (e) {}
+})();
+`;
+
 const WEBSITE_JSONLD = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -107,6 +118,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${inter.variable} ${instrument.variable}`}>
       <body className="bg-bg text-ink font-body antialiased overflow-x-clip">
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
@@ -121,7 +133,6 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-        <CookieBar />
         <WhatsAppFab />
         <ScrollIndicator />
         <ScrollReveal />

@@ -27,7 +27,7 @@ export default function BlogPage() {
             <Link
               key={p.slug}
               href={`/blog/${p.slug}`}
-              className={`reveal d${(i % 3) + 1} group bg-white border border-line rounded-[20px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-hover hover:border-primary flex flex-col`}
+              className={`reveal d${(i % 3) + 1} group bg-surface border border-line rounded-[20px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-hover hover:border-primary flex flex-col`}
             >
               <div className="h-44 bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] overflow-hidden">
                 <SmartImg

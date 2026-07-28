@@ -2,7 +2,7 @@ import LazyVideo from "./LazyVideo";
 
 export default function VoicePlatform() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="pt-10 pb-20 md:pt-14 md:pb-28">
       <div className="wrap text-center">
         <h2 className="reveal font-serif text-ink font-normal text-[clamp(38px,6vw,76px)] leading-[1.05] tracking-[-.01em]">
           Automate

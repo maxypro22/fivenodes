@@ -23,7 +23,7 @@ export default function BookingWidget({ fee = 1000, currency = "QAR" }) {
   ];
 
   return (
-    <div className="reveal d1 bg-white border border-line rounded-[22px] p-8 shadow-card">
+    <div className="reveal d1 bg-surface border border-line rounded-[22px] p-8 shadow-card">
       <h2 className="font-heading font-bold text-2xl text-ink">30-minute discovery call</h2>
       <p className="text-sm text-muted mt-2 leading-[1.7]">
         Pick a slot that suits you. We'll walk through your business and identify automation

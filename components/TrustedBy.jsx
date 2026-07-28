@@ -28,7 +28,7 @@ export default function TrustedBy({
             {[...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS].map((n, i) => (
               <div
                 key={i}
-                className="mr-4 shrink-0 w-[150px] h-24 rounded-[14px] bg-white border border-line-soft shadow-card grid place-items-center p-[14px] font-heading font-extrabold text-[#334155] text-center text-xs tracking-[.02em]"
+                className="mr-4 shrink-0 w-[150px] h-24 rounded-[14px] bg-surface border border-line-soft shadow-card grid place-items-center p-[14px] font-heading font-extrabold text-ink-2 text-center text-xs tracking-[.02em]"
               >
                 {n}
               </div>

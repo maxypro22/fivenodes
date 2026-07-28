@@ -40,7 +40,7 @@ export default function FaqPage() {
       {/* Key facts */}
       <section className="pb-12">
         <div className="wrap max-w-[860px] mx-auto">
-          <div className="reveal bg-white border border-line rounded-[16px] p-6 sm:p-8 shadow-card">
+          <div className="reveal bg-surface border border-line rounded-[16px] p-6 sm:p-8 shadow-card">
             <div className="eyebrow mb-4">Key facts about Five Nodes</div>
             <ul className="flex flex-col gap-2.5">
               {FAQ_KEY_FACTS.map((fact, i) => (

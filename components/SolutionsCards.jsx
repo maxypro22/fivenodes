@@ -35,7 +35,7 @@ export default function SolutionsCards({ items = SOLUTIONS }) {
     <button
       onClick={onClick}
       aria-label={dir === "left" ? "Previous" : "Next"}
-      className="w-12 h-12 rounded-full border-2 border-line bg-white grid place-items-center text-ink-2 shadow-[0_6px_16px_-8px_rgba(16,22,41,.35)] transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_10px_22px_-8px_rgba(37,99,235,.5)] active:scale-95"
+      className="w-12 h-12 rounded-full border-2 border-line bg-surface grid place-items-center text-ink-2 shadow-[0_6px_16px_-8px_rgba(16,22,41,.35)] transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_10px_22px_-8px_rgba(37,99,235,.5)] active:scale-95"
     >
       <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
         <path

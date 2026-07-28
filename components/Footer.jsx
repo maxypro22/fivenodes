@@ -38,8 +38,12 @@ const SOCIALS = [
   },
 ];
 
-const HEADING = "font-heading font-bold text-[15px] text-ink mb-5";
-const LINK = "text-[15px] text-ink-2 hover:text-primary transition-colors";
+const HEADING = "font-heading font-bold text-[11px] uppercase tracking-[.14em] text-primary mb-4";
+// Row-style hover: the whole row fills solid with the accent color and the
+// text flips to text-on-primary for contrast — both tokens, so it reads
+// correctly in light mode (blue fill) and dark mode (lavender fill) alike.
+const LINK =
+  "block -mx-3 px-3 py-2 rounded-lg text-[14px] text-ink-2 transition-all duration-200 hover:bg-primary hover:text-on-primary";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -55,7 +59,8 @@ export default function Footer() {
           {/* Brand + newsletter */}
           <div>
             <Link href={loc("/")} className="inline-flex items-center mb-5" aria-label="Five Nodes home">
-              <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-12 w-auto" />
+              <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-12 w-auto dark:hidden" />
+              <img src="/fivenodes-logo-white.png" alt="Five Nodes" className="hidden h-12 w-auto dark:block" />
             </Link>
             <div className="font-heading font-bold text-lg text-ink mb-2">{f.stayConnected}</div>
             <p className="text-sm text-muted mb-4 max-w-[360px] leading-[1.6]">{f.newsletter}</p>
@@ -68,7 +73,7 @@ export default function Footer() {
           {/* Services — heading over a two-column list */}
           <div>
             <div className={HEADING}>{f.services}</div>
-            <ul className="grid grid-cols-2 gap-x-10 gap-y-3">
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-0.5">
               {f.servicesItems.map(([label, href]) => (
                 <li key={label}>
                   <Link href={loc(href)} className={LINK}>
@@ -90,7 +95,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={name}
-                className="w-10 h-10 rounded-full border border-line text-ink-2 grid place-items-center transition-all duration-200 hover:bg-primary hover:border-primary hover:text-white hover:-translate-y-0.5"
+                className="w-10 h-10 rounded-full border border-line text-ink-2 grid place-items-center transition-all duration-200 hover:bg-primary hover:border-primary hover:text-on-primary hover:-translate-y-0.5"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                   <path d={d} />
@@ -112,7 +117,7 @@ export default function Footer() {
 
         {/* Qatar Office card */}
         <div className="border-t border-line-soft mt-8 pt-10">
-          <div className="rounded-2xl border border-line bg-white p-6 shadow-[0_12px_30px_-20px_rgba(16,22,41,.25)] lg:max-w-[560px]">
+          <div className="rounded-2xl border border-line bg-surface p-6 shadow-[0_12px_30px_-20px_rgba(16,22,41,.25)] lg:max-w-[560px]">
             <div className="flex items-center gap-2 font-heading font-bold text-ink">
               <span className="text-lg leading-none">🇶🇦</span>
               {f.officeName}
@@ -140,11 +145,21 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-line-soft mt-10 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="text-[13px] text-muted-2">{f.rights}</div>
-          <div className="flex gap-6 flex-wrap">
-            <Link href={loc("/privacy")} className="text-[13px] text-muted hover:text-ink">{f.privacy}</Link>
-            <Link href={loc("/terms")} className="text-[13px] text-muted hover:text-ink">{f.terms}</Link>
-            <Link href={loc("/faq")} className="text-[13px] text-muted hover:text-ink">{f.faq}</Link>
-            <Link href={loc("/contact")} className="text-[13px] text-muted hover:text-ink">{f.contactShort}</Link>
+          <div className="flex gap-1 flex-wrap -mx-3">
+            {[
+              [f.privacy, "/privacy"],
+              [f.terms, "/terms"],
+              [f.faq, "/faq"],
+              [f.contactShort, "/contact"],
+            ].map(([label, href]) => (
+              <Link
+                key={href}
+                href={loc(href)}
+                className="px-3 py-1.5 rounded-full text-[13px] text-muted transition-all duration-200 hover:bg-primary hover:text-on-primary"
+              >
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -156,7 +171,7 @@ function FooterCol({ title, items, loc }) {
   return (
     <div>
       <div className={HEADING}>{title}</div>
-      <ul className="flex flex-col gap-3">
+      <ul className="grid grid-cols-2 md:flex md:flex-col gap-x-6 gap-y-0.5">
         {items.map(([label, href]) => (
           <li key={label}>
             <Link href={loc(href)} className={LINK}>

@@ -26,7 +26,7 @@ export default function Features() {
               key={f.t}
               className={`reveal d${(i % 3) + 1} group flex items-start gap-4 bg-bg border border-line rounded-[16px] p-6 transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-soft hover:border-primary/40`}
             >
-              <div className="w-12 h-12 rounded-[12px] bg-white border border-line grid place-items-center text-ink-2 shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:shadow-[0_10px_20px_-8px_rgba(37,99,235,.6)]">
+              <div className="w-12 h-12 rounded-[12px] bg-surface border border-line grid place-items-center text-ink-2 shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary group-hover:shadow-[0_10px_20px_-8px_rgba(37,99,235,.6)]">
                 <f.Icon size={22} strokeWidth={1.8} />
               </div>
               <div>

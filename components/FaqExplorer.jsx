@@ -84,7 +84,7 @@ export default function FaqExplorer({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={searchPlaceholder}
-            className="w-full bg-white border border-line rounded-[14px] py-3.5 pl-12 pr-4 text-[15px] text-ink placeholder:text-muted-2 outline-none focus:border-primary transition-colors shadow-card"
+            className="w-full bg-surface border border-line rounded-[14px] py-3.5 pl-12 pr-4 text-[15px] text-ink placeholder:text-muted-2 outline-none focus:border-primary transition-colors shadow-card"
           />
         </div>
 

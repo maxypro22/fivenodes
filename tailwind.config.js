@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   future: {
     // hover styles only apply on devices that actually support hover (no sticky-hover on touch)
     hoverOnlyWhenSupported: true,
@@ -11,13 +12,30 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: "#2563eb", dark: "#1d4ed8", soft: "#e9edfd" },
-        badge: "#3d5afe",
-        bg: "#f6f7fb",
-        surface: "#ffffff",
-        ink: { DEFAULT: "#0f1629", 2: "#1c2434" },
-        muted: { DEFAULT: "#64748b", 2: "#8a94a6" },
-        line: { DEFAULT: "#e6e8f0", soft: "#eef0f6" },
+        // Design tokens resolve through CSS variables (globals.css :root / html.dark)
+        // so every bg-*/text-*/border-* utility using these names re-themes for
+        // free — Tailwind's opacity modifiers (e.g. bg-primary/30) still work
+        // because of the <alpha-value> placeholder.
+        primary: {
+          DEFAULT: "rgb(var(--primary) / <alpha-value>)",
+          dark: "rgb(var(--primary-dark) / <alpha-value>)",
+          soft: "rgb(var(--primary-soft) / <alpha-value>)",
+        },
+        badge: "rgb(var(--badge) / <alpha-value>)",
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        ink: {
+          DEFAULT: "rgb(var(--ink) / <alpha-value>)",
+          2: "rgb(var(--ink-2) / <alpha-value>)",
+        },
+        muted: {
+          DEFAULT: "rgb(var(--muted) / <alpha-value>)",
+          2: "rgb(var(--muted-2) / <alpha-value>)",
+        },
+        line: {
+          DEFAULT: "rgb(var(--line) / <alpha-value>)",
+          soft: "rgb(var(--line-soft) / <alpha-value>)",
+        },
         wa: { 1: "#25d366", 2: "#128c3e" },
       },
       fontFamily: {

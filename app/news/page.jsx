@@ -39,7 +39,7 @@ export default function NewsPage() {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`reveal d${(i % 3) + 1} group bg-white border border-line rounded-[18px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary flex flex-col`}
+              className={`reveal d${(i % 3) + 1} group bg-surface border border-line rounded-[18px] overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-soft hover:border-primary flex flex-col`}
             >
               {/* thumbnail */}
               <div className="relative h-44 bg-gradient-to-br from-[#dbe4ff] to-[#eef2ff] overflow-hidden grid place-items-center">

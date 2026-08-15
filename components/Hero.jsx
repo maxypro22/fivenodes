@@ -2,6 +2,18 @@ import Link from "next/link";
 import CountUp from "./CountUp";
 import RotatingTagline from "./RotatingTagline";
 import Integrations from "./Integrations";
+import RainingLetters from "./RainingLetters";
+import ScrambleText from "./ScrambleText";
+
+/* The word that decodes under the headline, as on the production site. */
+const SCRAMBLE_WORDS = [
+  "Operations",
+  "Calls",
+  "Support",
+  "Bookings",
+  "Documents",
+  "Workflows",
+];
 
 function Stat({ lbl, children }) {
   return (
@@ -15,6 +27,7 @@ function Stat({ lbl, children }) {
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-surface pt-10 pb-8 md:pt-14 md:pb-10">
+      <RainingLetters charCount={200}>
         <div className="wrap grid grid-cols-1 lg:grid-cols-[1.02fr_1fr] items-center gap-12 lg:gap-14">
         {/* ---------- Copy ---------- */}
         <div>
@@ -25,6 +38,18 @@ export default function Hero() {
             <span className="text-primary">Voice Agents</span>{" "}
             <span className="text-[#9aa7c7]">for Businesses</span>
           </h1>
+
+          {/* decoding word, as on the production hero */}
+          <div className="reveal d1 mb-3 flex items-baseline gap-2.5">
+            <span className="font-heading font-extrabold text-ink text-[clamp(20px,2.2vw,28px)] leading-none">
+              Automate
+            </span>
+            <ScrambleText
+              words={SCRAMBLE_WORDS}
+              className="scramble-word font-heading font-extrabold text-primary text-[clamp(20px,2.2vw,28px)] leading-none"
+            />
+          </div>
+
           <RotatingTagline />
           <p className="reveal d1 font-heading font-semibold text-ink-2 text-[clamp(14px,1.15vw,16px)] leading-[1.5] tracking-[-.01em] mb-3 max-w-[460px]">
             Bilingual AI agents that book, message and automate operations in Qatar.
@@ -79,8 +104,9 @@ export default function Hero() {
           <Stat lbl="Customer Rating">
             <CountUp value={4.8} decimals={1} />
           </Stat>
+          </div>
         </div>
-      </div>
+      </RainingLetters>
     </section>
   );
 }

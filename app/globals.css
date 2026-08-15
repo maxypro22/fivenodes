@@ -349,3 +349,21 @@ html.lenis body {
     opacity: 0;
   }
 }
+
+/* Hero character rain + text scramble — ported from fivenodes.ai */
+@keyframes hero-rain-fall {
+  0% { transform: translate(-50%, -10vh); }
+  100% { transform: translate(-50%, 110vh); }
+}
+.hero-rain-char {
+  top: 0;
+  animation-name: hero-rain-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.sc { vertical-align: baseline; line-height: inherit; }
+.sc.dud { display: inline-block; width: .6em; text-align: center; color: #00c853; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rain-char { animation: none; display: none; }
+}

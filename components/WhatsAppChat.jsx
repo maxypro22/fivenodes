@@ -12,15 +12,19 @@ import { useEffect, useRef, useState } from "react";
  */
 
 const DEFAULT_MESSAGES = [
-  { from: "them", text: "Hi, do you have a 3-bedroom apartment in West Bay?", delay: 900 },
+  { from: "them", text: "Hi, do you have a 3-bedroom apartment in Doha?", delay: 900 },
   {
     from: "us",
-    text: "Good evening! Yes — we have 2 units available in West Bay right now, both furnished.",
+    text: "Good evening! Yes — we have 2 units available in West Bay, Doha right now, both furnished.",
     delay: 1500,
   },
   {
     from: "us",
-    card: { title: "Marina Tower — 3BR", meta: "West Bay · 165 m² · Furnished", price: "QAR 12,500 / month" },
+    card: {
+      title: "Marina Tower — 3BR",
+      meta: "West Bay, Doha · 165 m² · Furnished",
+      price: "QAR 12,500 / month",
+    },
     delay: 900,
   },
   { from: "them", text: "Is the second one still available this week?", delay: 1600 },

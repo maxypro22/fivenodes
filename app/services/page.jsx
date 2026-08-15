@@ -4,6 +4,7 @@ import CTASection from "@/components/CTASection";
 import { SERVICES, SERVICES_STATS, METHOD } from "@/components/content";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "AI Services in Qatar — Voice, WhatsApp & Automation Agents | Five Nodes",
@@ -26,6 +27,7 @@ function Check() {
 export default function ServicesPage() {
   return (
     <main>
+      <JsonLd path="/services" locale="en" />
       <PageHeader eyebrow="AI Services in Qatar" title="8 Bilingual AI Systems">
         Five Nodes' AI services in Qatar — eight bilingual AI systems for businesses. From AI voice
         agents and WhatsApp AI agents to smart booking and AI automation, each solution is

@@ -2,6 +2,7 @@ import Link from "next/link";
 import CTASection from "@/components/CTASection";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "باشا: المدير الذكي الذي تتصل به | فايف نودز",
@@ -71,6 +72,7 @@ const BASHA_STATS = [
 export default function BashaPage() {
   return (
     <main dir="rtl">
+      <JsonLd path="/basha" locale="ar" />
       {/* 1. Hero */}
       <section className="relative overflow-hidden bg-surface pt-16 pb-14">
         <div className="wrap relative z-[1] text-center max-w-[820px] mx-auto">

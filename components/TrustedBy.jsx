@@ -25,12 +25,23 @@ export default function TrustedBy({
           }}
         >
           <div className="flex w-max animate-marquee-left">
-            {[...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS].map((n, i) => (
+            {[...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS].map(({ name, logo }, i) => (
               <div
                 key={i}
-                className="mr-4 shrink-0 w-[150px] h-24 rounded-[14px] bg-surface border border-line-soft shadow-card grid place-items-center p-[14px] font-heading font-extrabold text-ink-2 text-center text-xs tracking-[.02em]"
+                title={name}
+                className="group mr-4 shrink-0 w-[150px] h-24 rounded-[14px] bg-surface border border-line-soft shadow-card grid place-items-center p-[16px] transition-all duration-300 hover:border-primary/30 hover:shadow-hover"
               >
-                {n}
+                {logo ? (
+                  <img
+                    src={logo}
+                    alt={name}
+                    className="max-h-10 max-w-full object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                  />
+                ) : (
+                  <span className="font-heading font-extrabold text-ink-2 text-center text-xs tracking-[.02em]">
+                    {name}
+                  </span>
+                )}
               </div>
             ))}
           </div>

@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Inter, Instrument_Serif } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, Instrument_Serif, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
@@ -21,6 +21,14 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-body",
+  display: "swap",
+});
+
+// Used by the Automate With AI section (ported from the static prototype).
+const grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-grotesk",
   display: "swap",
 });
 
@@ -69,7 +77,28 @@ const ORG_JSONLD = {
   name: "Five Nodes",
   legalName: "Five Nodes for Artificial Intelligence L.L.C.",
   url: "https://fivenodes.ai",
-  logo: "https://fivenodes.ai/icon-512.png",
+  // ImageObject (not a bare URL) so Google can use it as the knowledge-panel
+  // logo, matching the production site. Points at an asset in this repo —
+  // production's /images/logo.png does not exist here.
+  logo: {
+    "@type": "ImageObject",
+    "@id": "https://fivenodes.ai/#logo",
+    url: "https://fivenodes.ai/fivenodes-logo-black.png",
+    contentUrl: "https://fivenodes.ai/fivenodes-logo-black.png",
+    caption: "Five Nodes Logo",
+    width: 7414,
+    height: 3864,
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "AI Automation Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@id": "https://fivenodes.ai/#service-voice" } },
+      { "@type": "Offer", itemOffered: { "@id": "https://fivenodes.ai/#service-whatsapp" } },
+      { "@type": "Offer", itemOffered: { "@id": "https://fivenodes.ai/#service-workflow" } },
+      { "@type": "Offer", itemOffered: { "@id": "https://fivenodes.ai/#service-consult" } },
+    ],
+  },
   email: "Info@fivenodes.ai",
   sameAs: [
     "https://www.linkedin.com/company/five-nodes-ltd",
@@ -110,13 +139,25 @@ const WEBSITE_JSONLD = {
   "@id": "https://fivenodes.ai/#website",
   url: "https://fivenodes.ai",
   name: "Five Nodes",
-  inLanguage: "en",
+  // The site serves both locales, so declare both rather than "en" only.
+  inLanguage: ["en", "ar"],
   publisher: { "@id": "https://fivenodes.ai/#organization" },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://www.google.com/search?q=site%3Afivenodes.ai+{search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${inter.variable} ${instrument.variable}`}>
+    <html
+      lang="en"
+      className={`${jakarta.variable} ${inter.variable} ${instrument.variable} ${grotesk.variable}`}
+    >
       <body className="bg-bg text-ink font-body antialiased overflow-x-clip">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
         <script

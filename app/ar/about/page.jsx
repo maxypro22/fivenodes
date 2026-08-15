@@ -2,6 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import CTASection from "@/components/CTASection";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "شركة ذكاء اصطناعي في قطر — من نحن | فايف نودز",
@@ -115,6 +116,7 @@ const WHY = [
 export default function AboutPageAr() {
   return (
     <main dir="rtl">
+      <JsonLd path="/about" locale="ar" />
       <PageHeader eyebrow="عن فايف نودز للذكاء الاصطناعي" title="فايف نودز — شركة ذكاء اصطناعي في قطر تهندس وكلاء واتساب ذكية ووكلاء صوت.">
         فايف نودز شركة ذكاء اصطناعي في قطر — تهندس وكلاء واتساب ذكية، استقبال صوتي ذكي، وأتمتة ذكاء
         اصطناعي للشركات في قطر. نصمم، نبني، ونشغّل أنظمة ذكاء اصطناعي إنتاجية في قطر.

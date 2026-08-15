@@ -1,10 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import {
+  PhoneCall,
+  MessagesSquare,
+  Radar,
+  CalendarCheck,
+  Workflow,
+  ChartNoAxesCombined,
+  BrainCircuit,
+  BellRing,
+} from "lucide-react";
+
+/* One icon per solution, in the order the cards are listed. The Arabic page
+   passes its own translated array in the same order, so both locales match.
+   An item can override this by carrying its own `Icon`. */
+const SOLUTION_ICONS = [
+  PhoneCall, // AI Voice Solutions
+  MessagesSquare, // AI Chat & Messaging
+  Radar, // Omnichannel Monitoring
+  CalendarCheck, // Smart Booking
+  Workflow, // Workflow Automation
+  ChartNoAxesCombined, // Data & Intelligence
+  BrainCircuit, // AI Customer Memory
+  BellRing, // Smart Notifications
+];
 
 export default function SolutionCard({ m, index }) {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen((v) => !v);
+  const Icon = m.Icon || SOLUTION_ICONS[index % SOLUTION_ICONS.length];
 
   return (
     <div className={`group relative h-full ${open ? "z-30" : "z-0 hover:z-30"}`}>
@@ -29,13 +54,13 @@ export default function SolutionCard({ m, index }) {
 
         <div className="relative flex flex-1 flex-col">
           <div
-            className={`mx-auto w-14 h-14 rounded-[16px] font-heading font-extrabold text-lg grid place-items-center transition-all duration-300 ease-smooth group-hover:bg-gradient-to-br group-hover:from-[#2563eb] group-hover:to-[#4f46e5] group-hover:text-white group-hover:shadow-[0_12px_26px_-8px_rgba(37,99,235,.7)] group-hover:scale-105 dark:group-hover:from-primary dark:group-hover:to-primary-dark dark:group-hover:text-on-primary dark:group-hover:shadow-[0_12px_26px_-8px_rgba(189,167,254,.5)] ${
+            className={`mx-auto w-14 h-14 rounded-[16px] grid place-items-center transition-all duration-300 ease-smooth group-hover:bg-gradient-to-br group-hover:from-[#2563eb] group-hover:to-[#4f46e5] group-hover:text-white group-hover:shadow-[0_12px_26px_-8px_rgba(37,99,235,.7)] group-hover:scale-105 dark:group-hover:from-primary dark:group-hover:to-primary-dark dark:group-hover:text-on-primary dark:group-hover:shadow-[0_12px_26px_-8px_rgba(189,167,254,.5)] ${
               open
                 ? "bg-gradient-to-br from-[#2563eb] to-[#4f46e5] text-white shadow-[0_12px_26px_-8px_rgba(37,99,235,.7)] scale-105 dark:from-primary dark:to-primary-dark dark:text-on-primary dark:shadow-[0_12px_26px_-8px_rgba(189,167,254,.5)]"
                 : "bg-primary-soft text-badge"
             }`}
           >
-            {String(index + 1).padStart(2, "0")}
+            <Icon size={26} strokeWidth={1.75} aria-hidden="true" />
           </div>
           <h3 className="font-heading font-bold text-[20px] text-ink mt-5">{m.t}</h3>
           <p className="text-sm text-muted mt-2 leading-[1.55] max-w-[260px] mx-auto">{m.tag}</p>

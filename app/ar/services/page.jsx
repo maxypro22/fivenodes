@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import CTASection from "@/components/CTASection";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "خدمات ذكاء اصطناعي في قطر — وكلاء صوت وواتساب وأتمتة | فايف نودز",
@@ -164,6 +165,7 @@ function Check() {
 export default function ServicesPageAr() {
   return (
     <main dir="rtl">
+      <JsonLd path="/services" locale="ar" />
       <PageHeader eyebrow="خدماتنا" title="خدمات ذكاء اصطناعي في قطر — 8 أنظمة ذكية">
         خدمات ذكاء اصطناعي في قطر من فايف نودز — ثمانية أنظمة ثنائية اللغة للشركات في قطر. من وكلاء
         صوت ووكلاء واتساب الذكية إلى الحجز الذكي والأتمتة — كل حل مبني خصيصاً.

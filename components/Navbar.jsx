@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, Languages } from "lucide-react";
 import { getLocale, localizeHref, switchLocalePath, T } from "./i18n";
 import ThemeToggle from "./ThemeToggle";
+import GooeyNav from "./GooeyNav";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -61,26 +62,15 @@ export default function Navbar() {
             <img src="/fivenodes-logo-white.png" alt="Five Nodes" className="hidden h-9 w-auto dark:block" />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
-            {LINKS.map(([l, h]) => {
+          <GooeyNav
+            className="hidden md:block"
+            linkClassName="font-heading text-[13.5px] font-semibold tracking-[-.01em] px-3 py-2.5 rounded-full"
+            activeIndex={LINKS.findIndex(([, h]) => isActive(h))}
+            items={LINKS.map(([l, h]) => {
               const external = h.startsWith("http");
-              return (
-                <Link
-                  key={l}
-                  href={external ? h : localizeHref(h, locale)}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
-                  className={`font-heading text-[13.5px] font-semibold tracking-[-.01em] px-3 py-2.5 rounded-full transition-all duration-200 ${
-                    isActive(h)
-                      ? "text-primary bg-primary-soft"
-                      : "text-ink-2 hover:text-primary hover:bg-bg"
-                  }`}
-                >
-                  {l}
-                </Link>
-              );
+              return { label: l, href: external ? h : localizeHref(h, locale), external };
             })}
-          </nav>
+          />
 
           <div className="ml-auto flex items-center gap-2 md:gap-3">
             {/* Language — full text on desktop */}

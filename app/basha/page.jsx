@@ -12,6 +12,7 @@ import {
 } from "@/components/content";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "Basha: The AI Manager Your Team Can Call | Five Nodes",
@@ -26,6 +27,7 @@ export const metadata = pageMeta({
 export default function BashaPage() {
   return (
     <main>
+      <JsonLd path="/basha" locale="en" />
       {/* 1. Hero */}
       <section className="relative overflow-hidden bg-surface pt-16 pb-14">
         <div className="wrap relative z-[1] text-center max-w-[820px] mx-auto">

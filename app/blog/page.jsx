@@ -4,6 +4,7 @@ import SmartImg from "@/components/SmartImg";
 import { BLOG_POSTS } from "@/components/blogData";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "AI Blog — Qatar AI Insights | Five Nodes",
@@ -16,6 +17,7 @@ export const metadata = pageMeta({
 export default function BlogPage() {
   return (
     <main>
+      <JsonLd path="/blog" locale="en" />
       <PageHeader eyebrow="Blog" title="AI Automation Blog — Qatar">
         Insights on AI automation, voice agents, WhatsApp AI, and how businesses in Qatar are
         leveraging artificial intelligence.

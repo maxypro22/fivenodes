@@ -2,6 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "Book a Free AI Consultation in Qatar | Five Nodes",
@@ -44,6 +45,7 @@ const DIRECT = [
 export default function ContactPage() {
   return (
     <main>
+      <JsonLd path="/contact" locale="en" />
       {/* Hero */}
       <PageHeader eyebrow="Get In Touch" title="Book a Free AI Consultation in Qatar.">
         Let's build something intelligent together. Every Five Nodes engagement starts with a free

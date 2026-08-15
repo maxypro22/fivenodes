@@ -2,6 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import LegalDeck from "@/components/LegalDeck";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "Privacy Policy | Five Nodes for Artificial Intelligence",
@@ -331,6 +332,7 @@ const SECTIONS = [
 export default function PrivacyPage() {
   return (
     <main>
+      <JsonLd path="/privacy" locale="en" />
       <PageHeader eyebrow="Legal" title="Privacy Policy">
         Effective Date: March 2026 | Last Updated: March 2026
       </PageHeader>

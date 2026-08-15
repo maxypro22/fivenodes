@@ -5,6 +5,7 @@ import { PART as AR2 } from "./ar-blog-content/part2";
 import { PART as AR3 } from "./ar-blog-content/part3";
 import { PART as AR4 } from "./ar-blog-content/part4";
 import { PART as AR5 } from "./ar-blog-content/part5";
+import { PART as AR6 } from "./ar-blog-content/part6";
 
 export const AR_BLOG = {
   ...AR1,
@@ -12,6 +13,7 @@ export const AR_BLOG = {
   ...AR3,
   ...AR4,
   ...AR5,
+  ...AR6,
 };
 
 export function getArBlog(slug) {

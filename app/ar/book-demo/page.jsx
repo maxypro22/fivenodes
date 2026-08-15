@@ -3,6 +3,7 @@ import BookingWidget from "@/components/BookingWidget";
 import SubscribeForm from "@/components/SubscribeForm";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "احجز عرضاً توضيحياً — فايف نودز للذكاء الاصطناعي",
@@ -18,6 +19,7 @@ export const metadata = pageMeta({
 export default function BookDemoPage() {
   return (
     <main dir="rtl">
+      <JsonLd path="/book-demo" locale="ar" />
       <PageHeader eyebrow="احجز عرضاً توضيحياً" title="احجز عرضاً توضيحياً">
         احجز عرضاً توضيحياً مجانياً مدته 30 دقيقة، أو اختر استشارة استراتيجية مدفوعة. في الحالتين
         سنناقش أعمالك ونحدد فرص الأتمتة.

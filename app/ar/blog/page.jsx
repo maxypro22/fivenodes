@@ -4,6 +4,7 @@ import SmartImg from "@/components/SmartImg";
 import { BLOG_POSTS } from "@/components/blogData";
 import { getArBlog } from "@/components/arBlogContent";
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "مدونة أتمتة الذكاء الاصطناعي — قطر | فايف نودز",
@@ -17,6 +18,7 @@ export const metadata = pageMeta({
 export default function ArBlogPage() {
   return (
     <main dir="rtl">
+      <JsonLd path="/blog" locale="ar" />
       <PageHeader eyebrow="المدونة" title="مدونة أتمتة الذكاء الاصطناعي — قطر">
         رؤى حول أتمتة الذكاء الاصطناعي، ووكلاء الصوت، ووكلاء واتساب، وكيف تستفيد الشركات في قطر من
         الذكاء الاصطناعي.

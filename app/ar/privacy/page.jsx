@@ -2,6 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import LegalDeck from "@/components/LegalDeck";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "سياسة الخصوصية لشركة ذكاء اصطناعي | فايف نودز للذكاء الاصطناعي",
@@ -321,6 +322,7 @@ const SECTIONS = [
 export default function PrivacyPage() {
   return (
     <main dir="rtl">
+      <JsonLd path="/privacy" locale="ar" />
       <PageHeader eyebrow="قانوني" title="سياسة الخصوصية">
         تاريخ السريان: مارس 2026 | آخر تحديث: مارس 2026
       </PageHeader>

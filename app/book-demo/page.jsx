@@ -3,6 +3,7 @@ import BookingWidget from "@/components/BookingWidget";
 import SubscribeForm from "@/components/SubscribeForm";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "Book a Demo — Five Nodes for Artificial Intelligence",
@@ -17,6 +18,7 @@ export const metadata = pageMeta({
 export default function BookDemoPage() {
   return (
     <main>
+      <JsonLd path="/book-demo" locale="en" />
       <PageHeader eyebrow="Get Started" title="Book a Demo">
         Book a free 30-minute demo, or choose a paid strategy consultation. Either way, we'll walk
         through your business and identify automation opportunities.

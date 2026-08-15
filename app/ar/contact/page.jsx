@@ -2,6 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "احجز استشارة ذكاء اصطناعي مجانية في قطر | فايف نودز",
@@ -41,6 +42,7 @@ const DIRECT = [
 export default function ContactPage() {
   return (
     <main dir="rtl">
+      <JsonLd path="/contact" locale="ar" />
       {/* Hero */}
       <PageHeader eyebrow="تواصل معنا" title="احجز استشارة ذكاء اصطناعي مجانية في قطر.">
         لنبنِ شيئاً ذكياً معاً. كل تعاون مع فايف نودز يبدأ باستشارة ذكاء اصطناعي مجانية في قطر. بدون

@@ -1,6 +1,7 @@
 import PageHeader from "@/components/PageHeader";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "Terms of Service | Five Nodes for Artificial Intelligence",
@@ -13,6 +14,7 @@ export const metadata = pageMeta({
 export default function TermsPage() {
   return (
     <main>
+      <JsonLd path="/terms" locale="en" />
       <PageHeader eyebrow="Terms of Service" title="Terms of Service">
         Please read these Terms carefully before using our Service.
       </PageHeader>

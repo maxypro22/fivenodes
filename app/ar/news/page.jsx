@@ -2,6 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import SmartImg from "@/components/SmartImg";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "آخر أخبار الذكاء الاصطناعي — قطر | فايف نودز",
@@ -135,6 +136,7 @@ const SOURCE_COLORS = {
 export default function NewsPageAr() {
   return (
     <main dir="rtl">
+      <JsonLd path="/news" locale="ar" />
       <PageHeader eyebrow="الأخبار" title="آخر أخبار الذكاء الاصطناعي — قطر">
         آخر التطورات والاختراقات والإعلانات في عالم الذكاء الاصطناعي — مختارة من أفضل المصادر.
       </PageHeader>

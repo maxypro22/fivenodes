@@ -3,6 +3,7 @@ import SmartImg from "@/components/SmartImg";
 import { NEWS_ITEMS } from "@/components/newsData";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "Latest AI News — Qatar | Five Nodes",
@@ -26,6 +27,7 @@ const SOURCE_COLORS = {
 export default function NewsPage() {
   return (
     <main>
+      <JsonLd path="/news" locale="en" />
       <PageHeader eyebrow="News" title="Latest AI News — Qatar">
         The latest AI developments, breakthroughs, and industry announcements — curated from top
         sources.

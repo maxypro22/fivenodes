@@ -3,6 +3,7 @@ import CTASection from "@/components/CTASection";
 import FaqExplorer from "@/components/FaqExplorer";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "الأسئلة الشائعة عن الذكاء الاصطناعي — قطر | فايف نودز",
@@ -244,6 +245,7 @@ const FAQ_JSONLD = {
 export default function FaqPageAr() {
   return (
     <main dir="rtl">
+      <JsonLd path="/faq" locale="ar" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}

@@ -1,6 +1,7 @@
 import PageHeader from "@/components/PageHeader";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "شروط الخدمة | فايف نودز للذكاء الاصطناعي",
@@ -14,6 +15,7 @@ export const metadata = pageMeta({
 export default function TermsPage() {
   return (
     <main dir="rtl">
+      <JsonLd path="/terms" locale="ar" />
       <PageHeader eyebrow="قانوني" title="شروط الخدمة">
         تاريخ السريان: مارس 2026 | آخر تحديث: مارس 2026
       </PageHeader>

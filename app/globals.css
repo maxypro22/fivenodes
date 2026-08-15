@@ -237,3 +237,115 @@ html.lenis body {
 .hex-core-glow {
   animation: hexCoreGlow 2.6s ease-in-out infinite;
 }
+
+/* ================= GooeyNav — navbar hover pill ================= */
+:root {
+  --linear-ease: linear(
+    0,
+    0.068,
+    0.19 2.7%,
+    0.804 8.1%,
+    1.037,
+    1.199 13.2%,
+    1.245,
+    1.27 15.8%,
+    1.274,
+    1.272 17.4%,
+    1.249 19.1%,
+    0.996 28%,
+    0.949,
+    0.928 33.3%,
+    0.926,
+    0.933 36.8%,
+    1.001 45.6%,
+    1.013,
+    1.019 50.8%,
+    1.018 54.4%,
+    1 63.1%,
+    0.995 68%,
+    1.001 85%,
+    1
+  );
+}
+
+.gooey-nav-container {
+  position: relative;
+}
+.gooey-nav-container nav {
+  position: relative;
+}
+.gooey-nav-container ul {
+  position: relative;
+  z-index: 2;
+}
+.gooey-nav-container li {
+  cursor: pointer;
+}
+.gooey-nav-container .gooey-link {
+  position: relative;
+  display: inline-block;
+  color: rgb(var(--ink-2));
+  transition: color 0.25s ease;
+}
+.gooey-nav-container li:hover .gooey-link {
+  color: rgb(var(--primary));
+}
+.gooey-nav-container li.is-active .gooey-link {
+  color: rgb(var(--on-primary));
+}
+
+/* the pill itself — smoothly slides/resizes to whichever item is clicked */
+.gooey-pill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-radius: 100vw;
+  background: rgb(var(--primary));
+  box-shadow: 0 4px 14px -4px rgb(var(--primary) / 0.5);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    left 0.5s var(--linear-ease),
+    top 0.5s var(--linear-ease),
+    width 0.5s var(--linear-ease),
+    height 0.5s var(--linear-ease),
+    opacity 0.2s ease;
+}
+.gooey-pill.is-visible {
+  opacity: 1;
+}
+
+/* particle burst — small blurred dots that pop off the pill on transition */
+.gooey-particle {
+  --time: 700ms;
+  position: absolute;
+  top: calc(50% - 4px);
+  left: calc(50% - 4px);
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  pointer-events: none;
+  filter: blur(1px);
+  animation: gooeyParticle var(--time) ease 1 both;
+}
+@keyframes gooeyParticle {
+  0% {
+    transform: translate(0, 0) scale(0.3);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  70% {
+    transform: translate(calc(var(--end-x) * 1.15), calc(var(--end-y) * 1.15)) rotate(var(--rotate)) scale(var(--scale));
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(calc(var(--end-x) * 1.6), calc(var(--end-y) * 1.6)) rotate(var(--rotate)) scale(0);
+    opacity: 0;
+  }
+}

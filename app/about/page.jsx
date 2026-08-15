@@ -10,6 +10,7 @@ import {
 } from "@/components/content";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "AI Company in Qatar — About Five Nodes",
@@ -22,6 +23,7 @@ export const metadata = pageMeta({
 export default function AboutPage() {
   return (
     <main>
+      <JsonLd path="/about" locale="en" />
       <PageHeader eyebrow="About Five Nodes" title="The AI company engineering bilingual AI agents in Qatar">
         Five Nodes is an AI company in Qatar — engineering bilingual WhatsApp AI agents, voice AI
         receptionists, and AI automation for businesses in Qatar. We design, build, and operate

@@ -67,16 +67,19 @@ export const PROCESS = [
   },
 ];
 
+// logo: path to a verified real logo in /public/clients, or null to fall
+// back to a styled text wordmark (kept null where the client name was too
+// ambiguous to confidently match to one real company — see conversation).
 export const CLIENTS = [
-  "Dania Maids",
-  "A.I.C",
-  "Aram",
-  "Dania Real Estate",
-  "Suhail",
-  "X1 Milano",
-  "NexIT",
-  "Power Vision",
-  "Shop Five",
+  { name: "Dania Maids", logo: "/clients/dania-maids.png" },
+  { name: "A.I.C", logo: null },
+  { name: "Aram", logo: null },
+  { name: "Dania Real Estate", logo: "/clients/dania-real-estate.jpg" },
+  { name: "Suhail", logo: "/clients/suhail.png" },
+  { name: "X1 Milano", logo: null },
+  { name: "NexIT", logo: "/clients/nexit.jpg" },
+  { name: "Power Vision", logo: "/clients/power-vision.png" },
+  { name: "Shop Five", logo: "/clients/shop-five.png" },
 ];
 
 // Original brand logos (Simple Icons CDN, brand colors) with Clearbit fallback

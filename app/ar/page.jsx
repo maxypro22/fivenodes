@@ -4,7 +4,6 @@ import { Database, Clock, Mic, CalendarDays, ShieldCheck, Users, Zap, FileText, 
 import { pageMeta } from "@/components/seo";
 import PlatformOrbit from "@/components/PlatformOrbit";
 import CountUp from "@/components/CountUp";
-import LazyVideo from "@/components/LazyVideo";
 import WorkflowScan from "@/components/WorkflowScan";
 import DashboardIntegration from "@/components/DashboardIntegration";
 import DashboardMonitor from "@/components/DashboardMonitor";
@@ -13,7 +12,15 @@ import FeaturesDeck from "@/components/FeaturesDeck";
 import TrustedBy from "@/components/TrustedBy";
 import Integrations from "@/components/Integrations";
 import FaqAccordion from "@/components/FaqAccordion";
+import LatestBlog from "@/components/LatestBlog";
 import CTASection from "@/components/CTASection";
+import ScrollMediaTransfer from "@/components/ScrollMediaTransfer";
+import AutomateWithAI from "@/components/AutomateWithAI";
+import { QV_NODES_AR } from "@/components/automateNodesAr";
+import Industries from "@/components/Industries";
+import DashboardSection from "@/components/DashboardSection";
+import JsonLd from "@/components/JsonLd";
+import CommunicationSection from "@/components/CommunicationSection";
 
 export const metadata = pageMeta({
   title: "شركة ذكاء اصطناعي في قطر — وكلاء صوت وواتساب وأتمتة | فايف نودز",
@@ -158,6 +165,32 @@ const LEGAL_POINTS = [
 const FEATURE_DECK = FEATURES.map((f) => ({ icon: <f.Icon size={22} strokeWidth={1.8} />, t: f.t, d: f.d }));
 const LEGAL_DECK = LEGAL_POINTS.map((p) => ({ icon: <p.Icon size={22} strokeWidth={1.8} />, t: p.t, d: p.d }));
 
+/* القطاعات — بنفس ترتيب القائمة الإنجليزية */
+const INDUSTRIES_AR = [
+  "العقارات",
+  "إدارة الأملاك",
+  "الرعاية الصحية والعيادات",
+  "عيادات الأسنان",
+  "المطاعم والمقاهي",
+  "الفنادق والضيافة",
+  "التجزئة والتجارة الإلكترونية",
+  "السيارات وتأجير المركبات",
+  "الخدمات اللوجستية والتوصيل",
+  "التعليم والتدريب",
+  "التمويل والتأمين",
+  "الخدمات القانونية",
+  "السفر والسياحة",
+  "التجميل والصالونات",
+  "اللياقة والنوادي الرياضية",
+  "الخدمات المنزلية والصيانة",
+  "المقاولات والإنشاءات",
+  "التوظيف والموارد البشرية",
+  "الفعاليات والأعراس",
+  "إدارة المرافق",
+  "القطاع الحكومي والعام",
+  "التصنيع",
+];
+
 function Stat({ lbl, children }) {
   return (
     <div>
@@ -170,6 +203,13 @@ function Stat({ lbl, children }) {
 export default function HomeAr() {
   return (
     <main dir="rtl">
+      <JsonLd path="/" locale="ar" />
+      <ScrollMediaTransfer
+        chip="وكلاء يعملون الآن · عربي وإنجليزي"
+        captionTitle="صوت · واتساب · أتمتة"
+        captionSub="تعمل داخل عملياتك الفعلية"
+      />
+
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden bg-surface pt-10 pb-8 md:pt-14 md:pb-10">
           <div className="wrap grid grid-cols-1 lg:grid-cols-[1.02fr_1fr] items-center gap-12 lg:gap-14">
@@ -209,48 +249,13 @@ export default function HomeAr() {
             </div>
           </div>
 
-          {/* ---------- الفيديو ---------- */}
-          <div className="reveal d2 relative">
-            <div className="relative rounded-[26px] md:rounded-[34px] p-[1px] bg-gradient-to-bl from-white/90 via-white/30 to-primary/25 shadow-[0_40px_90px_-40px_rgba(16,22,41,.55)]">
-              <div className="relative rounded-[25px] md:rounded-[33px] overflow-hidden bg-[#0b1020] aspect-[16/13] sm:aspect-[16/11] lg:aspect-[5/4]">
-                <video
-                  className="absolute inset-0 w-full h-full object-cover object-center"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  aria-hidden="true"
-                >
-                  <source src="/hero-robot.mp4" type="video/mp4" />
-                </video>
-
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#070b16]/70 via-transparent to-[#070b16]/20" />
-                <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_60px_18px_rgba(7,11,22,.45)]" />
-                <div className="absolute inset-0 pointer-events-none rounded-[25px] md:rounded-[33px] ring-1 ring-inset ring-white/12" />
-
-                <div className="absolute right-4 top-4 md:right-5 md:top-5 flex items-center gap-2 rounded-full bg-white/12 backdrop-blur-md border border-white/20 px-3 py-1.5 text-[11px] md:text-xs font-semibold text-white">
-                  <span className="relative flex w-2 h-2">
-                    <span className="absolute inset-0 rounded-full bg-[#4ade80] animate-ping opacity-75" />
-                    <span className="relative w-2 h-2 rounded-full bg-[#4ade80]" />
-                  </span>
-                  وكلاء يعملون الآن · عربي وإنجليزي
-                </div>
-
-                <div className="absolute inset-x-4 bottom-4 md:inset-x-5 md:bottom-5 flex items-end justify-between gap-3">
-                  <p className="text-white font-heading font-semibold text-[13px] md:text-[15px] leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,.6)]">
-                    صوت · واتساب · أتمتة
-                    <span className="block text-white/70 font-body font-normal text-[11px] md:text-xs mt-0.5">
-                      تعمل داخل عملياتك الفعلية
-                    </span>
-                  </p>
-                  <span className="hidden sm:inline-flex shrink-0 rounded-full bg-white/12 backdrop-blur-md border border-white/20 px-3 py-1.5 text-[11px] font-semibold text-white">
-                    24/7
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* ---------- خانة الفيديو ----------
+              فارغة عمدًا: ScrollMediaTransfer يرسم فيديو الواجهة فوق هذا الصندوق
+              ثم ينقله إلى خانة قسم "أتمتة العمليات". */}
+          <div
+            data-transfer-slot="hero"
+            className="relative aspect-[16/13] sm:aspect-[16/11] lg:aspect-[5/4]"
+          />
         </div>
 
         {/* ---------- التكاملات ---------- */}
@@ -278,23 +283,111 @@ export default function HomeAr() {
       </section>
 
       {/* ================= VOICE PLATFORM ================= */}
-      <section className="pt-10 pb-20 md:pt-14 md:pb-28">
-        <div className="wrap text-center">
-          <h2 className="reveal font-serif text-ink font-normal text-[clamp(38px,6vw,76px)] leading-[1.05] tracking-[-.01em]">
-            أتمتة
-            <br className="hidden sm:block" /> العمليات
-          </h2>
-          <p className="reveal d1 text-muted text-base md:text-lg mt-5 max-w-[600px] mx-auto leading-[1.6]">
-            وكلاء صوت طبيعيون يشبهون البشر بالعربية والإنجليزية — كل مكالمة تُرد، وكل فرصة تُلتقط، على
-            مدار الساعة.
-          </p>
+      <section className="pt-10 pb-20 md:pt-14 md:pb-28 overflow-hidden">
+        <div className="wrap grid grid-cols-1 lg:grid-cols-[1fr_1.02fr] items-center gap-12 lg:gap-14">
+          {/* ---------- خانة الوصول ----------
+              فيديو الواجهة يطير إلى هذه اللوحة ويستقر فيها. */}
+          <div className="reveal d2 relative">
+            <div
+              data-transfer-slot="target"
+              className="relative rounded-[26px] md:rounded-[34px] overflow-hidden bg-white border border-line shadow-[0_40px_90px_-40px_rgba(16,22,41,.35)] aspect-[16/13] sm:aspect-[16/11] lg:aspect-[5/4]"
+            >
+              <div className="pointer-events-none absolute inset-0 rounded-[26px] md:rounded-[34px] ring-1 ring-inset ring-black/[.06]" />
+            </div>
+          </div>
 
-          <div className="reveal d2 mt-14 relative rounded-[40px] md:rounded-[64px] overflow-hidden bg-[#080b16] border border-white/[.06] shadow-[0_50px_100px_-40px_rgba(8,11,22,.8)]">
-            <LazyVideo className="w-full h-full object-cover aspect-[1140/360] block" src="/voice-wave-2.mp4" />
-            <div className="pointer-events-none absolute inset-0 rounded-[40px] md:rounded-[64px] shadow-[inset_0_0_60px_20px_rgba(8,11,22,.75)]" />
+          {/* ---------- النص ---------- */}
+          <div>
+            <h2 className="reveal font-serif text-ink font-normal text-[clamp(34px,5vw,64px)] leading-[1.05] tracking-[-.01em]">
+              أتمتة العمليات
+            </h2>
+            <p className="reveal d1 text-muted text-base md:text-lg mt-5 max-w-[500px] leading-[1.6]">
+              وكلاء صوت طبيعيون يشبهون البشر بالعربية والإنجليزية — كل مكالمة تُرد، وكل فرصة تُلتقط، على
+              مدار الساعة.
+            </p>
           </div>
         </div>
       </section>
+
+      {/* ================= AUTOMATE WITH AI ================= */}
+      <AutomateWithAI
+        eyebrow="الأتمتة بالذكاء الاصطناعي"
+        titleLead="ابنِ مرة واحدة."
+        titleEm="وأتمت إلى الأبد."
+        desc="راقب الأداء، وتتبع المؤشرات، وأدر منظومة الذكاء الاصطناعي بالكامل من مساحة عمل واحدة."
+        nodes={QV_NODES_AR}
+        tablistLabel="مراحل الأتمتة"
+      />
+
+      {/* ================= INDUSTRIES ================= */}
+      <Industries
+        title="القطاعات"
+        desc="وكلاء ذكاء اصطناعي ثنائيو اللغة مصممون لطريقة عمل كل قطاع — الحجز والمتابعة والدعم، بالعربية والإنجليزية."
+        items={INDUSTRIES_AR}
+        moreLabel="+ {n} المزيد"
+        lessLabel="− أقل"
+      />
+
+      {/* ================= COMMUNICATION ================= */}
+      <CommunicationSection
+        label="قنوات متعددة"
+        title="قم ببناء وكلاء الذكاء الاصطناعي المخصصين لك عبر واتساب والصوت والويب"
+        channelsTitle="انشر على"
+        channels={[
+          { key: "whatsapp", label: "واتساب" },
+          { key: "voice", label: "الصوت" },
+          { key: "web", label: "الويب" },
+          { key: "facebook", label: "فيسبوك" },
+          { key: "instagram", label: "إنستغرام" },
+          { key: "tiktok", label: "تيك توك" },
+        ]}
+        features={[
+          { icon: "clock", title: "ردود على مدار الساعة", desc: "متاح دائماً" },
+          {
+            icon: "brain",
+            title: "ردود مبنية على السياق",
+            desc: "يفهم السياق ويجيب حسب استفسارات العميل",
+          },
+          { icon: "handoff", title: "التحويل إلى موظف", desc: "يصعّد المحادثة إلى فريقك عند الحاجة" },
+        ]}
+        chat={{
+          contact: "دانية العقارية",
+          status: "وكيل ذكي · متصل",
+          dir: "rtl",
+          aiLabel: "ذكاء اصطناعي",
+          ariaLabel:
+            "محادثة واتساب يرد فيها وكيل ذكي على استفسار عميل عن شقة ويؤكد موعد المعاينة.",
+          messages: [
+            { from: "them", text: "مساء الخير، هل يوجد شقة ٣ غرف في الخليج الغربي؟", delay: 900 },
+            {
+              from: "us",
+              text: "مساء النور! نعم، لدينا وحدتان متاحتان حالياً في الخليج الغربي، وكلاهما مفروش.",
+              delay: 1500,
+            },
+            {
+              from: "us",
+              card: {
+                title: "برج مارينا — ٣ غرف",
+                meta: "الخليج الغربي · ١٦٥ م² · مفروشة",
+                price: "١٢٬٥٠٠ ر.ق / شهرياً",
+              },
+              delay: 900,
+            },
+            { from: "them", text: "هل الوحدة الثانية متاحة هذا الأسبوع؟", delay: 1600 },
+            {
+              from: "us",
+              text: "نعم متاحة. يمكنني حجزها لك وترتيب معاينة — هل يناسبك السبت الساعة ٥ مساءً؟",
+              delay: 1500,
+            },
+            { from: "them", text: "ممتاز، احجزها من فضلك", delay: 1400 },
+            {
+              from: "us",
+              text: "تم ✅ تأكيد الموعد السبت ٥ مساءً. أرسلت لك الموقع ورقم المسؤول على هذه المحادثة.",
+              delay: 1500,
+            },
+          ],
+        }}
+      />
 
       {/* ================= SOLUTIONS ================= */}
       <section id="solutions" className="py-24">
@@ -361,6 +454,23 @@ export default function HomeAr() {
           </div>
         </div>
       </section>
+
+      {/* ================= DASHBOARD ================= */}
+      <DashboardSection
+        eyebrow="لوحة تحكم بالذكاء الاصطناعي"
+        titleLead="لوحة واحدة."
+        titleAccent="إمكانات"
+        titleTail="بلا حدود."
+        desc="راقب الأداء، وتتبع المؤشرات، وأدر منظومة الذكاء الاصطناعي بالكامل من مساحة عمل واحدة ذكية."
+        points={[
+          "تحليلات ذكاء اصطناعي لحظية",
+          "مراقبة ذكية لسير العمل",
+          "رؤى وتقارير تنبؤية",
+          "تحكم مخصص في اللوحة",
+          "تكامل سلس مع أدواتك",
+        ]}
+        imageAlt="لوحة تحكم فايف نودز تعرض المستخدمين والطلبات ومعدل النجاح وأداء النظام"
+      />
 
       {/* ================= FEATURES ================= */}
       <section className="py-24 bg-surface border-y border-line-soft">
@@ -496,6 +606,9 @@ export default function HomeAr() {
           </div>
         </div>
       </section>
+
+      {/* ================= LATEST BLOG ================= */}
+      <LatestBlog locale="ar" />
 
       {/* ================= CTA ================= */}
       <CTASection

@@ -4,6 +4,7 @@ import FaqExplorer from "@/components/FaqExplorer";
 import { FAQ, FAQ_KEY_FACTS } from "@/components/content";
 
 import { pageMeta } from "@/components/seo";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata = pageMeta({
   title: "AI Solutions FAQ — Qatar | Five Nodes",
@@ -28,6 +29,7 @@ const FAQ_JSONLD = {
 export default function FaqPage() {
   return (
     <main>
+      <JsonLd path="/faq" locale="en" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}

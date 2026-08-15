@@ -15,8 +15,6 @@ import FaqAccordion from "@/components/FaqAccordion";
 import LatestBlog from "@/components/LatestBlog";
 import CTASection from "@/components/CTASection";
 import ScrollMediaTransfer from "@/components/ScrollMediaTransfer";
-import AutomateWithAI from "@/components/AutomateWithAI";
-import { QV_NODES_AR } from "@/components/automateNodesAr";
 import Industries from "@/components/Industries";
 import DashboardSection from "@/components/DashboardSection";
 import JsonLd from "@/components/JsonLd";
@@ -308,16 +306,6 @@ export default function HomeAr() {
           </div>
         </div>
       </section>
-
-      {/* ================= AUTOMATE WITH AI ================= */}
-      <AutomateWithAI
-        eyebrow="الأتمتة بالذكاء الاصطناعي"
-        titleLead="ابنِ مرة واحدة."
-        titleEm="وأتمت إلى الأبد."
-        desc="راقب الأداء، وتتبع المؤشرات، وأدر منظومة الذكاء الاصطناعي بالكامل من مساحة عمل واحدة."
-        nodes={QV_NODES_AR}
-        tablistLabel="مراحل الأتمتة"
-      />
 
       {/* ================= INDUSTRIES ================= */}
       <Industries

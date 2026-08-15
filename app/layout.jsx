@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Inter, Instrument_Serif, Space_Grotesk } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
@@ -21,14 +21,6 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-body",
-  display: "swap",
-});
-
-// Used by the Automate With AI section (ported from the static prototype).
-const grotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-grotesk",
   display: "swap",
 });
 
@@ -156,7 +148,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${inter.variable} ${instrument.variable} ${grotesk.variable}`}
+      className={`${jakarta.variable} ${inter.variable} ${instrument.variable}`}
     >
       <body className="bg-bg text-ink font-body antialiased overflow-x-clip">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />

@@ -3,6 +3,7 @@ import ContactForm from "@/components/ContactForm";
 
 import { pageMeta } from "@/components/seo";
 import JsonLd from "@/components/JsonLd";
+import OfficeCards from "@/components/OfficeCards";
 
 export const metadata = pageMeta({
   title: "احجز استشارة ذكاء اصطناعي مجانية في قطر | فايف نودز",
@@ -129,30 +130,13 @@ export default function ContactPage() {
           <div>
             <span className="eyebrow reveal">مكاتبنا</span>
             <h2 className="reveal d1 font-heading font-extrabold text-[clamp(26px,3.4vw,40px)] tracking-[-.02em] text-ink mt-3">
-              مقرنا في قطر. فريق واحد.
+              الدوحة ولندن. فريق واحد.
             </h2>
             <p className="reveal d2 text-muted text-base mt-4 max-w-[440px]">
-              مقرنا في قطر، نعمل حيث يتواجد عملاؤنا.
+              مقرنا في قطر ولدينا مكتب في لندن، ونعمل حيث يتواجد عملاؤنا.
             </p>
           </div>
-          <div className="reveal d1 bg-bg border border-line rounded-[20px] p-7 shadow-card">
-            <div className="text-[11px] uppercase tracking-[.12em] text-primary font-bold">مكتب قطر</div>
-            <p className="text-[15px] text-ink-2 leading-[1.6] mt-3">
-              الطابق الثالث، المفتاح بلازا،
-              <br />
-              شارع الريم، الدوحة، قطر
-            </p>
-            <div className="flex flex-col gap-2 mt-5 pt-5 border-t border-line-soft">
-              <div className="flex items-center justify-between">
-                <span dir="ltr" className="text-sm text-ink-2 font-medium">+974 3001 0105</span>
-                <span className="text-[11px] uppercase tracking-[.1em] text-muted-2">هاتف</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span dir="ltr" className="text-sm text-ink-2 font-medium">+974 4444 0085</span>
-                <span className="text-[11px] uppercase tracking-[.1em] text-muted-2">خط أرضي</span>
-              </div>
-            </div>
-          </div>
+          <OfficeCards locale="ar" />
         </div>
       </section>
 

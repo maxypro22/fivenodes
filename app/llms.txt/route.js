@@ -27,8 +27,9 @@ export function GET() {
 > reply and book, and workflow automation that removes manual back-office work.
 
 - **Legal name**: Five Nodes for Artificial Intelligence L.L.C.
-- **Location**: 3rd Floor, Al Muftah Plaza, Al Reem St, Doha, Qatar
-- **Service area**: Qatar and the GCC
+- **Qatar office (HQ)**: 3rd Floor, Al Muftah Plaza, Al Reem St, Doha, Qatar — +974 3001 0105 / +974 4444 0085
+- **UK office**: 167-169 Great Portland St, 5th Floor, London, W1W 5PF — +44 7384 188072
+- **Service area**: Qatar and the GCC, and the United Kingdom
 - **Languages**: Arabic, English
 - **Contact**: Info@fivenodes.ai · +974 3001 0105
 - **Founded/registered**: Qatar (MOCI)

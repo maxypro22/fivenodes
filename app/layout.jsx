@@ -113,12 +113,52 @@ const ORG_JSONLD = {
     addressLocality: "Doha",
     addressCountry: "QA",
   },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+974 3001 0105",
-    contactType: "customer service",
-    email: "Info@fivenodes.ai",
-  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+974 3001 0105",
+      contactType: "customer service",
+      email: "Info@fivenodes.ai",
+      areaServed: "QA",
+      availableLanguage: ["ar", "en"],
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: "+44 7384 188072",
+      contactType: "sales",
+      email: "Info@fivenodes.ai",
+      areaServed: "GB",
+      availableLanguage: ["en", "ar"],
+    },
+  ],
+  // Both offices as distinct places, so each can resolve locally.
+  location: [
+    {
+      "@type": "Place",
+      "@id": "https://fivenodes.ai/#office-qa",
+      name: "Five Nodes — Qatar Office",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "3rd Floor, Al Muftah Plaza, Al Reem St",
+        addressLocality: "Doha",
+        addressCountry: "QA",
+      },
+      telephone: "+974 3001 0105",
+    },
+    {
+      "@type": "Place",
+      "@id": "https://fivenodes.ai/#office-uk",
+      name: "Five Nodes — UK Office",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "167-169 Great Portland Street, 5th Floor",
+        addressLocality: "London",
+        postalCode: "W1W 5PF",
+        addressCountry: "GB",
+      },
+      telephone: "+44 7384 188072",
+    },
+  ],
 };
 
 // Runs synchronously before first paint so the page never flashes the wrong

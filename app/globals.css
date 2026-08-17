@@ -350,9 +350,10 @@ html.lenis body {
   }
 }
 
-/* Hero character rain + text scramble — ported from fivenodes.ai */
+/* Hero character rain + text scramble — values taken from the live
+   fivenodes.ai bundle so the effect matches the production site exactly. */
 @keyframes hero-rain-fall {
-  0% { transform: translate(-50%, -10vh); }
+  0%   { transform: translate(-50%, -10vh); }
   100% { transform: translate(-50%, 110vh); }
 }
 .hero-rain-char {
@@ -361,8 +362,30 @@ html.lenis body {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+/* production contrast: pure black alphas on the light page */
+.hero-rain-active { color: rgba(0,0,0,.35); text-shadow: 0 0 6px rgba(0,0,0,.08); }
+.hero-rain-idle   { color: rgba(0,0,0,.10); text-shadow: none; }
+@media (max-width: 768px) {
+  .hero-rain-active { color: rgba(0,0,0,.28); }
+  .hero-rain-idle   { color: rgba(0,0,0,.08); }
+}
+/* the production site is light-only; mirror the same alphas so the rain does
+   not vanish on this site's dark theme */
+html.dark .hero-rain-active { color: rgba(255,255,255,.38); text-shadow: 0 0 6px rgba(255,255,255,.10); }
+html.dark .hero-rain-idle   { color: rgba(255,255,255,.12); }
+
+/* scramble: settled glyphs use the site's black -> grey text gradient,
+   in-flight dud glyphs are green, exactly as production renders them */
 .sc { vertical-align: baseline; line-height: inherit; }
 .sc.dud { display: inline-block; width: .6em; text-align: center; color: #00c853; }
+.text-gradient {
+  background: linear-gradient(135deg, #000, #4a4a4a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+html.dark .text-gradient { background: linear-gradient(135deg, #fff, #b9c0d0); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-rain-char { animation: none; display: none; }

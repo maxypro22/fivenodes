@@ -92,12 +92,20 @@ const ORG_JSONLD = {
     ],
   },
   email: "Info@fivenodes.ai",
+  // sameAs is how answer engines resolve "Five Nodes" to one real entity.
+  // Add each profile here as it goes live — a Wikidata item in particular is a
+  // disproportionately strong entity signal. See ENTITY-CHECKLIST.md.
   sameAs: [
     "https://www.linkedin.com/company/five-nodes-ltd",
     "https://x.com/five_nodes_ai",
     "https://www.instagram.com/five_nodes_ai/",
     "https://www.facebook.com/profile.php?id=61582372894863",
     "https://www.tiktok.com/@five_nodes_ai",
+    // TODO once live — do not add speculative URLs, a 404 in sameAs weakens the
+    // entity rather than strengthening it:
+    // "https://www.wikidata.org/wiki/Q…",
+    // "https://www.google.com/maps/place/…",   // Google Business Profile
+    // "https://clutch.co/profile/five-nodes",
   ],
   address: {
     "@type": "PostalAddress",

@@ -66,14 +66,20 @@ class TextScramble {
     }
     this.el.innerHTML = output;
     if (complete === this.queue.length) {
+      this.currentText = this.queue.map((q) => q.to).join("");
       this.resolve();
     } else {
-      this.frameRequest = requestAnimationFrame(this.update);
+      // Production throttles to ~30fps via a 33ms timeout before each frame.
+      // Without it the scramble resolves twice as fast as on the live site.
+      this.timer = setTimeout(() => {
+        this.frameRequest = requestAnimationFrame(this.update);
+      }, 33);
       this.frame++;
     }
   }
 
   stop() {
+    clearTimeout(this.timer);
     cancelAnimationFrame(this.frameRequest);
   }
 }

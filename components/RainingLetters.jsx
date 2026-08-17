@@ -3,69 +3,70 @@
 import { useEffect, useState } from "react";
 
 /**
- * Falling character rain behind the hero, ported from fivenodes.ai.
+ * Falling character rain behind the hero.
  *
- * Characters fall from -10vh to 110vh on their own duration and delay. A small
- * rotating subset is "active" — heavier weight, darker, faintly glowing — which
- * is what makes the field read as data rather than static noise.
+ * Values below are the production ones from fivenodes.ai, taken from the live
+ * bundle rather than eyeballed: the character pool, the 10–30s fall duration,
+ * the negative start delay that makes the field look already-running on load,
+ * the 1.5% "active" rate, and the exact colours and opacities.
  *
- * Positions are generated after mount so the server and client markup can never
- * disagree (Math.random during render is a hydration mismatch).
+ * Positions are generated after mount — Math.random during render is a
+ * hydration mismatch — and regenerated on resize, as production does.
  */
 
-const POOL = "0123456789";
-const ACTIVE_EVERY = 1200; // ms between active-character reshuffles
+// Production pool: code punctuation, then A–Z and 0–9.
+const POOL = "{ } [ ] ( ) < > / ; : = + - * % & | ! ? _ => // /* */ # { } [ ] ( ) < > ; : = { } [ ] => // # & | ! ? _ + - * < > / ;"
+  .split(" ")
+  .concat("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9".split(" "));
 
-export default function RainingLetters({ charCount = 180, className = "", children }) {
+const MOBILE_BP = 768;
+
+export default function RainingLetters({ charCount = 200, className = "", children }) {
   const [chars, setChars] = useState([]);
-  const [tick, setTick] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    setChars(
-      Array.from({ length: charCount }, () => ({
-        char: POOL[Math.floor(Math.random() * POOL.length)],
-        x: Math.random() * 100,
-        duration: 8 + Math.random() * 14,
-        delay: Math.random() * -20,
-        active: Math.random() < 0.06,
-      }))
-    );
+    const build = () => {
+      const mobile = window.innerWidth <= MOBILE_BP;
+      setIsMobile(mobile);
+      const n = mobile ? Math.round(0.48 * charCount) : charCount;
+      const out = [];
+      for (let i = 0; i < n; i++) {
+        out.push({
+          char: POOL[Math.floor(Math.random() * POOL.length)],
+          x: 100 * Math.random(),
+          duration: 10 + 20 * Math.random(),
+          delay: -(30 * Math.random()),
+          isActive: Math.random() < 0.015,
+        });
+      }
+      setChars(out);
+    };
 
-    const id = setInterval(() => setTick((t) => t + 1), ACTIVE_EVERY);
-    return () => clearInterval(id);
+    build();
+    window.addEventListener("resize", build);
+    return () => window.removeEventListener("resize", build);
   }, [charCount]);
 
-  // reshuffle which characters are highlighted, and swap their glyphs
-  useEffect(() => {
-    if (!tick) return;
-    setChars((prev) =>
-      prev.map((c) =>
-        Math.random() < 0.08
-          ? { ...c, active: !c.active, char: POOL[Math.floor(Math.random() * POOL.length)] }
-          : c
-      )
-    );
-  }, [tick]);
-
   return (
-    <div className={`relative ${className}`}>
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <div className={`relative w-full overflow-hidden ${className}`}>
+      <div aria-hidden="true" className="absolute inset-0 z-0">
         {chars.map((c, i) => (
           <span
             key={i}
-            className="hero-rain-char absolute select-none pointer-events-none"
+            className={`hero-rain-char absolute select-none pointer-events-none ${
+              c.isActive ? "hero-rain-active" : "hero-rain-idle"
+            }`}
             style={{
               left: `${c.x}%`,
               animationDuration: `${c.duration}s`,
               animationDelay: `${c.delay}s`,
-              color: c.active ? "rgb(var(--ink) / .35)" : "rgb(var(--ink) / .10)",
-              textShadow: c.active ? "0 0 6px rgb(var(--ink) / .08)" : "none",
-              opacity: c.active ? 1 : 0.6,
+              opacity: c.isActive ? (isMobile ? 0.8 : 1) : isMobile ? 0.48 : 0.6,
               fontSize: "1.5rem",
               fontFamily: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-              fontWeight: c.active ? 700 : 300,
+              fontWeight: c.isActive ? 700 : 300,
               lineHeight: 1,
               willChange: "transform",
             }}

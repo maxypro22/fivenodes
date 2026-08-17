@@ -1,10 +1,21 @@
+// Answer engines and retrieval crawlers we want citing us.
 const AI_BOTS = [
-  "GPTBot",
-  "ClaudeBot",
-  "PerplexityBot",
+  "GPTBot", // OpenAI training + browsing
+  "OAI-SearchBot", // ChatGPT Search index
+  "ChatGPT-User", // live fetch when a user asks about us
+  "ClaudeBot", // Anthropic
+  "Claude-User",
+  "PerplexityBot", // Perplexity index
+  "Perplexity-User",
+  "Google-Extended", // Gemini grounding
   "GoogleOther",
-  "Google-Extended",
-  "OAI-SearchBot",
+  "Applebot", // Siri / Spotlight
+  "Applebot-Extended", // Apple Intelligence
+  "meta-externalagent", // Meta AI
+  "CCBot", // Common Crawl — feeds many open corpora
+  "cohere-ai",
+  "Amazonbot",
+  "DuckAssistBot",
 ];
 
 export default function robots() {

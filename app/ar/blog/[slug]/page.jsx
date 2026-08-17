@@ -85,6 +85,9 @@ export default async function ArBlogPost({ params }) {
     description: ar.metaDescription || ar.excerpt || post.excerpt,
     image: post.image,
     datePublished: ar.date || post.date,
+    // Freshness signal: answer engines strongly prefer demonstrably current
+    // sources. Falls back to the publish date when a post has not been revised.
+    dateModified: ar.updated || post.updated || ar.date || post.date,
     inLanguage: "ar",
     author: { "@type": "Organization", name: "Five Nodes" },
     publisher: { "@id": "https://fivenodes.ai/#organization" },

@@ -97,6 +97,9 @@ export default async function BlogPost({ params }) {
     description: content?.metaDescription || post.excerpt,
     image: post.image,
     datePublished: post.date,
+    // Freshness signal: answer engines strongly prefer demonstrably current
+    // sources. Falls back to the publish date when a post has not been revised.
+    dateModified: post.updated || post.date,
     inLanguage: "en",
     author: { "@type": "Organization", name: "Five Nodes" },
     publisher: { "@id": "https://fivenodes.ai/#organization" },

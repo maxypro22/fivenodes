@@ -41,12 +41,12 @@ export default function Hero() {
 
           {/* decoding word, as on the production hero */}
           <div className="reveal d1 mb-3 flex items-baseline gap-2.5">
-            <span className="font-heading font-extrabold text-ink text-[clamp(20px,2.2vw,28px)] leading-none">
+            <span className="text-gradient font-heading font-extrabold text-[clamp(20px,2.2vw,28px)] leading-none">
               Automate
             </span>
             <ScrambleText
               words={SCRAMBLE_WORDS}
-              className="scramble-word font-heading font-extrabold text-primary text-[clamp(20px,2.2vw,28px)] leading-none"
+              className="scramble-word text-gradient font-heading font-extrabold text-[clamp(20px,2.2vw,28px)] leading-none"
             />
           </div>
 

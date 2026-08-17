@@ -1,4 +1,5 @@
 import { BLOG_POSTS } from "@/components/blogData";
+import { GUIDES } from "@/components/guidesData";
 
 const BASE = "https://fivenodes.ai";
 
@@ -12,6 +13,7 @@ const STATIC_PATHS = [
   "/book-demo",
   "/news",
   "/blog",
+  "/guides",
   "/faq",
   "/privacy",
   "/terms",
@@ -38,5 +40,9 @@ export default function sitemap() {
     entries(`/blog/${post.slug}`, { priority: 0.6, changeFrequency: "weekly" })
   );
 
-  return [...staticEntries, ...blogEntries];
+  const guideEntries = GUIDES.flatMap((g) =>
+    entries(`/guides/${g.slug}`, { priority: 0.8, changeFrequency: "monthly" })
+  );
+
+  return [...staticEntries, ...blogEntries, ...guideEntries];
 }

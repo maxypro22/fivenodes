@@ -379,13 +379,18 @@ html.dark .hero-rain-idle   { color: rgba(255,255,255,.12); }
 .sc { vertical-align: baseline; line-height: inherit; }
 .sc.dud { display: inline-block; width: .6em; text-align: center; color: #00c853; }
 .text-gradient {
-  background: linear-gradient(135deg, #000, #4a4a4a);
+  /* background-image, not the `background` shorthand: the shorthand resets
+     background-clip to border-box, which paints the gradient on the element box
+     and leaves the glyphs invisible. */
+  background-image: linear-gradient(135deg, #000, #4a4a4a);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-html.dark .text-gradient { background: linear-gradient(135deg, #fff, #b9c0d0); }
+html.dark .text-gradient {
+  background-image: linear-gradient(135deg, #fff, #b9c0d0);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .hero-rain-char { animation: none; display: none; }

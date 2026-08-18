@@ -16,7 +16,7 @@ export const OFFICES = [
     en: { label: "Qatar Office", note: "Headquarters" },
     ar: { label: "مكتب قطر", note: "المقر الرئيسي" },
     lines: ["3rd Floor, Al Muftah Plaza", "Al Reem St, Doha, Qatar"],
-    linesAr: ["الطابق الثالث، بلازا المفتاح", "شارع الريم، الدوحة، قطر"],
+    linesAr: ["الطابق الثالث، المفتاح بلازا", "شارع الريم، الدوحة، قطر"],
     phones: [
       { display: "+974 3001 0105", tel: "+97430010105", en: "Mobile", ar: "جوال" },
       { display: "+974 4444 0085", tel: "+97444440085", en: "Landline", ar: "أرضي" },

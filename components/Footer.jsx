@@ -110,6 +110,52 @@ export default function Footer() {
   return (
     <footer className="bg-bg border-t border-line-soft pt-[60px] pb-[26px]">
       <div className="wrap">
+        {/* ---------- Offices ---------- */}
+        <div className="mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+            {OFFICES.map((o) => {
+              const t = isAr ? o.ar : o.en;
+              const lines = isAr ? o.linesAr : o.lines;
+              return (
+                <div
+                  key={o.key}
+                  className="rounded-2xl border border-line bg-surface p-6 shadow-[0_12px_30px_-20px_rgba(16,22,41,.25)]"
+                >
+                  <div className="flex items-center gap-2.5 font-heading font-bold text-ink">
+                    <FlagIcon code={o.code} className="w-[22px] h-[16px]" />
+                    {t.label}
+                  </div>
+                  <div className="flex items-start gap-2.5 mt-4 text-[13px] text-muted leading-[1.55]">
+                    <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 mt-0.5 shrink-0 text-muted-2">
+                      <path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" strokeWidth="1.8" />
+                      <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.8" />
+                    </svg>
+                    <span>{lines.join(", ")}</span>
+                  </div>
+                  {o.phones.map((ph) => (
+                    <a
+                      key={ph.tel}
+                      href={`tel:${ph.tel}`}
+                      className="flex items-center gap-2.5 mt-2.5 text-sm text-ink-2 font-medium hover:text-primary transition-colors"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 shrink-0 text-muted-2">
+                        <path
+                          d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span dir="ltr">{ph.display}</span>
+                    </a>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* ---------- brand · quick links · services · contact ---------- */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-9 sm:gap-x-8 lg:grid-cols-[1.7fr_1fr_1fr_1.4fr] lg:gap-12">
           {/* Brand — centred on phones, start-aligned from sm up */}
@@ -203,52 +249,6 @@ export default function Footer() {
                 </a>
               </ContactRow>
             </div>
-          </div>
-        </div>
-
-        {/* ---------- Offices ---------- */}
-        <div className="border-t border-line-soft mt-12 pt-9">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:max-w-[760px]">
-            {OFFICES.map((o) => {
-              const t = isAr ? o.ar : o.en;
-              const lines = isAr ? o.linesAr : o.lines;
-              return (
-                <div
-                  key={o.key}
-                  className="rounded-2xl border border-line bg-surface p-6 shadow-[0_12px_30px_-20px_rgba(16,22,41,.25)]"
-                >
-                  <div className="flex items-center gap-2.5 font-heading font-bold text-ink">
-                    <FlagIcon code={o.code} className="w-[22px] h-[16px]" />
-                    {t.label}
-                  </div>
-                  <div className="flex items-start gap-2.5 mt-4 text-[13px] text-muted leading-[1.55]">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 mt-0.5 shrink-0 text-muted-2">
-                      <path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" strokeWidth="1.8" />
-                      <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.8" />
-                    </svg>
-                    <span>{lines.join(", ")}</span>
-                  </div>
-                  {o.phones.map((ph) => (
-                    <a
-                      key={ph.tel}
-                      href={`tel:${ph.tel}`}
-                      className="flex items-center gap-2.5 mt-2.5 text-sm text-ink-2 font-medium hover:text-primary transition-colors"
-                    >
-                      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 shrink-0 text-muted-2">
-                        <path
-                          d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"
-                          stroke="currentColor"
-                          strokeWidth="1.8"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <span dir="ltr">{ph.display}</span>
-                    </a>
-                  ))}
-                </div>
-              );
-            })}
           </div>
         </div>
 

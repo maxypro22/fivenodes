@@ -1,3 +1,5 @@
+import FlagIcon from "./FlagIcon";
+
 /**
  * Office cards for the contact pages.
  *
@@ -9,7 +11,7 @@
 export const OFFICES = [
   {
     key: "qa",
-    flag: "🇶🇦",
+    code: "qa",
     country: "Qatar",
     en: { label: "Qatar Office", note: "Headquarters" },
     ar: { label: "مكتب قطر", note: "المقر الرئيسي" },
@@ -22,7 +24,7 @@ export const OFFICES = [
   },
   {
     key: "uk",
-    flag: "🇬🇧",
+    code: "gb",
     country: "United Kingdom",
     en: { label: "UK Office", note: "AI automation services in London" },
     ar: { label: "مكتب المملكة المتحدة", note: "خدمات أتمتة الذكاء الاصطناعي في لندن" },
@@ -48,9 +50,7 @@ export default function OfficeCards({ locale = "en" }) {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2.5">
-                  <span className="text-[22px] leading-none" role="img" aria-label={o.country}>
-                    {o.flag}
-                  </span>
+                  <FlagIcon code={o.code} className="w-[24px] h-[17px]" />
                   <span className="text-[11px] uppercase tracking-[.12em] text-primary font-bold">
                     {t.label}
                   </span>

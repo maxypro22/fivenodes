@@ -4,11 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SubscribeForm from "./SubscribeForm";
 import { getLocale, localizeHref, T } from "./i18n";
-
-const CONTACTS = [
-  ["+974 3001 0105", "office"],
-  ["+974 4444 0085", "support"],
-];
+import FlagIcon from "./FlagIcon";
+import { OFFICES } from "./OfficeCards";
 
 const SOCIALS = [
   {
@@ -49,6 +46,7 @@ export default function Footer() {
   const pathname = usePathname();
   const locale = getLocale(pathname);
   const f = T[locale].footer;
+  const isAr = locale === "ar";
   const loc = (href) => localizeHref(href, locale);
 
   return (
@@ -115,30 +113,43 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Qatar Office card */}
+        {/* Office cards — Qatar HQ and the London office */}
         <div className="border-t border-line-soft mt-8 pt-10">
-          <div className="rounded-2xl border border-line bg-surface p-6 shadow-[0_12px_30px_-20px_rgba(16,22,41,.25)] lg:max-w-[560px]">
-            <div className="flex items-center gap-2 font-heading font-bold text-ink">
-              <span className="text-lg leading-none">🇶🇦</span>
-              {f.officeName}
-            </div>
-            <div className="flex items-start gap-2.5 mt-4 text-[13px] text-muted leading-[1.55]">
-              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 mt-0.5 shrink-0 text-muted-2">
-                <path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" strokeWidth="1.8" />
-                <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.8" />
-              </svg>
-              <span>
-                {f.address[0]} {f.address[1]}
-              </span>
-            </div>
-            {CONTACTS.map(([ph]) => (
-              <div key={ph} className="flex items-center gap-2.5 mt-2.5 text-sm text-ink-2 font-medium">
-                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 shrink-0 text-muted-2">
-                  <path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span dir="ltr">{ph}</span>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:max-w-[760px]">
+            {OFFICES.map((o) => {
+              const t = isAr ? o.ar : o.en;
+              const lines = isAr ? o.linesAr : o.lines;
+              return (
+                <div
+                  key={o.key}
+                  className="rounded-2xl border border-line bg-surface p-6 shadow-[0_12px_30px_-20px_rgba(16,22,41,.25)]"
+                >
+                  <div className="flex items-center gap-2.5 font-heading font-bold text-ink">
+                    <FlagIcon code={o.code} className="w-[22px] h-[16px]" />
+                    {t.label}
+                  </div>
+                  <div className="flex items-start gap-2.5 mt-4 text-[13px] text-muted leading-[1.55]">
+                    <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 mt-0.5 shrink-0 text-muted-2">
+                      <path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" strokeWidth="1.8" />
+                      <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.8" />
+                    </svg>
+                    <span>{lines.join(", ")}</span>
+                  </div>
+                  {o.phones.map((ph) => (
+                    <a
+                      key={ph.tel}
+                      href={`tel:${ph.tel}`}
+                      className="flex items-center gap-2.5 mt-2.5 text-sm text-ink-2 font-medium hover:text-primary transition-colors"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 shrink-0 text-muted-2">
+                        <path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span dir="ltr">{ph.display}</span>
+                    </a>
+                  ))}
+                </div>
+              );
+            })}
           </div>
         </div>
 

@@ -36,11 +36,68 @@ const SOCIALS = [
 ];
 
 const HEADING = "font-heading font-bold text-[11px] uppercase tracking-[.14em] text-primary mb-4";
-// Row-style hover: the whole row fills solid with the accent color and the
-// text flips to text-on-primary for contrast — both tokens, so it reads
-// correctly in light mode (blue fill) and dark mode (lavender fill) alike.
+
+/* Link rows carry a small chevron marker, as in the reference footer. */
 const LINK =
-  "block -mx-3 px-3 py-2 rounded-lg text-[14px] text-ink-2 transition-all duration-200 hover:bg-primary hover:text-on-primary";
+  "group inline-flex items-center gap-2 py-[5px] text-[14px] text-ink-2 transition-colors duration-200 hover:text-primary";
+
+function Chevron() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="w-3 h-3 shrink-0 text-muted-2 transition-all duration-200 group-hover:text-primary rtl:rotate-180"
+    >
+      <path
+        d="M9 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* Contact row: circular outlined icon badge, small label above the value. */
+function ContactRow({ icon, label, children }) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line text-muted-2">
+        {icon}
+      </span>
+      <div className="min-w-0">
+        <div className="text-[11px] uppercase tracking-[.1em] text-muted-2">{label}</div>
+        <div className="text-[13.5px] text-ink-2 leading-[1.55] mt-1">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+const PinIcon = (
+  <svg viewBox="0 0 24 24" fill="none" className="w-[18px] h-[18px]">
+    <path d="M12 21s-7-6.2-7-11a7 7 0 1114 0c0 4.8-7 11-7 11z" stroke="currentColor" strokeWidth="1.8" />
+    <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.8" />
+  </svg>
+);
+const PhoneGlyph = (
+  <svg viewBox="0 0 24 24" fill="none" className="w-[18px] h-[18px]">
+    <path
+      d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+const MailGlyph = (
+  <svg viewBox="0 0 24 24" fill="none" className="w-[18px] h-[18px]">
+    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
+    <path d="M4 7l8 6 8-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 export default function Footer() {
   const pathname = usePathname();
@@ -48,73 +105,109 @@ export default function Footer() {
   const f = T[locale].footer;
   const isAr = locale === "ar";
   const loc = (href) => localizeHref(href, locale);
+  const hq = OFFICES[0];
 
   return (
-    <footer className="bg-bg border-t border-line-soft pt-[70px] pb-[30px]">
+    <footer className="bg-bg border-t border-line-soft pt-[60px] pb-[26px]">
       <div className="wrap">
-        {/* Top: brand + newsletter · quick links · services */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr_1.6fr] gap-12">
-          {/* Brand + newsletter */}
-          <div>
-            <Link href={loc("/")} className="inline-flex items-center mb-5" aria-label="Five Nodes home">
+        {/* ---------- brand · quick links · services · contact ---------- */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_1.4fr] lg:gap-12">
+          {/* Brand — centred on phones, start-aligned from sm up */}
+          <div className="text-center sm:text-start sm:col-span-2 lg:col-span-1">
+            <Link href={loc("/")} className="inline-flex items-center mb-4" aria-label="Five Nodes home">
               <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-12 w-auto dark:hidden" />
               <img src="/fivenodes-logo-white.png" alt="Five Nodes" className="hidden h-12 w-auto dark:block" />
             </Link>
-            <div className="font-heading font-bold text-lg text-ink mb-2">{f.stayConnected}</div>
-            <p className="text-sm text-muted mb-4 max-w-[360px] leading-[1.6]">{f.newsletter}</p>
-            <SubscribeForm placeholder={f.emailPlaceholder} />
+
+            <p className="text-[13.5px] text-muted leading-[1.7] max-w-[360px] mx-auto sm:mx-0">
+              {f.newsletter}
+            </p>
+
+            <div className="mt-5 max-w-[360px] mx-auto sm:mx-0">
+              <div className="font-heading font-bold text-[15px] text-ink mb-2">{f.stayConnected}</div>
+              <SubscribeForm placeholder={f.emailPlaceholder} />
+            </div>
+
+            <div className="flex gap-[10px] mt-6 justify-center sm:justify-start">
+              {SOCIALS.map(({ name, url, d }) => (
+                <a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={name}
+                  className="w-10 h-10 rounded-full border border-line text-ink-2 grid place-items-center transition-all duration-200 hover:bg-primary hover:border-primary hover:text-on-primary hover:-translate-y-0.5"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                    <path d={d} />
+                  </svg>
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <FooterCol title={f.resources} items={f.resourcesItems} loc={loc} />
-
-          {/* Services — heading over a two-column list */}
+          {/* Quick links */}
           <div>
-            <div className={HEADING}>{f.services}</div>
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-0.5">
-              {f.servicesItems.map(([label, href]) => (
+            <div className={HEADING}>{f.resources}</div>
+            <ul>
+              {f.resourcesItems.map(([label, href]) => (
                 <li key={label}>
                   <Link href={loc(href)} className={LINK}>
+                    <Chevron />
                     {label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
 
-        {/* Middle: socials + email */}
-        <div className="flex flex-col-reverse gap-6 sm:flex-row sm:items-center sm:justify-between mt-16">
-          <div className="flex gap-[10px]">
-            {SOCIALS.map(({ name, url, d }) => (
-              <a
-                key={name}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={name}
-                className="w-10 h-10 rounded-full border border-line text-ink-2 grid place-items-center transition-all duration-200 hover:bg-primary hover:border-primary hover:text-on-primary hover:-translate-y-0.5"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                  <path d={d} />
-                </svg>
-              </a>
-            ))}
+          {/* Services */}
+          <div>
+            <div className={HEADING}>{f.services}</div>
+            <ul>
+              {f.servicesItems.map(([label, href]) => (
+                <li key={label}>
+                  <Link href={loc(href)} className={LINK}>
+                    <Chevron />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <a
-            href="mailto:Info@fivenodes.ai"
-            className="inline-flex items-center gap-2 text-sm font-medium text-ink-2 hover:text-primary"
-          >
-            Info@fivenodes.ai
-            <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 text-muted-2">
-              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" />
-              <path d="M4 7l8 6 8-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+
+          {/* Contact */}
+          <div>
+            <div className={HEADING}>{f.contact}</div>
+            <div className="flex flex-col gap-4">
+              <ContactRow icon={PinIcon} label={isAr ? "العنوان" : "Address"}>
+                {(isAr ? hq.linesAr : hq.lines).join(", ")}
+              </ContactRow>
+
+              <ContactRow icon={PhoneGlyph} label={isAr ? "الهاتف" : "Phone"}>
+                {hq.phones.map((p) => (
+                  <a
+                    key={p.tel}
+                    href={`tel:${p.tel}`}
+                    dir="ltr"
+                    className="block hover:text-primary transition-colors"
+                  >
+                    {p.display}
+                  </a>
+                ))}
+              </ContactRow>
+
+              <ContactRow icon={MailGlyph} label={isAr ? "البريد الإلكتروني" : "Email"}>
+                <a href="mailto:Info@fivenodes.ai" className="hover:text-primary transition-colors">
+                  Info@fivenodes.ai
+                </a>
+              </ContactRow>
+            </div>
+          </div>
         </div>
 
-        {/* Office cards — Qatar HQ and the London office */}
-        <div className="border-t border-line-soft mt-8 pt-10">
+        {/* ---------- Offices ---------- */}
+        <div className="border-t border-line-soft mt-12 pt-9">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:max-w-[760px]">
             {OFFICES.map((o) => {
               const t = isAr ? o.ar : o.en;
@@ -142,7 +235,13 @@ export default function Footer() {
                       className="flex items-center gap-2.5 mt-2.5 text-sm text-ink-2 font-medium hover:text-primary transition-colors"
                     >
                       <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 shrink-0 text-muted-2">
-                        <path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        <path
+                          d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                       <span dir="ltr">{ph.display}</span>
                     </a>
@@ -153,10 +252,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-line-soft mt-10 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        {/* ---------- Bottom bar ---------- */}
+        <div className="border-t border-line-soft mt-10 pt-6 flex flex-col items-center gap-4 text-center md:flex-row md:items-center md:justify-between md:text-start">
           <div className="text-[13px] text-muted-2">{f.rights}</div>
-          <div className="flex gap-1 flex-wrap -mx-3">
+          <div className="flex gap-1 flex-wrap justify-center -mx-3">
             {[
               [f.privacy, "/privacy"],
               [f.terms, "/terms"],
@@ -164,9 +263,9 @@ export default function Footer() {
               [f.contactShort, "/contact"],
             ].map(([label, href]) => (
               <Link
-                key={href}
+                key={label}
                 href={loc(href)}
-                className="px-3 py-1.5 rounded-full text-[13px] text-muted transition-all duration-200 hover:bg-primary hover:text-on-primary"
+                className="px-3 py-1 text-[13px] text-muted-2 hover:text-primary transition-colors"
               >
                 {label}
               </Link>
@@ -175,22 +274,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function FooterCol({ title, items, loc }) {
-  return (
-    <div>
-      <div className={HEADING}>{title}</div>
-      <ul className="grid grid-cols-2 md:flex md:flex-col gap-x-6 gap-y-0.5">
-        {items.map(([label, href]) => (
-          <li key={label}>
-            <Link href={loc(href)} className={LINK}>
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }

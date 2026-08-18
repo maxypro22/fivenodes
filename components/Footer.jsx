@@ -39,7 +39,7 @@ const HEADING = "font-heading font-bold text-[11px] uppercase tracking-[.14em] t
 
 /* Link rows carry a small chevron marker, as in the reference footer. */
 const LINK =
-  "group inline-flex items-center gap-2 py-[5px] text-[14px] text-ink-2 transition-colors duration-200 hover:text-primary";
+  "group flex items-start gap-2 py-[5px] text-[14px] leading-[1.5] text-ink-2 transition-colors duration-200 hover:text-primary";
 
 function Chevron() {
   return (
@@ -47,7 +47,7 @@ function Chevron() {
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
-      className="w-3 h-3 shrink-0 text-muted-2 transition-all duration-200 group-hover:text-primary rtl:rotate-180"
+      className="w-3 h-3 mt-[5px] shrink-0 text-muted-2 transition-all duration-200 group-hover:text-primary rtl:rotate-180"
     >
       <path
         d="M9 6l6 6-6 6"
@@ -111,9 +111,9 @@ export default function Footer() {
     <footer className="bg-bg border-t border-line-soft pt-[60px] pb-[26px]">
       <div className="wrap">
         {/* ---------- brand · quick links · services · contact ---------- */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_1.4fr] lg:gap-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-9 sm:gap-x-8 lg:grid-cols-[1.7fr_1fr_1fr_1.4fr] lg:gap-12">
           {/* Brand — centred on phones, start-aligned from sm up */}
-          <div className="text-center sm:text-start sm:col-span-2 lg:col-span-1">
+          <div className="col-span-2 text-center sm:text-start lg:col-span-1">
             <Link href={loc("/")} className="inline-flex items-center mb-4" aria-label="Five Nodes home">
               <img src="/fivenodes-logo-black.png" alt="Five Nodes" className="h-12 w-auto dark:hidden" />
               <img src="/fivenodes-logo-white.png" alt="Five Nodes" className="hidden h-12 w-auto dark:block" />
@@ -177,7 +177,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <div className={HEADING}>{f.contact}</div>
             <div className="flex flex-col gap-4">
               <ContactRow icon={PinIcon} label={isAr ? "العنوان" : "Address"}>
